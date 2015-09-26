@@ -2,10 +2,10 @@
 \contentsline {subsection}{\numberline {1.1}Resource Management}{1}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Batch Scheduling}{1}{subsection.1.2}
 \contentsline {subsection}{\numberline {1.3}Software Requirements}{2}{subsection.1.3}
-\contentsline {section}{\numberline {2}Modeling}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}Traffic Assignment Problem}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Discrete Network Design problem}{6}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Solution Technique: Meta Heuristics}{7}{subsection.2.3}
+\contentsline {section}{\numberline {2}Invasive Computing}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Job Classification}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Traditional Resource Management}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Support For Invasive Computing}{8}{subsection.2.3}
 \contentsline {section}{\numberline {3}Genetic Algorithm}{9}{section.3}
 \contentsline {subsection}{\numberline {3.1}Understanding the algorithm}{9}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Encoding}{12}{subsection.3.2}
@@ -16,13 +16,14 @@
 \contentsline {subsubsection}{\numberline {3.3.4}Tournament Selection}{16}{subsubsection.3.3.4}
 \contentsline {subsection}{\numberline {3.4}Crossover}{17}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}Mutation}{19}{subsection.3.5}
-\contentsline {section}{\numberline {4}Implementation}{21}{section.4}
-\contentsline {subsection}{\numberline {4.1}Software Design}{21}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Implementation Details}{22}{subsection.4.2}
-\contentsline {section}{\numberline {5}Experiments and Visualization}{23}{section.5}
-\contentsline {subsection}{\numberline {5.1}Setup}{23}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Datasets}{23}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Experiments and Results}{23}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Visualization}{23}{subsection.5.4}
-\contentsline {section}{\numberline {6}Conclusion}{24}{section.6}
-\contentsline {subsection}{\numberline {6.1}Scope for future work}{24}{subsection.6.1}
+\contentsline {section}{\numberline {4}Design \& Implementation}{21}{section.4}
+\contentsline {subsection}{\numberline {4.1}Software Architecture}{21}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Protocol Sequence Diagrams}{22}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}State Machine Diagrams}{23}{subsection.4.3}
+\contentsline {section}{\numberline {5}Experiments and Visualization}{24}{section.5}
+\contentsline {subsection}{\numberline {5.1}Setup}{24}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Datasets}{24}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Experiments and Results}{24}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Visualization}{24}{subsection.5.4}
+\contentsline {section}{\numberline {6}Conclusion}{25}{section.6}
+\contentsline {subsection}{\numberline {6.1}Scope for future work}{25}{subsection.6.1}

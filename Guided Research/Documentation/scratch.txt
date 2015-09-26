@@ -1,0 +1,5 @@
+ D. G. Feitelson and L. Rudolph, “Towards convergence in job schedulers
+for parallel supercomputers,” in Proceedings of the Workshop on Job
+Scheduling Strategies for Parallel Processing. Springer-Verlag, 1996.
+
+
