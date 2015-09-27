@@ -5,7 +5,7 @@
 \contentsline {section}{\numberline {2}Invasive Computing}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Job Classification}{4}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Traditional Resource Management}{6}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Support For Invasive Computing}{8}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}Support For Invasive Computing}{7}{subsection.2.3}
 \contentsline {section}{\numberline {3}Genetic Algorithm}{9}{section.3}
 \contentsline {subsection}{\numberline {3.1}Understanding the algorithm}{9}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Encoding}{12}{subsection.3.2}
