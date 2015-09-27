@@ -1,4 +1,4 @@
-TEX = pdflatex 
+TEX = pdflatex -shell-escape
 BIB = bibtex 
 PAPER = nishanth
 
