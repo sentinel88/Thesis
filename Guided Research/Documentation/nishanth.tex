@@ -130,40 +130,16 @@ The batch scheduler accepts job descriptions given by end users some of which me
 \\The investigations of this guided research are an initial study that will support the continuing research effort for developing Invasive MPI and extended resource management systems to support Invasive computing systems.
 
 \subsection{Software Requirements}
-The project has been implemented in C with the help of an API(Linux version) provided by a commercial software suite for C++.\\~\\
-\textbf{\boldmath$FICO^{TM}$ Xpress Optimization Suite:}   FICO Xpress Optimization Suite is a sophisticated mathematical modeling and optimization software. Its tools enable operational research and management professionals, analysts, and consultants to rapidly develop optimization applications that solve complex, real-world business and customer engagement challenges. It provides easy ways to create, deploy and utilize business optimization solutions based on scalable high-performance algorithms, a flexible modeling environment and rapid application and reporting capabilities.\\~\\
-Optimization problems have to be solved computationally to good approximation and require the usage of sophisticated optimization 
-softwares that can provide a library(API- Application programming interface) for the programmer to do the same. The programmer can use this to
- implement an application demonstrating the solving methods for DNDP. This is first done by modeling the DNDP in the form of a bilevel mixed 
-integer linear program via the API provided by FICO Xpress BCL component and using its optimization modules to solve the nested optimization 
-problem of TAP.\par                   
-%\begin{figure}[h]
-%\centering
-%\includegraphics[width=0.65\textwidth, clip]{./Xpress.jpg}
-%\vspace{-0.15in}
-%\caption{Xpress product suite}
-%\label{fig:1}
-%\end{figure}
-\noindent
-\textbf{Libraries for embedding:}   An option available from this software for embedding mathematical models into large applications is by developing a model directly in a programming language with the help of a model builder library \textit{Xpresss-BCL}. BCL(Builder Component Library) allows a user to formulate models with objects(decision variables, constraints, index sets) similar to those of a dedicated modeling language. All libraries are available for C, C++, Java, C\#, and Visual Basic(VB). For this project we will be using the library for C++.\\ \par
-\noindent
-The Xpress-BCL Builder Component Library(BCL) provides an environment in which the Xpress user may readily formulate and solve linear, mixed integer and quadratic programming models. Using BCL’s extensive collection of functions, complicated models may be swiftly and simply constructed, preparing problems for optimization.\\ \par
-\noindent
-Model formulation using Xpress-BCL is constraint-oriented. Such constraints may be built up either coefficient-wise, incrementally adding 
-linear or quadratic terms until the constraint is complete, or through use of arrays of variables, constructing the constraint through a 
-scalar product of variable and coefficient arrays. The former method allows for easier modification of models once constructed, whilst the 
-latter enables swifter construction of new constraints. To complement the model construction routines, BCL supports a number of functions which allow a completed model to be passed directly to the Xpress-Optimizer, solved by the optimizer, and solution information reported back 
-directly from BCL.
 \newpage
 \section{Invasive Computing}
 The throughput of supercomputers depends not only on efficient job scheduling but also on the type of jobs that form the workload. Malleable jobs are most favourable for a cluster as they can dynamically adapt to a changing allocation of resources. The batch system can expand or shrink a running malleable job to improve system utilization, throughput, and response times. In the past, however the rigid nature of commonly used programming models like MPI made writing malleable applications a daunting task, which is why it remains largely unrealized. This is now changing. To improve fault tolerance, load imbalance, and energy efficiency in emerging exascale systems more adaptive programming paradigms are being investigated. Although they may offer better support for malleability, current batch systems still lack management facilities for malleable jobs and are therefore incapable of leveraging their potential. In this guided research we propose an extension to the SLURM resource manager to support malleable jobs.
 \subsection{Job Classification}
 As defined by Feitelson and Rudolph [1], jobs can be classified into four categories based on their flexibility.
 \begin{itemize}
-\item Rigid job: This is the most common type which requires a fixed number of processors throughout its execution.
-\item Moldable job: In this kind of job the resource set can be molded or modified by the batch system before starting the job (e.g. to effectively fit alongside other rigid jobs). Once started its resource set cannot be changed anymore.
-\item Evolving job: These kind of jobs request for resource expansion or shrinkage during their execution. Applications that use multiscale analysis like Quadflow or Adaptive mesh refinement(AMR) exhibit this kind of behavior typically due to unexpected increases in computations or having reached hardware limits(e.g. memory) on a node. 
-\item Malleable job: The expansion and shrinkage of resources are initiated by the batch system in contrast to the evolving jobs. The application adapts itself to the changing resource set.
+\item \textbf{\textit{Rigid job:}} This is the most common type which requires a fixed number of processors throughout its execution.
+\item \textbf{\textit{Moldable job:}} In this kind of job the resource set can be molded or modified by the batch system before starting the job (e.g. to effectively fit alongside other rigid jobs). Once started its resource set cannot be changed anymore.
+\item \textbf{\textit{Evolving job:}} These kind of jobs request for resource expansion or shrinkage during their execution. Applications that use multiscale analysis like Quadflow or Adaptive mesh refinement(AMR) exhibit this kind of behavior typically due to unexpected increases in computations or having reached hardware limits(e.g. memory) on a node. 
+\item \textbf{\textit{Malleable job:}} The expansion and shrinkage of resources are initiated by the batch system in contrast to the evolving jobs. The application adapts itself to the changing resource set.
 \end{itemize}
 The first two types fall into the category of what is called as the static allocation since the allocation of rigid and moldable jobs must be finalized before the job starts. Whereas, the last two types fall under the category of dynamic allocation since this property of expanding or shrinking evolving and malleable jobs(together termed adaptive jobs) happens at runtime.\par
 \noindent
@@ -174,8 +150,9 @@ Malleable jobs hold a strong potential to obtain high system performance. Batch 
 The role of a resource manager is that it acts like a \textit{glue} for a parallel computer to execute parallel jobs. It should make a parallel computer as easy to use as almost a PC. MPI would typically be used to manage communications within the parallel program. A resource manager allocates resources within a cluster, launches and otherwise manages jobs. Some of the examples of widely used open source as well as commercial resource managers are \textbf{SLURM, TORQUE, OMEGA, IBM Platform LSF} etc. Together with a scheduler it is termed as a \textbf{\textit{Batch System}}. The Batch System serves as a middleware for managing supercomputing resources. The combination of \textit{Scheduler}$+$\textit{Resource Manager} makes it possible to run parallel jobs.\par
 \noindent
 \\
-The role of a job scheduler is to manage queue(s) of work when there is more work than resources. It supports complex scheduling algorithms which are optimized for network topology, energy efficiency, fair share scheduling, advanced reservations, preemption, gang scheduling(time-slicing jobs) etc. It also supports resource limits(by queue, user, group, etc.). Many batch systems provide both resource management and job scheduling within a single product (e.g. LSF) while others use distinct products(e.g. Torque resource manager and Moab job scheduler). Some other examples of Job scheduling systems are \textbf{LoadLeveler, OAR, Maui, SLURM} etc.
-
+The role of a job scheduler is to manage queue(s) of work when there is more work than resources. It supports complex scheduling algorithms which are optimized for network topology, energy efficiency, fair share scheduling, advanced reservations, preemption, gang scheduling(time-slicing jobs) etc. It also supports resource limits(by queue, user, group, etc.). Many batch systems provide both resource management and job scheduling within a single product (e.g. LSF) while others use distinct products(e.g. Torque resource manager and Moab job scheduler). Some other examples of Job scheduling systems are \textbf{LoadLeveler, OAR, Maui, SLURM} etc.\par
+\noindent
+\\
 The prime focus of this work will be on SLURM(Simple Linux Utility For Resource Management) which will be the choice of batch system upon which the support for Invasive Computing will be demonstrated. SLURM is a sophisticated open source batch system with about 500,000 lines of C code whose development started in the year 2002 at Lawrence Livermore National Laboratory as a simple resource manager for Linux Clusters and a few years ago spawned into an independent firm under the name SchedMD. SLURM has since its inception also evolved into a very capable job scheduler through the use of optional plugins. It is used on many of the world's largest supercomputers and is used by a large fraction of the world's TOP500 Supercomputer list. It supports many UNIX falvors like AIX, Linux, Solaris and is also fault tolerant, highly scalable, and portable.\par
 \noindent
 \\
@@ -193,20 +170,13 @@ PLugins are typically loaded when the daemon or command starts and persist indef
 \caption{Software layers of SLURM}
 \label{fig:6}
 \end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{./arch.eps}
-\vspace{-0.15in}
-\caption{SLURM Architecture}
-\label{fig:9}
-\end{figure}
 \subsection{Support For Invasive Computing}
 Modern heuristic techniques, also called metaheuristics are a family of procedures which benefit from some sort of intelligence in their search for finding the solution to a problem. It is a higher level procedure designed to find, generate, or select a heuristic(partial search algorithm) that may provide a sufficiently good solution to an optimization problem, especially with incomplete or imperfect information or limited computation capacity. They may not provide optimal solution but they provide a sufficiently good solution rapidly and effectively. Simulated annealing, genetic algorithm, tabu search, neural network, ant system are some examples of such meta heuristics.\par
 \noindent
 \\This project implements the genetic algorithm on DNDP. Genetic algorithm (GA) is a search heuristic that mimics the process of natural selection. This heuristic (also sometimes called a metaheuristic) is routinely used to generate useful solutions to optimization and search problems.[1] Genetic algorithms belong to the larger class of evolutionary algorithms (EA), which generate solutions to optimization problems using techniques inspired by natural evolution, such as inheritance, mutation, selection, and crossover. Genetic algorithms find application in bioinformatics, phylogenetics, computational science, signal and image processing, Bayesian inference, machine learning, risk analysis and rare event sampling, Engineering and robotics, economics, manufacturing, mathematics, mathematical finance, molecular chemistry, computational physics, pharmacokinetic, pharmacometrics, and other fields.\par
 %\noindent
-\newpage
-\section{Design \& Implementation}
+\clearpage
+\section{Design and Implementation}
 This section describes a high level design of the software implemented with the help of flow charts and pseudo code. Follwed by this is a small snapshot of certain low level details of the software that will help the reader to understand as to what functionalities this software offers in a summary.
 \subsection{Software Architecture}
 The following page shows the software architecture of how Invasive Resource Management can be supported with a traditional resource manager and how exactly the new software components will fit in the existing software hierarchy. The figure [X] relates closely to how SLURM is organized since the intention of this work would be to demonstrate the support for Invasive Computing with the help of SLURM as a resource manager.
@@ -222,7 +192,7 @@ The following page shows the software architecture of how Invasive Resource Mana
 \centering
 \vspace{-0.15in}
 \includegraphics[width=1.0\textwidth, height=225mm]{"software architecture".eps}
-\caption{SLURM Architecture}
+\caption{Invasive Resource Management Architecture}
 \label{fig:7}
 \end{figure}
 %\begin{minipage}[t]
@@ -259,30 +229,46 @@ The following page shows the software architecture of how Invasive Resource Mana
 %\end{figure}
 %}
 \clearpage
+\subsection{Protocols}
+\begin{itemize}
+\item \textbf{\textit{Protocol Initialization:}}
+\item \textbf{\textit{Protocol Finalization:}}
+\item \textbf{\textit{Negotiation:}}
+\item \textbf{\textit{Feedback:}}
+\item \textbf{\textit{Urgent Jobs:}}
+\end{itemize}
 \clearpage
 \subsection{Protocol Sequence Diagrams}
-\vspace{15mm}
-Optimization problem :     \textbf{\textit{Discrete Network Design Problem}}\\~\\
-Algorithm implemented :    \textbf{\textit{Genetic Algorithm}}\\~\\
-Optimization Suite(Software) : \textbf{\textit{FICO Xpress}}\\~\\
-Library for modeling/solving : \textbf{\textit{Xpress BCL(Builder component library for C++)}}\\~\\
-Programming Language : \textbf{\textit{C}}\\~\\
-Operating System : \textbf{\textit{Linux}}\\~\\
-Selection Schemes : \textbf{\textit{Default, Rank based and Tournament}}\\~\\
-Crossover operators : \textbf{\textit{Single point , Two point}}\\~\\
-Mutation operators : \textbf{\textit{Random mutation}}\\~\\
-Datasets for testing : \textbf{\textit{Braess network, Sioux falls network, Berlin mitte center}}\\~\\
-Visualization of traffic network simulation : \textbf{\textit{NexTA}}\\~\\
-Range of budget for DNDP : \textbf{\textit{10 - 180}}\\
+\vspace{10mm}
+\large\textbf{\textit{Negotiation Protocol}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth, height=130mm]{./figures.eps}
+\caption{Scenario 1}
+\label{fig:Seq1}
+\end{figure}
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth, height=130mm]{./figures1.eps}
+\caption{Scenario 1 contd.}
+\label{fig:Seq1}
+\end{figure}
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth, height=130mm]{./figures2.eps}
+\caption{Scenario 2}
+\label{fig:Seq2}
+\end{figure}
 \clearpage
 \subsection{State Machine Diagrams}
-\clearpage
-\section{Experiments and Visualization}
-\subsection{Setup}
-\subsection{Datasets}
-\subsection{Experiments and Results}
-\subsection{Visualization}
-\newpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth, height=130mm]{./}
+\caption{Protocol Initialization}
+\label{fig:Seq2}
+\end{figure}
 \section{Conclusion}
 \subsection{Scope for future work}
 %\begin{figure}[h]

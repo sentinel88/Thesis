@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  27 SEP 2015 20:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  2 OCT 2015 16:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -621,7 +621,11 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 File: pgflibraryarrows.code.tex 2008/10/27 v2.10 (rcs-revision 1.9)
 \arrowsize=\dimen179
 ))
-(./nishanth.aux)
+(./nishanth.aux
+
+LaTeX Warning: Label `fig:Seq1' multiply defined.
+
+)
 \openout1 = `nishanth.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
@@ -719,54 +723,30 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.126 ... influenced to support evolving jobs.\par
-                                                   [1]
-Underfull \hbox (badness 10000) in paragraph at lines 133--139
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--139
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
-
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
+                                                   [1]pdfTeX warning (ext4): de
+stination with the same identifier (name{page.2}) has been already used, duplic
+ate ignored
 <to be read again> 
                    \relax 
-l.148 ...will be using the library for C++.\\ \par
-                                                   [2]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
-
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.157 \newpage
-               [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 163.
+l.133 \newpage
+               [2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 139.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 163.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 180--183
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.147 ...tems support only static allocations.\par
+                                                   [3]
+Underfull \hbox (badness 10000) in paragraph at lines 157--160
 
  []
 
@@ -778,34 +758,18 @@ Package epstopdf Info: Source file: <./plugin.eps>
 (epstopdf)                    size: 75523 bytes
 (epstopdf)             Command: <epstopdf --outfile=./plugin-eps-converted-to.p
 df ./plugin.eps>
-(epstopdf)             \includegraphics on input line 191.
+(epstopdf)             \includegraphics on input line 168.
 Package epstopdf Info: Output file is already uptodate.
-<./plugin-eps-converted-to.pdf, id=140, 918.43124pt x 235.88126pt>
+<./plugin-eps-converted-to.pdf, id=115, 918.43124pt x 235.88126pt>
 File: ./plugin-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./plugin-eps-converted-to.pdf>
-Package pdftex.def Info: ./plugin-eps-converted-to.pdf used on input line 191.
+Package pdftex.def Info: ./plugin-eps-converted-to.pdf used on input line 168.
 (pdftex.def)             Requested size: 452.9679pt x 116.33867pt.
+ [4] [5 <./plugin-eps-converted-to.pdf>]
+[6
 
-
-LaTeX Warning: File `./arch.eps' not found on input line 198.
-
-Package epstopdf Info: Source file: <./arch.eps>
-(epstopdf)             Output file: <./arch-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-09-27 20:02:35
-(epstopdf)                    size: 57901 bytes
-(epstopdf)             Command: <epstopdf --outfile=./arch-eps-converted-to.pdf
- ./arch.eps>
-(epstopdf)             \includegraphics on input line 198.
-Package epstopdf Info: Output file is already uptodate.
-<./arch-eps-converted-to.pdf, id=141, 669.50125pt x 473.77pt>
-File: ./arch-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./arch-eps-converted-to.pdf>
-Package pdftex.def Info: ./arch-eps-converted-to.pdf used on input line 198.
-(pdftex.def)             Requested size: 452.9679pt x 320.55447pt.
- [5] [6 <./plugin-eps-converted-to.pdf>]
-[7] [8 <./arch-eps-converted-to.pdf>]
+]
 Package epstopdf Info: Source file: <"software architecture".eps>
 (epstopdf)                    date: 2015-09-27 12:00:37
 (epstopdf)                    size: 40865973 bytes
@@ -815,125 +779,128 @@ df>
 (epstopdf)                    size: 1149750 bytes
 (epstopdf)             Command: <epstopdf --outfile="software architecture"-eps
 -converted-to.pdf "software architecture".eps>
-(epstopdf)             \includegraphics on input line 224.
+(epstopdf)             \includegraphics on input line 194.
 Package epstopdf Info: Output file is already uptodate.
 
-<"software architecture"-eps-converted-to.pdf, id=168, 685.56125pt x 569.12625p
+<"software architecture"-eps-converted-to.pdf, id=132, 685.56125pt x 569.12625p
 t>
 File: "software architecture"-eps-converted-to.pdf Graphic file (type pdf)
  <use "software architecture"-eps-converted-to.pdf>
 Package pdftex.def Info: "software architecture"-eps-converted-to.pdf used on i
-nput line 224.
+nput line 194.
 (pdftex.def)             Requested size: 452.9844pt x 640.25677pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./software architecture-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
+[7 <./software architecture-eps-converted-to.pdf>] [8
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
+]
+Package epstopdf Info: Source file: <./figures.eps>
+(epstopdf)                    date: 2015-10-02 10:58:23
+(epstopdf)                    size: 495317 bytes
+(epstopdf)             Output file: <./figures-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-02 10:59:07
+(epstopdf)                    size: 256656 bytes
+(epstopdf)             Command: <epstopdf --outfile=./figures-eps-converted-to.
+pdf ./figures.eps>
+(epstopdf)             \includegraphics on input line 246.
+Package epstopdf Info: Output file is already uptodate.
 
- []
+<./figures-eps-converted-to.pdf, id=145, 796.9775pt x 597.23125pt>
+File: ./figures-eps-converted-to.pdf Graphic file (type pdf)
 
+<use ./figures-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures-eps-converted-to.pdf used on input line 246.
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
+(pdftex.def)             Requested size: 452.9685pt x 369.88768pt.
+ [9
 
- []
+ <./figures-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./figures1.eps>
+(epstopdf)                    date: 2015-10-02 11:13:31
+(epstopdf)                    size: 302736 bytes
+(epstopdf)             Output file: <./figures1-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-02 11:13:41
+(epstopdf)                    size: 155715 bytes
+(epstopdf)             Command: <epstopdf --outfile=./figures1-eps-converted-to
+.pdf ./figures1.eps>
+(epstopdf)             \includegraphics on input line 253.
+Package epstopdf Info: Output file is already uptodate.
 
+<./figures1-eps-converted-to.pdf, id=155, 796.9775pt x 597.23125pt>
+File: ./figures1-eps-converted-to.pdf Graphic file (type pdf)
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
+<use ./figures1-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures1-eps-converted-to.pdf used on input line 253
+.
+(pdftex.def)             Requested size: 452.9685pt x 369.88768pt.
+ [10
 
- []
+ <./figures1-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./figures2.eps>
+(epstopdf)                    date: 2015-10-02 11:26:37
+(epstopdf)                    size: 334781 bytes
+(epstopdf)             Output file: <./figures2-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-02 11:31:57
+(epstopdf)                    size: 174603 bytes
+(epstopdf)             Command: <epstopdf --outfile=./figures2-eps-converted-to
+.pdf ./figures2.eps>
+(epstopdf)             \includegraphics on input line 260.
+Package epstopdf Info: Output file is already uptodate.
 
+<./figures2-eps-converted-to.pdf, id=163, 796.9775pt x 597.23125pt>
+File: ./figures2-eps-converted-to.pdf Graphic file (type pdf)
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
+<use ./figures2-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures2-eps-converted-to.pdf used on input line 260
+.
+(pdftex.def)             Requested size: 452.9685pt x 369.88768pt.
+ [11
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--277
-
- []
-
-[10
-
-
-
-] [11
-
-] [12
-
-] (./nishanth.bbl
-Underfull \hbox (badness 1259) in paragraph at lines 17--21
-\OT1/cmr/m/n/12 pro-gram-ming so-lu-tion by ge-netic al-go-rithm.  \OT1/cmr/m/i
-t/12 Com-put-ers and Op-er-a-tions Re-
+ <./figures2-eps-converted-to.pdf>]
+(./nishanth.bbl
+Underfull \hbox (badness 1320) in paragraph at lines 4--9
+[]\OT1/cmr/m/n/14.4 Fontaine, P., Min-ner, S.  Ben-ders De-com-po-si-tion for D
+iscrete-
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
+ [12
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
  (./nishanth.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 301.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 301.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 281.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
 Package rerunfilecheck Info: File `nishanth.out' has not changed.
-(rerunfilecheck)             Checksum: FE70ABD886E140F699F2417079FE1ED8;1240.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 301.
+(rerunfilecheck)             Checksum: 447015661FD5067C6AB84331F150AE7F;984.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
  ) 
 Here is how much of TeX's memory you used:
- 17205 strings out of 493304
- 302302 string characters out of 6139871
- 388948 words of memory out of 5000000
+ 17196 strings out of 493304
+ 302413 string characters out of 6139871
+ 389042 words of memory out of 5000000
  20268 multiletter control sequences out of 15000+600000
- 15174 words of font info for 54 fonts, out of 8000000 for 9000
+ 13071 words of font info for 47 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,7n,55p,1580b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on nishanth.pdf (17 pages, 1411823 bytes).
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on nishanth.pdf (16 pages, 1913080 bytes).
 PDF statistics:
- 244 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
- 46 named destinations out of 1000 (max. 500000)
- 180 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 218 PDF objects out of 1000 (max. 8388607)
+ 185 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
