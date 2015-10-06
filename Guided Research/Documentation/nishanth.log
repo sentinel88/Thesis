@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  4 OCT 2015 17:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  6 OCT 2015 16:49
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -244,6 +244,14 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \WF@everypar=\toks27
 Package: wrapfig 2003/01/31  v 3.6
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count116
+\float@exts=\toks28
+\float@box=\box35
+\@float@everytoks=\toks29
+\@floatcapt=\box36
+)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -302,13 +310,13 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen132
-\Hy@linkcounter=\count116
-\Hy@pagecounter=\count117
+\Hy@linkcounter=\count117
+\Hy@pagecounter=\count118
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count118
+\Hy@SavedSpaceFactor=\count119
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -322,7 +330,7 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count119
+\c@Hy@tempcnt=\count120
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
@@ -330,7 +338,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen133
-\Fld@menulength=\count120
+\Fld@menulength=\count121
 \Field@Width=\dimen134
 \Fld@charsize=\dimen135
 Package hyperref Info: Hyper figures OFF on input line 6295.
@@ -342,17 +350,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count121
-\c@Item=\count122
-\c@Hfootnote=\count123
+\Hy@abspage=\count122
+\c@Item=\count123
+\c@Hfootnote=\count124
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count124
-\c@bookmark@seq@number=\count125
+\Fld@listcount=\count125
+\c@bookmark@seq@number=\count126
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
@@ -369,10 +377,10 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 (/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks28
+\pgfutil@everybye=\toks30
 )
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box35
+\pgfutil@abb=\box37
 
 (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
@@ -388,11 +396,11 @@ Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks29
-\pgfkeys@temptoks=\toks30
+\pgfkeys@pathtoks=\toks31
+\pgfkeys@temptoks=\toks32
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks31
+\pgfkeys@tmptoks=\toks33
 ))
 \pgf@x=\dimen136
 \pgf@y=\dimen137
@@ -404,10 +412,10 @@ Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 \pgf@yc=\dimen143
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count126
-\c@pgf@countb=\count127
-\c@pgf@countc=\count128
-\c@pgf@countd=\count129
+\c@pgf@counta=\count127
+\c@pgf@countb=\count128
+\c@pgf@countc=\count129
+\c@pgf@countd=\count130
 
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
@@ -422,8 +430,8 @@ File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
 )))
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
-\pgfsyssoftpath@smallbuffer@items=\count130
-\pgfsyssoftpath@bigbuffer@items=\count131
+\pgfsyssoftpath@smallbuffer@items=\count131
+\pgfsyssoftpath@bigbuffer@items=\count132
 )
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
@@ -453,11 +461,11 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen144
-\pgfmath@count=\count132
-\pgfmath@box=\box36
-\pgfmath@toks=\toks32
-\pgfmath@stack@operand=\toks33
-\pgfmath@stack@operation=\toks34
+\pgfmath@count=\count133
+\pgfmath@box=\box38
+\pgfmath@toks=\toks34
+\pgfmath@stack@operand=\toks35
+\pgfmath@stack@operation=\toks36
 )
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
@@ -468,7 +476,7 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)))
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count133
+\c@pgfmathroundto@lastzeros=\count134
 ))
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
@@ -499,10 +507,10 @@ File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
-\pgfpic=\box37
-\pgf@hbox=\box38
-\pgf@layerbox@main=\box39
-\pgf@picture@serial@count=\count134
+\pgfpic=\box39
+\pgf@hbox=\box40
+\pgf@layerbox@main=\box41
+\pgf@picture@serial@count=\count135
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
@@ -529,14 +537,14 @@ File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
 \pgf@max=\dimen167
-\pgf@sys@shading@range@num=\count135
+\pgf@sys@shading@range@num=\count136
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
-\pgfexternal@startupbox=\box40
+\pgfexternal@startupbox=\box42
 ))
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
@@ -549,7 +557,7 @@ File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 )))
 (/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
-\pgfnodeparttextbox=\box41
+\pgfnodeparttextbox=\box43
 )
 (/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
@@ -569,15 +577,15 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
 \pgffor@iter=\dimen170
 \pgffor@skip=\dimen171
-\pgffor@stack=\toks35
-\pgffor@toks=\toks36
+\pgffor@stack=\toks37
+\pgffor@toks=\toks38
 ))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
 
 (/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
-\pgf@plot@mark@count=\count136
+\pgf@plot@mark@count=\count137
 \pgfplotmarksize=\dimen172
 )
 \tikz@lastx=\dimen173
@@ -586,20 +594,20 @@ File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \tikz@lastysaved=\dimen176
 \tikzleveldistance=\dimen177
 \tikzsiblingdistance=\dimen178
-\tikz@figbox=\box42
-\tikz@tempbox=\box43
-\tikztreelevel=\count137
-\tikznumberofchildren=\count138
-\tikznumberofcurrentchild=\count139
-\tikz@fig@count=\count140
+\tikz@figbox=\box44
+\tikz@tempbox=\box45
+\tikztreelevel=\count138
+\tikznumberofchildren=\count139
+\tikznumberofcurrentchild=\count140
+\tikz@fig@count=\count141
 
 (/usr/share/texmf/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
-\pgfmatrixcurrentrow=\count141
-\pgfmatrixcurrentcolumn=\count142
-\pgf@matrix@numberofcolumns=\count143
+\pgfmatrixcurrentrow=\count142
+\pgfmatrixcurrentcolumn=\count143
+\pgf@matrix@numberofcolumns=\count144
 )
-\tikz@expandcount=\count144
+\tikz@expandcount=\count145
 
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
 hs.code.tex
@@ -625,36 +633,39 @@ File: pgflibraryarrows.code.tex 2008/10/27 v2.10 (rcs-revision 1.9)
 
 LaTeX Warning: Label `fig:Seq1' multiply defined.
 
+
+LaTeX Warning: Label `fig:Init' multiply defined.
+
 )
 \openout1 = `nishanth.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count145
+\scratchcounter=\count146
 \scratchdimen=\dimen180
-\scratchbox=\box44
-\nofMPsegments=\count146
-\nofMParguments=\count147
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count148
+\scratchbox=\box46
+\nofMPsegments=\count147
+\nofMParguments=\count148
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count149
 \MPscratchDim=\dimen181
-\MPnumerator=\count149
-\makeMPintoPDFobject=\count150
-\everyMPtoPDFconversion=\toks38
+\MPnumerator=\count150
+\makeMPintoPDFobject=\count151
+\everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -670,9 +681,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count151
-\AtBeginShipoutBox=\box45
-Package hyperref Info: Link coloring OFF on input line 37.
+\c@lstlisting=\count152
+\AtBeginShipoutBox=\box47
+Package hyperref Info: Link coloring OFF on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -680,23 +691,23 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count152
+\c@section@level=\count153
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
-LaTeX Info: Redefining \nameref on input line 37.
+LaTeX Info: Redefining \ref on input line 41.
+LaTeX Info: Redefining \pageref on input line 41.
+LaTeX Info: Redefining \nameref on input line 41.
 
 (./nishanth.out) (./nishanth.out)
 \@outlinefile=\write4
 \openout4 = `nishanth.out'.
 
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 73.
+LaTeX Font Info:    Try loading font information for U+msa on input line 77.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 73.
+LaTeX Font Info:    Try loading font information for U+msb on input line 77.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -707,13 +718,13 @@ ination with the same identifier (name{page.1}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.102 \newpage
+l.106 \newpage
                [1] [2] (./nishanth.toc)
 \tf@toc=\write5
 \openout5 = `nishanth.toc'.
 
  [3]
-Overfull \hbox (0.66493pt too wide) in paragraph at lines 120--122
+Overfull \hbox (0.66493pt too wide) in paragraph at lines 124--126
 \OT1/cmr/m/n/12 Under the col-lab-o-ra-tive re-search project funded by the Ger
 -man re-search foun-da-tion(DFG)
  []
@@ -722,21 +733,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.126 ... influenced to support evolving jobs.\par
+l.130 ... influenced to support evolving jobs.\par
                                                    [1]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.2}) has been already used, duplic
 ate ignored
 <to be read again> 
                    \relax 
-l.133 \newpage
+l.136 \newpage
                [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 139.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 142.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 142.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -744,211 +755,229 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.147 ...tems support only static allocations.\par
+l.150 ...tems support only static allocations.\par
                                                    [3]
-Underfull \hbox (badness 10000) in paragraph at lines 157--160
+Underfull \hbox (badness 10000) in paragraph at lines 160--163
 
  []
 
 Package epstopdf Info: Source file: <./plugin.eps>
-(epstopdf)                    date: 2015-09-27 17:54:49
+(epstopdf)                    date: 2015-09-27 14:24:49
 (epstopdf)                    size: 218648 bytes
 (epstopdf)             Output file: <./plugin-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-09-27 18:55:23
+(epstopdf)                    date: 2015-09-27 15:25:23
 (epstopdf)                    size: 75523 bytes
 (epstopdf)             Command: <epstopdf --outfile=./plugin-eps-converted-to.p
 df ./plugin.eps>
-(epstopdf)             \includegraphics on input line 168.
+(epstopdf)             \includegraphics on input line 171.
 Package epstopdf Info: Output file is already uptodate.
-<./plugin-eps-converted-to.pdf, id=115, 918.43124pt x 235.88126pt>
+<./plugin-eps-converted-to.pdf, id=105, 918.43124pt x 235.88126pt>
 File: ./plugin-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./plugin-eps-converted-to.pdf>
-Package pdftex.def Info: ./plugin-eps-converted-to.pdf used on input line 168.
+Package pdftex.def Info: ./plugin-eps-converted-to.pdf used on input line 171.
 (pdftex.def)             Requested size: 452.9679pt x 116.33867pt.
  [4] [5 <./plugin-eps-converted-to.pdf>]
-[6
+[6] [7
 
 ]
 Package epstopdf Info: Source file: <"software architecture".eps>
-(epstopdf)                    date: 2015-09-27 12:00:37
+(epstopdf)                    date: 2015-09-27 08:30:37
 (epstopdf)                    size: 40865973 bytes
 (epstopdf)             Output file: <"software architecture"-eps-converted-to.p
 df>
-(epstopdf)                    date: 2015-09-27 18:55:42
+(epstopdf)                    date: 2015-09-27 15:25:42
 (epstopdf)                    size: 1149750 bytes
 (epstopdf)             Command: <epstopdf --outfile="software architecture"-eps
 -converted-to.pdf "software architecture".eps>
-(epstopdf)             \includegraphics on input line 194.
+(epstopdf)             \includegraphics on input line 201.
 Package epstopdf Info: Output file is already uptodate.
 
-<"software architecture"-eps-converted-to.pdf, id=132, 685.56125pt x 569.12625p
+<"software architecture"-eps-converted-to.pdf, id=126, 685.56125pt x 569.12625p
 t>
 File: "software architecture"-eps-converted-to.pdf Graphic file (type pdf)
  <use "software architecture"-eps-converted-to.pdf>
 Package pdftex.def Info: "software architecture"-eps-converted-to.pdf used on i
-nput line 194.
-(pdftex.def)             Requested size: 452.9844pt x 640.25677pt.
+nput line 201.
+(pdftex.def)             Requested size: 452.9844pt x 526.43355pt.
+ [8 <./software architecture-eps-converted-to.pdf>] [9
+
+]
+Package epstopdf Info: Source file: <./figures.eps>
+(epstopdf)                    date: 2015-10-02 07:28:23
+(epstopdf)                    size: 495317 bytes
+(epstopdf)             Output file: <./figures-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-02 07:29:07
+(epstopdf)                    size: 256656 bytes
+(epstopdf)             Command: <epstopdf --outfile=./figures-eps-converted-to.
+pdf ./figures.eps>
+(epstopdf)             \includegraphics on input line 254.
+Package epstopdf Info: Output file is already uptodate.
+
+<./figures-eps-converted-to.pdf, id=140, 796.9775pt x 597.23125pt>
+File: ./figures-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./figures-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures-eps-converted-to.pdf used on input line 254.
+
+(pdftex.def)             Requested size: 452.9685pt x 341.43689pt.
+ [10
+
+ <./figures-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./figures1.eps>
+(epstopdf)                    date: 2015-10-02 07:43:31
+(epstopdf)                    size: 302736 bytes
+(epstopdf)             Output file: <./figures1-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-02 07:43:41
+(epstopdf)                    size: 155715 bytes
+(epstopdf)             Command: <epstopdf --outfile=./figures1-eps-converted-to
+.pdf ./figures1.eps>
+(epstopdf)             \includegraphics on input line 267.
+Package epstopdf Info: Output file is already uptodate.
+
+<./figures1-eps-converted-to.pdf, id=148, 796.9775pt x 597.23125pt>
+File: ./figures1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./figures1-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures1-eps-converted-to.pdf used on input line 267
+.
+(pdftex.def)             Requested size: 407.66924pt x 284.52618pt.
+Package epstopdf Info: Source file: <./figures2.eps>
+(epstopdf)                    date: 2015-10-02 07:56:37
+(epstopdf)                    size: 334781 bytes
+(epstopdf)             Output file: <./figures2-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-02 08:01:57
+(epstopdf)                    size: 174603 bytes
+(epstopdf)             Command: <epstopdf --outfile=./figures2-eps-converted-to
+.pdf ./figures2.eps>
+(epstopdf)             \includegraphics on input line 274.
+Package epstopdf Info: Output file is already uptodate.
+
+<./figures2-eps-converted-to.pdf, id=149, 796.9775pt x 597.23125pt>
+File: ./figures2-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./figures2-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures2-eps-converted-to.pdf used on input line 274
+.
+(pdftex.def)             Requested size: 407.66924pt x 284.52618pt.
+ [11
+
+ <./figures1-eps-converted-to.pdf> <./figures2-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./"iRM Agent".eps>
+(epstopdf)                    date: 2015-10-05 13:21:15
+(epstopdf)                    size: 428206 bytes
+(epstopdf)             Output file: <./"iRM Agent"-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-05 13:21:34
+(epstopdf)                    size: 84653 bytes
+(epstopdf)             Command: <epstopdf --outfile=./"iRM Agent"-eps-converted
+-to.pdf ./"iRM Agent".eps>
+(epstopdf)             \includegraphics on input line 284.
+Package epstopdf Info: Output file is already uptodate.
+
+<./"iRM Agent"-eps-converted-to.pdf, id=161, 538.01pt x 599.23875pt>
+File: ./"iRM Agent"-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./"iRM Agent"-eps-converted-to.pdf>
+Package pdftex.def Info: ./"iRM Agent"-eps-converted-to.pdf used on input line 
+284.
+(pdftex.def)             Requested size: 452.96791pt x 426.79745pt.
+Package epstopdf Info: Source file: <./Init.eps>
+(epstopdf)                    date: 2015-10-04 13:55:58
+(epstopdf)                    size: 514417 bytes
+(epstopdf)             Output file: <./Init-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-04 13:56:17
+(epstopdf)                    size: 145939 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Init-eps-converted-to.pdf
+ ./Init.eps>
+(epstopdf)             \includegraphics on input line 294.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Init-eps-converted-to.pdf, id=162, 499.8675pt x 440.64626pt>
+File: ./Init-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./Init-eps-converted-to.pdf>
+Package pdftex.def Info: ./Init-eps-converted-to.pdf used on input line 294.
+(pdftex.def)             Requested size: 407.68207pt x 256.086pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7 <./software architecture-eps-converted-to.pdf>] [8
-
-
-]
-Package epstopdf Info: Source file: <./figures.eps>
-(epstopdf)                    date: 2015-10-02 10:58:23
-(epstopdf)                    size: 495317 bytes
-(epstopdf)             Output file: <./figures-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-02 10:59:07
-(epstopdf)                    size: 256656 bytes
-(epstopdf)             Command: <epstopdf --outfile=./figures-eps-converted-to.
-pdf ./figures.eps>
-(epstopdf)             \includegraphics on input line 246.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures-eps-converted-to.pdf, id=145, 796.9775pt x 597.23125pt>
-File: ./figures-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./figures-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures-eps-converted-to.pdf used on input line 246.
-
-(pdftex.def)             Requested size: 452.9685pt x 369.88768pt.
- [9
-
- <./figures-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <./figures1.eps>
-(epstopdf)                    date: 2015-10-02 11:13:31
-(epstopdf)                    size: 302736 bytes
-(epstopdf)             Output file: <./figures1-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-02 11:13:41
-(epstopdf)                    size: 155715 bytes
-(epstopdf)             Command: <epstopdf --outfile=./figures1-eps-converted-to
-.pdf ./figures1.eps>
-(epstopdf)             \includegraphics on input line 253.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures1-eps-converted-to.pdf, id=155, 796.9775pt x 597.23125pt>
-File: ./figures1-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./figures1-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures1-eps-converted-to.pdf used on input line 253
-.
-(pdftex.def)             Requested size: 452.9685pt x 369.88768pt.
- [10
-
- <./figures1-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <./figures2.eps>
-(epstopdf)                    date: 2015-10-02 11:26:37
-(epstopdf)                    size: 334781 bytes
-(epstopdf)             Output file: <./figures2-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-02 11:31:57
-(epstopdf)                    size: 174603 bytes
-(epstopdf)             Command: <epstopdf --outfile=./figures2-eps-converted-to
-.pdf ./figures2.eps>
-(epstopdf)             \includegraphics on input line 260.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures2-eps-converted-to.pdf, id=163, 796.9775pt x 597.23125pt>
-File: ./figures2-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./figures2-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures2-eps-converted-to.pdf used on input line 260
-.
-(pdftex.def)             Requested size: 452.9685pt x 369.88768pt.
- [11
-
- <./figures2-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <./Init.eps>
-(epstopdf)                    date: 2015-10-04 17:25:58
-(epstopdf)                    size: 514417 bytes
-(epstopdf)             Output file: <./Init-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-04 17:26:17
-(epstopdf)                    size: 145939 bytes
-(epstopdf)             Command: <epstopdf --outfile=./Init-eps-converted-to.pdf
- ./Init.eps>
-(epstopdf)             \includegraphics on input line 269.
-Package epstopdf Info: Output file is already uptodate.
-
-<./Init-eps-converted-to.pdf, id=171, 499.8675pt x 440.64626pt>
-File: ./Init-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./Init-eps-converted-to.pdf>
-Package pdftex.def Info: ./Init-eps-converted-to.pdf used on input line 269.
-(pdftex.def)             Requested size: 452.98093pt x 398.35301pt.
- [12
-
- <./Init-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <./Term.eps>
-(epstopdf)                    date: 2015-10-04 17:26:03
+(epstopdf)                    date: 2015-10-04 13:56:03
 (epstopdf)                    size: 521221 bytes
 (epstopdf)             Output file: <./Term-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-04 17:26:22
+(epstopdf)                    date: 2015-10-04 13:56:22
 (epstopdf)                    size: 149377 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Term-eps-converted-to.pdf
  ./Term.eps>
-(epstopdf)             \includegraphics on input line 276.
+(epstopdf)             \includegraphics on input line 301.
 Package epstopdf Info: Output file is already uptodate.
-
-<./Term-eps-converted-to.pdf, id=180, 520.94624pt x 440.64626pt>
+<./Term-eps-converted-to.pdf, id=163, 520.94624pt x 440.64626pt>
 File: ./Term-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Term-eps-converted-to.pdf>
-Package pdftex.def Info: ./Term-eps-converted-to.pdf used on input line 276.
-(pdftex.def)             Requested size: 452.97316pt x 398.35301pt.
- [13
+Package pdftex.def Info: ./Term-eps-converted-to.pdf used on input line 301.
+(pdftex.def)             Requested size: 407.67188pt x 256.086pt.
 
- <./Term-eps-converted-to.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12
+
+ <./iRM Agent-eps-converted-to.pdf>] [13 <./Init-eps-converted-to.pdf> <./Term-
+eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <./Negotiation.eps>
-(epstopdf)                    date: 2015-10-04 17:19:25
+(epstopdf)                    date: 2015-10-04 13:49:25
 (epstopdf)                    size: 491560 bytes
 (epstopdf)             Output file: <./Negotiation-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-04 17:19:34
+(epstopdf)                    date: 2015-10-04 13:49:34
 (epstopdf)                    size: 112747 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Negotiation-eps-converted
 -to.pdf ./Negotiation.eps>
-(epstopdf)             \includegraphics on input line 283.
+(epstopdf)             \includegraphics on input line 308.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Negotiation-eps-converted-to.pdf, id=189, 544.0325pt x 737.75626pt>
+<./Negotiation-eps-converted-to.pdf, id=184, 544.0325pt x 737.75626pt>
 File: ./Negotiation-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Negotiation-eps-converted-to.pdf>
 Package pdftex.def Info: ./Negotiation-eps-converted-to.pdf used on input line 
-283.
-(pdftex.def)             Requested size: 452.99129pt x 483.6898pt.
- [14
+308.
+(pdftex.def)             Requested size: 452.99129pt x 597.5005pt.
 
- <./Negotiation-eps-converted-to.pdf>] (./nishanth.bbl
-Underfull \hbox (badness 1320) in paragraph at lines 4--9
-[]\OT1/cmr/m/n/14.4 Fontaine, P., Min-ner, S.  Ben-ders De-com-po-si-tion for D
-iscrete-
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <./Negotiation-eps-converted-to.pdf>] (./nishanth.bbl
+Underfull \hbox (badness 1259) in paragraph at lines 17--21
+\OT1/cmr/m/n/12 pro-gram-ming so-lu-tion by ge-netic al-go-rithm.  \OT1/cmr/m/i
+t/12 Com-put-ers and Op-er-a-tions Re-
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 303.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 328.
  [15
 
+
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 303.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 328.
  (./nishanth.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 303.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 303.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 328.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 328.
 Package rerunfilecheck Info: File `nishanth.out' has not changed.
-(rerunfilecheck)             Checksum: 447015661FD5067C6AB84331F150AE7F;984.
+(rerunfilecheck)             Checksum: 451846943DD369D8606433DEC873D5DF;853.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 303.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 328.
  ) 
 Here is how much of TeX's memory you used:
- 17223 strings out of 493304
- 302954 string characters out of 6139871
- 389165 words of memory out of 5000000
- 20286 multiletter control sequences out of 15000+600000
- 13071 words of font info for 47 fonts, out of 8000000 for 9000
+ 17274 strings out of 493304
+ 303717 string characters out of 6139871
+ 391522 words of memory out of 5000000
+ 20333 multiletter control sequences out of 15000+600000
+ 12712 words of font info for 46 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,7n,55p,1580b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
@@ -957,10 +986,10 @@ are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on nishanth.pdf (19 pages, 2316331 bytes).
+Output written on nishanth.pdf (19 pages, 2407948 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 241 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
