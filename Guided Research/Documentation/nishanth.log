@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  6 OCT 2015 16:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  7 OCT 2015 10:56
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -723,8 +723,12 @@ l.106 \newpage
 \tf@toc=\write5
 \openout5 = `nishanth.toc'.
 
- [3]
-Overfull \hbox (0.66493pt too wide) in paragraph at lines 124--126
+ [3] (./nishanth.lof)
+\tf@lof=\write6
+\openout6 = `nishanth.lof'.
+
+ [4]
+Overfull \hbox (0.66493pt too wide) in paragraph at lines 126--128
 \OT1/cmr/m/n/12 Under the col-lab-o-ra-tive re-search project funded by the Ger
 -man re-search foun-da-tion(DFG)
  []
@@ -733,21 +737,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.130 ... influenced to support evolving jobs.\par
+l.132 ... influenced to support evolving jobs.\par
                                                    [1]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.2}) has been already used, duplic
 ate ignored
 <to be read again> 
                    \relax 
-l.136 \newpage
+l.138 \newpage
                [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 142.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 144.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 142.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -755,9 +759,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.150 ...tems support only static allocations.\par
+l.152 ...tems support only static allocations.\par
                                                    [3]
-Underfull \hbox (badness 10000) in paragraph at lines 160--163
+Underfull \hbox (badness 10000) in paragraph at lines 162--165
 
  []
 
@@ -769,16 +773,21 @@ Package epstopdf Info: Source file: <./plugin.eps>
 (epstopdf)                    size: 75523 bytes
 (epstopdf)             Command: <epstopdf --outfile=./plugin-eps-converted-to.p
 df ./plugin.eps>
-(epstopdf)             \includegraphics on input line 171.
+(epstopdf)             \includegraphics on input line 173.
 Package epstopdf Info: Output file is already uptodate.
-<./plugin-eps-converted-to.pdf, id=105, 918.43124pt x 235.88126pt>
+<./plugin-eps-converted-to.pdf, id=130, 918.43124pt x 235.88126pt>
 File: ./plugin-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./plugin-eps-converted-to.pdf>
-Package pdftex.def Info: ./plugin-eps-converted-to.pdf used on input line 171.
+Package pdftex.def Info: ./plugin-eps-converted-to.pdf used on input line 173.
 (pdftex.def)             Requested size: 452.9679pt x 116.33867pt.
- [4] [5 <./plugin-eps-converted-to.pdf>]
-[6] [7
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.178 \subsection
+                 {Support For Invasive Computing} [4] [5 <./plugin-eps-converte
+d-to.pdf>] [6] [7
 
 ]
 Package epstopdf Info: Source file: <"software architecture".eps>
@@ -786,23 +795,43 @@ Package epstopdf Info: Source file: <"software architecture".eps>
 (epstopdf)                    size: 40865973 bytes
 (epstopdf)             Output file: <"software architecture"-eps-converted-to.p
 df>
-(epstopdf)                    date: 2015-09-27 15:25:42
-(epstopdf)                    size: 1149750 bytes
+(epstopdf)                    date: 2015-10-07 09:06:27
+(epstopdf)                    size: 218965 bytes
 (epstopdf)             Command: <epstopdf --outfile="software architecture"-eps
 -converted-to.pdf "software architecture".eps>
-(epstopdf)             \includegraphics on input line 201.
+(epstopdf)             \includegraphics on input line 203.
 Package epstopdf Info: Output file is already uptodate.
 
-<"software architecture"-eps-converted-to.pdf, id=126, 685.56125pt x 569.12625p
+<"software architecture"-eps-converted-to.pdf, id=149, 459.96844pt x 691.83469p
 t>
 File: "software architecture"-eps-converted-to.pdf Graphic file (type pdf)
  <use "software architecture"-eps-converted-to.pdf>
 Package pdftex.def Info: "software architecture"-eps-converted-to.pdf used on i
-nput line 201.
-(pdftex.def)             Requested size: 452.9844pt x 526.43355pt.
- [8 <./software architecture-eps-converted-to.pdf>] [9
+nput line 203.
+(pdftex.def)             Requested size: 452.99088pt x 526.39099pt.
+Package epstopdf Info: Source file: <table.eps>
+(epstopdf)                    date: 2015-10-06 17:18:15
+(epstopdf)                    size: 289123 bytes
+(epstopdf)             Output file: <table-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-10-06 17:18:25
+(epstopdf)                    size: 100725 bytes
+(epstopdf)             Command: <epstopdf --outfile=table-eps-converted-to.pdf 
+table.eps>
+(epstopdf)             \includegraphics on input line 209.
+Package epstopdf Info: Output file is already uptodate.
 
-]
+<table-eps-converted-to.pdf, id=150, 611.28375pt x 330.23375pt>
+File: table-eps-converted-to.pdf Graphic file (type pdf)
+
+<use table-eps-converted-to.pdf>
+Package pdftex.def Info: table-eps-converted-to.pdf used on input line 209.
+(pdftex.def)             Requested size: 452.96783pt x 227.62973pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8 <./software architecture-eps-converted-to.pdf>] [9 <./table-eps-converted-to
+.pdf>] [10]
 Package epstopdf Info: Source file: <./figures.eps>
 (epstopdf)                    date: 2015-10-02 07:28:23
 (epstopdf)                    size: 495317 bytes
@@ -811,17 +840,16 @@ Package epstopdf Info: Source file: <./figures.eps>
 (epstopdf)                    size: 256656 bytes
 (epstopdf)             Command: <epstopdf --outfile=./figures-eps-converted-to.
 pdf ./figures.eps>
-(epstopdf)             \includegraphics on input line 254.
+(epstopdf)             \includegraphics on input line 262.
 Package epstopdf Info: Output file is already uptodate.
-
-<./figures-eps-converted-to.pdf, id=140, 796.9775pt x 597.23125pt>
+ <./figures-eps-converted-to.pdf, id=272, 796.9775pt x 597.23125pt>
 File: ./figures-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures-eps-converted-to.pdf used on input line 254.
+Package pdftex.def Info: ./figures-eps-converted-to.pdf used on input line 262.
 
 (pdftex.def)             Requested size: 452.9685pt x 341.43689pt.
- [10
+ [11
 
  <./figures-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <./figures1.eps>
@@ -832,14 +860,14 @@ Package epstopdf Info: Source file: <./figures1.eps>
 (epstopdf)                    size: 155715 bytes
 (epstopdf)             Command: <epstopdf --outfile=./figures1-eps-converted-to
 .pdf ./figures1.eps>
-(epstopdf)             \includegraphics on input line 267.
+(epstopdf)             \includegraphics on input line 275.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures1-eps-converted-to.pdf, id=148, 796.9775pt x 597.23125pt>
+<./figures1-eps-converted-to.pdf, id=279, 796.9775pt x 597.23125pt>
 File: ./figures1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures1-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures1-eps-converted-to.pdf used on input line 267
+Package pdftex.def Info: ./figures1-eps-converted-to.pdf used on input line 275
 .
 (pdftex.def)             Requested size: 407.66924pt x 284.52618pt.
 Package epstopdf Info: Source file: <./figures2.eps>
@@ -850,17 +878,17 @@ Package epstopdf Info: Source file: <./figures2.eps>
 (epstopdf)                    size: 174603 bytes
 (epstopdf)             Command: <epstopdf --outfile=./figures2-eps-converted-to
 .pdf ./figures2.eps>
-(epstopdf)             \includegraphics on input line 274.
+(epstopdf)             \includegraphics on input line 282.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures2-eps-converted-to.pdf, id=149, 796.9775pt x 597.23125pt>
+<./figures2-eps-converted-to.pdf, id=280, 796.9775pt x 597.23125pt>
 File: ./figures2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures2-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures2-eps-converted-to.pdf used on input line 274
+Package pdftex.def Info: ./figures2-eps-converted-to.pdf used on input line 282
 .
 (pdftex.def)             Requested size: 407.66924pt x 284.52618pt.
- [11
+ [12
 
  <./figures1-eps-converted-to.pdf> <./figures2-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <./"iRM Agent".eps>
@@ -871,32 +899,32 @@ Package epstopdf Info: Source file: <./"iRM Agent".eps>
 (epstopdf)                    size: 84653 bytes
 (epstopdf)             Command: <epstopdf --outfile=./"iRM Agent"-eps-converted
 -to.pdf ./"iRM Agent".eps>
-(epstopdf)             \includegraphics on input line 284.
+(epstopdf)             \includegraphics on input line 292.
 Package epstopdf Info: Output file is already uptodate.
 
-<./"iRM Agent"-eps-converted-to.pdf, id=161, 538.01pt x 599.23875pt>
+<./"iRM Agent"-eps-converted-to.pdf, id=289, 538.01pt x 599.23875pt>
 File: ./"iRM Agent"-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./"iRM Agent"-eps-converted-to.pdf>
 Package pdftex.def Info: ./"iRM Agent"-eps-converted-to.pdf used on input line 
-284.
+292.
 (pdftex.def)             Requested size: 452.96791pt x 426.79745pt.
 Package epstopdf Info: Source file: <./Init.eps>
 (epstopdf)                    date: 2015-10-04 13:55:58
 (epstopdf)                    size: 514417 bytes
 (epstopdf)             Output file: <./Init-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-04 13:56:17
+(epstopdf)                    date: 2015-10-07 10:55:36
 (epstopdf)                    size: 145939 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Init-eps-converted-to.pdf
  ./Init.eps>
-(epstopdf)             \includegraphics on input line 294.
+(epstopdf)             \includegraphics on input line 302.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Init-eps-converted-to.pdf, id=162, 499.8675pt x 440.64626pt>
+<./Init-eps-converted-to.pdf, id=290, 499.8675pt x 440.64626pt>
 File: ./Init-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Init-eps-converted-to.pdf>
-Package pdftex.def Info: ./Init-eps-converted-to.pdf used on input line 294.
+Package pdftex.def Info: ./Init-eps-converted-to.pdf used on input line 302.
 (pdftex.def)             Requested size: 407.68207pt x 256.086pt.
 
 
@@ -910,21 +938,21 @@ Package epstopdf Info: Source file: <./Term.eps>
 (epstopdf)                    size: 149377 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Term-eps-converted-to.pdf
  ./Term.eps>
-(epstopdf)             \includegraphics on input line 301.
+(epstopdf)             \includegraphics on input line 309.
 Package epstopdf Info: Output file is already uptodate.
-<./Term-eps-converted-to.pdf, id=163, 520.94624pt x 440.64626pt>
+<./Term-eps-converted-to.pdf, id=291, 520.94624pt x 440.64626pt>
 File: ./Term-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Term-eps-converted-to.pdf>
-Package pdftex.def Info: ./Term-eps-converted-to.pdf used on input line 301.
+Package pdftex.def Info: ./Term-eps-converted-to.pdf used on input line 309.
 (pdftex.def)             Requested size: 407.67188pt x 256.086pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12
+[13
 
- <./iRM Agent-eps-converted-to.pdf>] [13 <./Init-eps-converted-to.pdf> <./Term-
+ <./iRM Agent-eps-converted-to.pdf>] [14 <./Init-eps-converted-to.pdf> <./Term-
 eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <./Negotiation.eps>
 (epstopdf)                    date: 2015-10-04 13:49:25
@@ -934,62 +962,60 @@ Package epstopdf Info: Source file: <./Negotiation.eps>
 (epstopdf)                    size: 112747 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Negotiation-eps-converted
 -to.pdf ./Negotiation.eps>
-(epstopdf)             \includegraphics on input line 308.
+(epstopdf)             \includegraphics on input line 316.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Negotiation-eps-converted-to.pdf, id=184, 544.0325pt x 737.75626pt>
+<./Negotiation-eps-converted-to.pdf, id=310, 544.0325pt x 737.75626pt>
 File: ./Negotiation-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Negotiation-eps-converted-to.pdf>
 Package pdftex.def Info: ./Negotiation-eps-converted-to.pdf used on input line 
-308.
+316.
 (pdftex.def)             Requested size: 452.99129pt x 597.5005pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14 <./Negotiation-eps-converted-to.pdf>] (./nishanth.bbl
-Underfull \hbox (badness 1259) in paragraph at lines 17--21
-\OT1/cmr/m/n/12 pro-gram-ming so-lu-tion by ge-netic al-go-rithm.  \OT1/cmr/m/i
-t/12 Com-put-ers and Op-er-a-tions Re-
- []
+[15 <./Negotiation-eps-converted-to.pdf>] (./nishanth.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 328.
- [15
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 337.
+ [16
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 328.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 337.
  (./nishanth.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 328.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 328.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 337.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 337.
 Package rerunfilecheck Info: File `nishanth.out' has not changed.
 (rerunfilecheck)             Checksum: 451846943DD369D8606433DEC873D5DF;853.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 328.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 337.
  ) 
 Here is how much of TeX's memory you used:
- 17274 strings out of 493304
- 303717 string characters out of 6139871
- 391522 words of memory out of 5000000
- 20333 multiletter control sequences out of 15000+600000
+ 17270 strings out of 493304
+ 303756 string characters out of 6139871
+ 390332 words of memory out of 5000000
+ 20331 multiletter control sequences out of 15000+600000
  12712 words of font info for 46 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,7n,55p,1580b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,7n,55p,1589b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on nishanth.pdf (19 pages, 2407948 bytes).
+Output written on nishanth.pdf (21 pages, 1569706 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 197 compressed objects within 2 object streams
- 48 named destinations out of 1000 (max. 500000)
- 162 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 358 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
