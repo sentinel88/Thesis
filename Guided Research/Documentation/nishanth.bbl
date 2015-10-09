@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{rudolph}
+D.G.Feitelson{,} L.Rudolph.
+\newblock {Towards convergence in job schedulers for parallel supercomputers}.
+\newblock {\em {Workshop on Job Scheduling Strategies for Parallel
+  Processing}}, 1996.
+
 \bibitem{felix}
 Suraj Prabhakaran{,} Mohsin Iqbal{,} Sebastian Rinke{,} Christian
   Windisch{,}~Felix Wolf.
@@ -21,12 +27,6 @@ Nikolas Ioannou{,} Michael Kauschke{,} Mathias Gries{,}~Marcelo Cintra.
   Single-chip cloud Compupter}.
 \newblock {\em {Parallel Architectures and Compilation Techniques(PACT)}},
   October 2011.
-
-\bibitem{rudolph}
-D.G.Feitelson{,} L.Rudolph.
-\newblock {Towards convergence in job schedulers for parallel supercomputers}.
-\newblock {\em {Workshop on Job Scheduling Strategies for Parallel
-  Processing}}, 1996.
 
 \bibitem{isaias}
 Isaias A. Compres Urena{,} Michael Riepen{,} Michael Konow{,}~Michael Gerndt.

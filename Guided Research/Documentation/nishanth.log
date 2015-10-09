@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  9 OCT 2015 09:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  9 OCT 2015 10:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -727,14 +727,8 @@ l.106 \newpage
 \tf@lof=\write6
 \openout6 = `nishanth.lof'.
 
- [4]
-Overfull \hbox (0.66493pt too wide) in paragraph at lines 126--128
-\OT1/cmr/m/n/12 Under the col-lab-o-ra-tive re-search project funded by the Ger
--man re-search foun-da-tion(DFG)
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+ [4]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) 
+has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.132 ... influenced to support evolving jobs.\par
@@ -775,7 +769,7 @@ Package epstopdf Info: Source file: <./plugin.eps>
 df ./plugin.eps>
 (epstopdf)             \includegraphics on input line 173.
 Package epstopdf Info: Output file is already uptodate.
-<./plugin-eps-converted-to.pdf, id=130, 918.43124pt x 235.88126pt>
+<./plugin-eps-converted-to.pdf, id=133, 918.43124pt x 235.88126pt>
 File: ./plugin-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./plugin-eps-converted-to.pdf>
@@ -802,7 +796,7 @@ df>
 (epstopdf)             \includegraphics on input line 203.
 Package epstopdf Info: Output file is already uptodate.
 
-<"software architecture"-eps-converted-to.pdf, id=149, 458.71375pt x 690.58pt>
+<"software architecture"-eps-converted-to.pdf, id=153, 458.71375pt x 690.58pt>
 File: "software architecture"-eps-converted-to.pdf Graphic file (type pdf)
 
 <use "software architecture"-eps-converted-to.pdf>
@@ -820,7 +814,7 @@ table.eps>
 (epstopdf)             \includegraphics on input line 209.
 Package epstopdf Info: Output file is already uptodate.
 
-<table-eps-converted-to.pdf, id=150, 611.28375pt x 330.23375pt>
+<table-eps-converted-to.pdf, id=154, 611.28375pt x 330.23375pt>
 File: table-eps-converted-to.pdf Graphic file (type pdf)
 
 <use table-eps-converted-to.pdf>
@@ -842,7 +836,7 @@ Package epstopdf Info: Source file: <./figures.eps>
 pdf ./figures.eps>
 (epstopdf)             \includegraphics on input line 262.
 Package epstopdf Info: Output file is already uptodate.
- <./figures-eps-converted-to.pdf, id=442, 796.9775pt x 597.23125pt>
+ <./figures-eps-converted-to.pdf, id=446, 796.9775pt x 597.23125pt>
 File: ./figures-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures-eps-converted-to.pdf>
@@ -863,7 +857,7 @@ Package epstopdf Info: Source file: <./figures1.eps>
 (epstopdf)             \includegraphics on input line 275.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures1-eps-converted-to.pdf, id=449, 796.9775pt x 597.23125pt>
+<./figures1-eps-converted-to.pdf, id=454, 796.9775pt x 597.23125pt>
 File: ./figures1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures1-eps-converted-to.pdf>
@@ -881,7 +875,7 @@ Package epstopdf Info: Source file: <./figures2.eps>
 (epstopdf)             \includegraphics on input line 282.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures2-eps-converted-to.pdf, id=450, 796.9775pt x 597.23125pt>
+<./figures2-eps-converted-to.pdf, id=455, 796.9775pt x 597.23125pt>
 File: ./figures2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures2-eps-converted-to.pdf>
@@ -902,7 +896,7 @@ Package epstopdf Info: Source file: <./"iRM Agent".eps>
 (epstopdf)             \includegraphics on input line 292.
 Package epstopdf Info: Output file is already uptodate.
 
-<./"iRM Agent"-eps-converted-to.pdf, id=459, 2248.4pt x 2512.38625pt>
+<./"iRM Agent"-eps-converted-to.pdf, id=464, 2248.4pt x 2512.38625pt>
 File: ./"iRM Agent"-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./"iRM Agent"-eps-converted-to.pdf>
@@ -920,7 +914,7 @@ Package epstopdf Info: Source file: <./Init.eps>
 (epstopdf)             \includegraphics on input line 302.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Init-eps-converted-to.pdf, id=460, 1405.25pt x 1260.71pt>
+<./Init-eps-converted-to.pdf, id=465, 1405.25pt x 1260.71pt>
 File: ./Init-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Init-eps-converted-to.pdf>
@@ -940,7 +934,7 @@ Package epstopdf Info: Source file: <./Term.eps>
  ./Term.eps>
 (epstopdf)             \includegraphics on input line 309.
 Package epstopdf Info: Output file is already uptodate.
-<./Term-eps-converted-to.pdf, id=461, 2207.24625pt x 1895.08pt>
+<./Term-eps-converted-to.pdf, id=466, 2207.24625pt x 1895.08pt>
 File: ./Term-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Term-eps-converted-to.pdf>
@@ -968,7 +962,7 @@ Package epstopdf Info: Source file: <./Negotiation.eps>
 -to.pdf ./Negotiation.eps>
 (epstopdf)             \includegraphics on input line 316.
 Package epstopdf Info: Output file is already uptodate.
- <./Negotiation-eps-converted-to.pdf, id=491, 2480.26625pt x 3083.52pt>
+ <./Negotiation-eps-converted-to.pdf, id=496, 2480.26625pt x 3083.52pt>
 File: ./Negotiation-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Negotiation-eps-converted-to.pdf>
@@ -1001,7 +995,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
 Here is how much of TeX's memory you used:
  17297 strings out of 493304
  304016 string characters out of 6139871
- 390703 words of memory out of 5000000
+ 390706 words of memory out of 5000000
  20344 multiletter control sequences out of 15000+600000
  12712 words of font info for 46 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -1012,10 +1006,10 @@ are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on nishanth.pdf (22 pages, 4770786 bytes).
+Output written on nishanth.pdf (22 pages, 4772587 bytes).
 PDF statistics:
- 562 PDF objects out of 1000 (max. 8388607)
- 373 compressed objects within 4 object streams
+ 566 PDF objects out of 1000 (max. 8388607)
+ 377 compressed objects within 4 object streams
  57 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
