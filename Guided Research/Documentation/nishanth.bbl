@@ -1,3 +1,85 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{10}
+
+\bibitem{felix}
+Suraj Prabhakaran{,} Mohsin Iqbal{,} Sebastian Rinke{,} Christian
+  Windisch{,}~Felix Wolf.
+\newblock {A Batch System with Fair Scheduling for Evolving Applications}.
+\newblock {\em {International Conference on Parallel Processing(ICPP)}},
+  September 2014.
+
+\bibitem{laxmikant}
+Abhishek Gupta{,} Laxmikant V.~Kale Suraj Prabhakaran{,} Marcel Neumann{,}
+  Sebastian Rinke{,} Felix~Wolf{,}.
+\newblock {A Batch Sytem with Efficient Adaptive Scheduling for Malleable and
+  Evolving Applications}.
+\newblock {\em {International Parallel and Distributed Processing
+  Symposium(IPDPS)}}, May 2015.
+
+\bibitem{nikolas}
+Nikolas Ioannou{,} Michael Kauschke{,} Mathias Gries{,}~Marcelo Cintra.
+\newblock {Phase-Based Application-Driven Hierarchical Power Management on the
+  Single-chip cloud Compupter}.
+\newblock {\em {Parallel Architectures and Compilation Techniques(PACT)}},
+  October 2011.
+
+\bibitem{rudolph}
+D.G.Feitelson{,} L.Rudolph.
+\newblock {Towards convergence in job schedulers for parallel supercomputers}.
+\newblock {\em {Workshop on Job Scheduling Strategies for Parallel
+  Processing}}, 1996.
+
+\bibitem{isaias}
+Isaias A. Compres Urena{,} Michael Riepen{,} Michael Konow{,}~Michael Gerndt.
+\newblock {Invasive MPI on Intel's single-chip cloud computer}.
+\newblock {\em {Architecture of Computing Systems(ARCS)}}, February 2012.
+
+\bibitem{andreas}
+Michael Gerndt{,} Andreas Hollmann{,} Marcel Meyer{,} Martin Schrieber{,}~Josef
+  Weidendorfer.
+\newblock {Invasive Computing with iOMP}.
+\newblock {\em {Forum on Specification and Design Languages(FDL)}}, February
+  2012.
+
+\bibitem{georgiou}
+M.~C. Cera{,} Y. Georgiou{,} O. Richard{,} N. Maillard{,}~P.O.A. Navaux.
+\newblock {Supporting malleability in parallel architectures with dynamic
+  cpusets mapping and dynamic MPI}.
+\newblock {\em {International Conference on Distributed Computing and
+  Networking(ICDCN)}}, January 2010.
+
+\bibitem{travis}
+K.~El Maghraoui{,} Travis J. Desell{,} Bolesaw K. Szymanski{,} Carlos~A.
+  Varela.
+\newblock {Dynamic Malleability in Iterative MPI Applications}.
+\newblock {\em {Concurrency and Computation: Practice and Experience}}, January
+  2008.
+
+\bibitem{gladys}
+Gladys Utrera{,} Julita Corbalan{,}~Jesus Albarta.
+\newblock {Implementing Malleability on {MPI} Jobs}.
+\newblock {\em {International Conference on Parallel Architecture and
+  Compilation Techniques(PACT)}}, October 2004.
+
+\bibitem{klein}
+Klein{,} C.{,}~Perez{,} C.
+\newblock An {RMS} for non-predictably evolving applications.
+\newblock {\em Cluster Computing(CLUSTER)}, September 2001.
+
+\bibitem{pavan}
+Pavan Balaji{,} Darius Buntinas{,} David Goodwell{,} William Gropp{,} Jayesh
+  Krishna{,} Ewing Lusk{,}~Rajeev Thakur.
+\newblock {PMI}: A scalable parallel process-management interface for
+  extreme-scale systems.
+\newblock {\em Recent Advances in the Message Passing Interface}, September
+  2010.
+
+\bibitem{jette}
+Andy B. Yoo{,} Morris A. Jette{,}~Mark Gondona.
+\newblock {SLURM}: Simple linux utility for resource management.
+\newblock {\em Job Scheduling Strategies for Parallel Processing}, June 2003.
+
+\bibitem{slurm}
+{SLURM} workload manager.
+\newblock www.slurm.schedmd.com.
 
 \end{thebibliography}

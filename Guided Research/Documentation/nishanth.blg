@@ -2,47 +2,51 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: nishanth.aux
 The style file: unsrt.bst
-I found no \citation commands---while reading file nishanth.aux
 Database file #1: nishanth.bib
-You've used 0 entries,
+Warning--string name "april" is undefined
+--line 29 of file nishanth.bib
+Warning--empty author in slurm
+Warning--empty journal in slurm
+Warning--empty year in slurm
+You've used 13 entries,
             1791 wiz_defined-function locations,
-            444 strings with 3514 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
+            505 strings with 5966 characters,
+and the built_in function-call counts, 1705 in all, are:
+= -- 140
+> -- 49
 < -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 25
+- -- 12
+* -- 69
+:= -- 312
+add.period$ -- 38
+call.type$ -- 13
+change.case$ -- 13
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 16
+duplicate$ -- 104
+empty$ -- 183
+format.name$ -- 12
+if$ -- 361
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 13
+missing$ -- 13
+newline$ -- 67
+num.names$ -- 12
+pop$ -- 42
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1
+skip$ -- 39
 stack$ -- 0
 substring$ -- 0
-swap$ -- 0
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There was 1 error message)
+warning$ -- 3
+while$ -- 12
+width$ -- 15
+write$ -- 129
+(There were 4 warnings)

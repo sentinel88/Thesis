@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  7 OCT 2015 10:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  9 OCT 2015 09:22
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -769,7 +769,7 @@ Package epstopdf Info: Source file: <./plugin.eps>
 (epstopdf)                    date: 2015-09-27 14:24:49
 (epstopdf)                    size: 218648 bytes
 (epstopdf)             Output file: <./plugin-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-09-27 15:25:23
+(epstopdf)                    date: 2015-10-08 23:15:34
 (epstopdf)                    size: 75523 bytes
 (epstopdf)             Command: <epstopdf --outfile=./plugin-eps-converted-to.p
 df ./plugin.eps>
@@ -795,25 +795,25 @@ Package epstopdf Info: Source file: <"software architecture".eps>
 (epstopdf)                    size: 40865973 bytes
 (epstopdf)             Output file: <"software architecture"-eps-converted-to.p
 df>
-(epstopdf)                    date: 2015-10-07 09:06:27
-(epstopdf)                    size: 218965 bytes
+(epstopdf)                    date: 2015-10-09 08:50:26
+(epstopdf)                    size: 779907 bytes
 (epstopdf)             Command: <epstopdf --outfile="software architecture"-eps
 -converted-to.pdf "software architecture".eps>
 (epstopdf)             \includegraphics on input line 203.
 Package epstopdf Info: Output file is already uptodate.
 
-<"software architecture"-eps-converted-to.pdf, id=149, 459.96844pt x 691.83469p
-t>
+<"software architecture"-eps-converted-to.pdf, id=149, 458.71375pt x 690.58pt>
 File: "software architecture"-eps-converted-to.pdf Graphic file (type pdf)
- <use "software architecture"-eps-converted-to.pdf>
+
+<use "software architecture"-eps-converted-to.pdf>
 Package pdftex.def Info: "software architecture"-eps-converted-to.pdf used on i
 nput line 203.
-(pdftex.def)             Requested size: 452.99088pt x 526.39099pt.
+(pdftex.def)             Requested size: 452.98712pt x 526.3847pt.
 Package epstopdf Info: Source file: <table.eps>
 (epstopdf)                    date: 2015-10-06 17:18:15
 (epstopdf)                    size: 289123 bytes
 (epstopdf)             Output file: <table-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-06 17:18:25
+(epstopdf)                    date: 2015-10-08 23:27:49
 (epstopdf)                    size: 100725 bytes
 (epstopdf)             Command: <epstopdf --outfile=table-eps-converted-to.pdf 
 table.eps>
@@ -836,13 +836,13 @@ Package epstopdf Info: Source file: <./figures.eps>
 (epstopdf)                    date: 2015-10-02 07:28:23
 (epstopdf)                    size: 495317 bytes
 (epstopdf)             Output file: <./figures-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-02 07:29:07
+(epstopdf)                    date: 2015-10-08 23:24:33
 (epstopdf)                    size: 256656 bytes
 (epstopdf)             Command: <epstopdf --outfile=./figures-eps-converted-to.
 pdf ./figures.eps>
 (epstopdf)             \includegraphics on input line 262.
 Package epstopdf Info: Output file is already uptodate.
- <./figures-eps-converted-to.pdf, id=272, 796.9775pt x 597.23125pt>
+ <./figures-eps-converted-to.pdf, id=442, 796.9775pt x 597.23125pt>
 File: ./figures-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures-eps-converted-to.pdf>
@@ -856,14 +856,14 @@ Package epstopdf Info: Source file: <./figures1.eps>
 (epstopdf)                    date: 2015-10-02 07:43:31
 (epstopdf)                    size: 302736 bytes
 (epstopdf)             Output file: <./figures1-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-02 07:43:41
+(epstopdf)                    date: 2015-10-08 23:24:38
 (epstopdf)                    size: 155715 bytes
 (epstopdf)             Command: <epstopdf --outfile=./figures1-eps-converted-to
 .pdf ./figures1.eps>
 (epstopdf)             \includegraphics on input line 275.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures1-eps-converted-to.pdf, id=279, 796.9775pt x 597.23125pt>
+<./figures1-eps-converted-to.pdf, id=449, 796.9775pt x 597.23125pt>
 File: ./figures1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures1-eps-converted-to.pdf>
@@ -874,14 +874,14 @@ Package epstopdf Info: Source file: <./figures2.eps>
 (epstopdf)                    date: 2015-10-02 07:56:37
 (epstopdf)                    size: 334781 bytes
 (epstopdf)             Output file: <./figures2-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-02 08:01:57
+(epstopdf)                    date: 2015-10-08 23:24:43
 (epstopdf)                    size: 174603 bytes
 (epstopdf)             Command: <epstopdf --outfile=./figures2-eps-converted-to
 .pdf ./figures2.eps>
 (epstopdf)             \includegraphics on input line 282.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures2-eps-converted-to.pdf, id=280, 796.9775pt x 597.23125pt>
+<./figures2-eps-converted-to.pdf, id=450, 796.9775pt x 597.23125pt>
 File: ./figures2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./figures2-eps-converted-to.pdf>
@@ -895,37 +895,37 @@ Package epstopdf Info: Source file: <./"iRM Agent".eps>
 (epstopdf)                    date: 2015-10-05 13:21:15
 (epstopdf)                    size: 428206 bytes
 (epstopdf)             Output file: <./"iRM Agent"-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-05 13:21:34
-(epstopdf)                    size: 84653 bytes
+(epstopdf)                    date: 2015-10-09 09:21:10
+(epstopdf)                    size: 899251 bytes
 (epstopdf)             Command: <epstopdf --outfile=./"iRM Agent"-eps-converted
 -to.pdf ./"iRM Agent".eps>
 (epstopdf)             \includegraphics on input line 292.
 Package epstopdf Info: Output file is already uptodate.
 
-<./"iRM Agent"-eps-converted-to.pdf, id=289, 538.01pt x 599.23875pt>
+<./"iRM Agent"-eps-converted-to.pdf, id=459, 2248.4pt x 2512.38625pt>
 File: ./"iRM Agent"-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./"iRM Agent"-eps-converted-to.pdf>
 Package pdftex.def Info: ./"iRM Agent"-eps-converted-to.pdf used on input line 
 292.
-(pdftex.def)             Requested size: 452.96791pt x 426.79745pt.
+(pdftex.def)             Requested size: 452.96559pt x 426.75499pt.
 Package epstopdf Info: Source file: <./Init.eps>
 (epstopdf)                    date: 2015-10-04 13:55:58
 (epstopdf)                    size: 514417 bytes
 (epstopdf)             Output file: <./Init-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-07 10:55:36
-(epstopdf)                    size: 145939 bytes
+(epstopdf)                    date: 2015-10-09 09:09:22
+(epstopdf)                    size: 310256 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Init-eps-converted-to.pdf
  ./Init.eps>
 (epstopdf)             \includegraphics on input line 302.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Init-eps-converted-to.pdf, id=290, 499.8675pt x 440.64626pt>
+<./Init-eps-converted-to.pdf, id=460, 1405.25pt x 1260.71pt>
 File: ./Init-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Init-eps-converted-to.pdf>
 Package pdftex.def Info: ./Init-eps-converted-to.pdf used on input line 302.
-(pdftex.def)             Requested size: 407.68207pt x 256.086pt.
+(pdftex.def)             Requested size: 407.66217pt x 256.06186pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -934,18 +934,18 @@ Package epstopdf Info: Source file: <./Term.eps>
 (epstopdf)                    date: 2015-10-04 13:56:03
 (epstopdf)                    size: 521221 bytes
 (epstopdf)             Output file: <./Term-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-04 13:56:22
-(epstopdf)                    size: 149377 bytes
+(epstopdf)                    date: 2015-10-09 09:22:26
+(epstopdf)                    size: 524091 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Term-eps-converted-to.pdf
  ./Term.eps>
 (epstopdf)             \includegraphics on input line 309.
 Package epstopdf Info: Output file is already uptodate.
-<./Term-eps-converted-to.pdf, id=291, 520.94624pt x 440.64626pt>
+<./Term-eps-converted-to.pdf, id=461, 2207.24625pt x 1895.08pt>
 File: ./Term-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Term-eps-converted-to.pdf>
 Package pdftex.def Info: ./Term-eps-converted-to.pdf used on input line 309.
-(pdftex.def)             Requested size: 407.67188pt x 256.086pt.
+(pdftex.def)             Requested size: 407.66057pt x 256.05609pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -953,69 +953,69 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [13
 
  <./iRM Agent-eps-converted-to.pdf>] [14 <./Init-eps-converted-to.pdf> <./Term-
-eps-converted-to.pdf>]
+eps-converted-to.pdf
+
+pdfTeX warning: pdflatex (file ./Term-eps-converted-to.pdf): PDF inclusion: mul
+tiple pdfs with page group included in a single page
+>]
 Package epstopdf Info: Source file: <./Negotiation.eps>
 (epstopdf)                    date: 2015-10-04 13:49:25
 (epstopdf)                    size: 491560 bytes
 (epstopdf)             Output file: <./Negotiation-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-04 13:49:34
-(epstopdf)                    size: 112747 bytes
+(epstopdf)                    date: 2015-10-09 09:21:49
+(epstopdf)                    size: 1388336 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Negotiation-eps-converted
 -to.pdf ./Negotiation.eps>
 (epstopdf)             \includegraphics on input line 316.
 Package epstopdf Info: Output file is already uptodate.
-
-<./Negotiation-eps-converted-to.pdf, id=310, 544.0325pt x 737.75626pt>
+ <./Negotiation-eps-converted-to.pdf, id=491, 2480.26625pt x 3083.52pt>
 File: ./Negotiation-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Negotiation-eps-converted-to.pdf>
 Package pdftex.def Info: ./Negotiation-eps-converted-to.pdf used on input line 
 316.
-(pdftex.def)             Requested size: 452.99129pt x 597.5005pt.
+(pdftex.def)             Requested size: 452.93814pt x 597.49641pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15 <./Negotiation-eps-converted-to.pdf>] (./nishanth.bbl
-
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 337.
- [16
+[15 <./Negotiation-eps-converted-to.pdf>] (./nishanth.bbl [16
 
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 337.
- (./nishanth.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 337.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 337.
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
+ [17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
+
+(./nishanth.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
 Package rerunfilecheck Info: File `nishanth.out' has not changed.
 (rerunfilecheck)             Checksum: 451846943DD369D8606433DEC873D5DF;853.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 337.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
  ) 
 Here is how much of TeX's memory you used:
- 17270 strings out of 493304
- 303756 string characters out of 6139871
- 390332 words of memory out of 5000000
- 20331 multiletter control sequences out of 15000+600000
+ 17297 strings out of 493304
+ 304016 string characters out of 6139871
+ 390703 words of memory out of 5000000
+ 20344 multiletter control sequences out of 15000+600000
  12712 words of font info for 46 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,7n,55p,1589b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,7n,55p,1589b,433s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on nishanth.pdf (21 pages, 1569706 bytes).
+Output written on nishanth.pdf (22 pages, 4770786 bytes).
 PDF statistics:
- 358 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 43 named destinations out of 1000 (max. 500000)
+ 562 PDF objects out of 1000 (max. 8388607)
+ 373 compressed objects within 4 object streams
+ 57 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
