@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  7 NOV 2015 14:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  7 NOV 2015 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -328,13 +328,13 @@ o.pdf>
 (epstopdf)             \includegraphics on input line 33.
 Package epstopdf Info: Output file is already uptodate.
 
-<../"software architecture"-eps-converted-to.pdf, id=39, 458.71375pt x 690.58pt
+<../"software architecture"-eps-converted-to.pdf, id=40, 458.71375pt x 690.58pt
 >
 File: ../"software architecture"-eps-converted-to.pdf Graphic file (type pdf)
  <use ../"software architecture"-eps-converted-to.pdf>
 Package pdftex.def Info: ../"software architecture"-eps-converted-to.pdf used o
 n input line 33.
-(pdftex.def)             Requested size: 375.82574pt x 369.89395pt.
+(pdftex.def)             Requested size: 375.82574pt x 341.43246pt.
  [2 <../software architecture-eps-converted-to.pdf>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
 
@@ -346,37 +346,38 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [3
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 56.
  [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 56.
 
 (./nishanth.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 56.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 56.
 Package rerunfilecheck Info: File `nishanth.out' has not changed.
 (rerunfilecheck)             Checksum: E05378889B1DA287A3E0E71B6DD13C90;345.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 56.
  ) 
 Here is how much of TeX's memory you used:
- 6798 strings out of 493304
- 99721 string characters out of 6139871
+ 6800 strings out of 493304
+ 99742 string characters out of 6139871
  184991 words of memory out of 5000000
- 10177 multiletter control sequences out of 15000+600000
- 12148 words of font info for 47 fonts, out of 8000000 for 9000
+ 10178 multiletter control sequences out of 15000+600000
+ 12456 words of font info for 48 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  29i,6n,32p,1748b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmti10.pfb>
-Output written on nishanth.pdf (4 pages, 886973 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti10.pfb>
+Output written on nishanth.pdf (4 pages, 902400 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
+ 365 PDF objects out of 1000 (max. 8388607)
+ 211 compressed objects within 3 object streams
  12 named destinations out of 1000 (max. 500000)
  54 words of extra memory for PDF output out of 10000 (max. 10000000)
 
