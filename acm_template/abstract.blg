@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: abstract.aux
+The style file: abbrv.bst
+Database file #1: sigproc.bib
+Warning--string name "april" is undefined
+--line 29 of file sigproc.bib
+Warning--to sort, need author or key in slurm
+Warning--empty author in slurm
+Warning--empty journal in slurm
+Warning--empty year in slurm
+You've used 13 entries,
+            2118 wiz_defined-function locations,
+            558 strings with 6195 characters,
+and the built_in function-call counts, 3900 in all, are:
+= -- 343
+> -- 287
+< -- 0
++ -- 114
+- -- 100
+* -- 296
+:= -- 728
+add.period$ -- 38
+call.type$ -- 13
+change.case$ -- 89
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 130
+empty$ -- 223
+format.name$ -- 100
+if$ -- 742
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 13
+newline$ -- 67
+num.names$ -- 24
+pop$ -- 93
+preamble$ -- 1
+purify$ -- 76
+quote$ -- 0
+skip$ -- 91
+stack$ -- 0
+substring$ -- 66
+swap$ -- 12
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 52
+warning$ -- 4
+while$ -- 24
+width$ -- 15
+write$ -- 129
+(There were 5 warnings)
