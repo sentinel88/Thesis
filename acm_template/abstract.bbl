@@ -1,9 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{slurm}
-{SLURM} workload manager.
-\newblock www.slurm.schedmd.com.
-
 \bibitem{pavan}
 P.~Balaji, D.~Buntinas, D.~Goodwell, W.~Gropp, J.~Krishna, E.~Lusk, and
   R.~Thakur.
@@ -22,6 +18,11 @@ M.~C. Cera, Y.~Georgiou, O.~Richard, N.~Maillard, and P.~Navaux.
   cpusets mapping and dynamic MPI}.
 \newblock {\em {International Conference on Distributed Computing and
   Networking(ICDCN)}}, Jan. 2010.
+
+\bibitem{torque}
+A.~Computing.
+\newblock {TORQUE} resource manager.
+\newblock http://www.adaptivecomputing.com/products/open-source/torque.
 
 \bibitem{rudolph}
 D.G.Feitelson and L.Rudolph.
@@ -59,6 +60,11 @@ S.~Prabhakaran, M.~Neumann, S.~Rinke, F.~Wolf, A.~Gupta, and L.~V. Kale.
   Evolving Applications}.
 \newblock {\em {International Parallel and Distributed Processing
   Symposium(IPDPS)}}, May 2015.
+
+\bibitem{slurm}
+SchedMD.
+\newblock {SLURM} workload manager.
+\newblock www.slurm.schedmd.com.
 
 \bibitem{isaias}
 I.~A.~C. Urena, M.~Riepen, M.~Konow, and M.~Gerndt.
