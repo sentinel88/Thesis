@@ -1,0 +1,496 @@
+
+<!-- saved from url=(0064)http://www.moshe-online.com/tutor/knapsack_new/engine_front.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>tutORial: 0-1 Knapsack Problem</title>
+<style sty[e="text/css">
+<!--
+
+H1{color:red;text-align:center;font-family:verdana,arial}
+H2{color:red;text-align:center;font-family:verdana,arial}
+H3{color:red;text-align:center;font-family:verdana,arial}
+
+p {font-family:verdana,arial,helvetica,comic sans MS; color:darkblue}
+hr{color:darkblue}
+span{font-family:verdana,arial;font-size:10pt}
+
+body{font-family:verdana,arial,helvetica,comic sans MS;color:darkblue;background-color:white}
+UL LI{font-family:verdana,arial,helvetica,comic sans MS;list-style-type:square}
+OL LI{font-family:verdana,arial,helvetica,comic sans MS}
+ul{font-family:verdana,arial,helvetica,comic sans MS; color:darkblue} 
+
+td{font-family:verdana,arial,helvetica; color:darkblue}
+th{font-family:verdana,arial,helvetica; color:darkblue}
+
+#large{font-size:12pt}
+
+#header{font-size:16pt;color:red}
+
+#huge{font-size:36pt}
+ // -->
+   </style>
+</head>
+
+<body bgcolor="white" text="darkblue" vlink="darkred" alink="black" link="black" onload="parent.Read_Me()" marginwidth="0">
+
+<h1><hr width="95%">The Knapsack Problem<hr width="95%"></h1>
+
+<blockquote>
+
+<p>We have a knapsack of volume V and n types of items, (j=1,2,...,n).  Items of type j have weight w<sub>j</sub> and volume v<sub>j</sub>.  The objective is to determine how many items of each type should be placed in the knapsack so as to maximize the total weight of the knpsack without exceeding its volume (V). </p>
+
+<p>We consider two popular versions of this famous problem, namely the 0-1 version and the unbounded (UB) version. The difference between these two versions is that in the case of the 0-1 version at most one item of each type can be selected. In the UB version, there is no upper bound on the number of items that can be selected from each type.</p>
+
+<p>Here are the mathematical formulations of these two versions:</p>
+
+<table align="center"><tbody><tr><td align="center">0-1 Version<br>
+<table align="center" border="1" bordercolor="darkred" bgcolor="white" cellspacing="0">
+<tbody><tr><td><table>
+<tbody><tr><td valign="top"><span id="large">z* := max z = </span></td><td><span id="large"> w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + ... + w<sub>n</sub>x<sub>n</sub></span></td></tr>
+<tr><td><span id="large">st.</span></td><td><span id="large"> v<sub>1</sub>x<sub>1</sub> + v<sub>2</sub>x<sub>2</sub> + ... + v<sub>n</sub>x<sub>n</sub></span></td><td><span id="large">&lt;= V</span></td></tr>
+<tr><td></td><td colspan="3" align="center"><span id="large">x<sub>1</sub>,x<sub>2</sub>, ... ,x<sub>n</sub> in {0,1}</span></td></tr>
+</tbody></table></td></tr></tbody></table>
+</td><td align="center">UB Version<br>
+<table align="center" border="1" bordercolor="darkred" bgcolor="white" cellspacing="0">
+<tbody><tr><td><table>
+<tbody><tr><td valign="top"><span id="large">z* := max z = </span></td><td><span id="large"> w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + ... + w<sub>n</sub>x<sub>n</sub></span></td></tr>
+<tr><td><span id="large">st.</span></td><td><span id="large"> v<sub>1</sub>x<sub>1</sub> + v<sub>2</sub>x<sub>2</sub> + ... + v<sub>n</sub>x<sub>n</sub></span></td><td><span id="large">&lt;= V</span></td></tr>
+<tr><td></td><td colspan="3" align="center"><span id="large">x<sub>1</sub>,x<sub>2</sub>, ... ,x<sub>n</sub> in {0,1,2,...}</span></td></tr>
+</tbody></table></td></tr></tbody></table></td></tr></tbody></table>
+
+<p>The symbol "<font face="verdana,arial" color="red">:=</font>" is used to denote a definition.</p>
+
+<p>In fact, we shall consider the slightly more general formulation, namely</p>
+
+<table align="center"><tbody><tr><td align="center">0-1 Version<br>
+<table align="center" border="1" bordercolor="darkred" bgcolor="white" cellspacing="0">
+<tbody><tr><td><table>
+<tbody><tr><td valign="top"><span id="large">z* := <font color="red">opt</font> z = </span></td><td><span id="large"> w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + ... + w<sub>n</sub>x<sub>n</sub></span></td></tr>
+<tr><td><span id="large">st.</span></td><td><span id="large"> v<sub>1</sub>x<sub>1</sub> + v<sub>2</sub>x<sub>2</sub> + ... + v<sub>n</sub>x<sub>n</sub></span></td><td><span id="large">&lt;= (<font color="red">=</font>) V</span></td></tr>
+<tr><td></td><td colspan="3" align="center"><span id="large">x<sub>1</sub>,x<sub>2</sub>, ... ,x<sub>n</sub> in {0,1}</span></td></tr>
+</tbody></table></td></tr></tbody></table>
+</td><td align="center">UB Version<br>
+<table align="center" border="1" bordercolor="darkred" bgcolor="white" cellspacing="0">
+<tbody><tr><td><table>
+<tbody><tr><td valign="top"><span id="large">z* := <font color="red">opt</font> z = </span></td><td><span id="large"> w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + ... + w<sub>n</sub>x<sub>n</sub></span></td></tr>
+<tr><td><span id="large">st.</span></td><td><span id="large"> v<sub>1</sub>x<sub>1</sub> + v<sub>2</sub>x<sub>2</sub> + ... + v<sub>n</sub>x<sub>n</sub></span></td><td><span id="large">&lt;= (<font color="red">=</font>) V</span></td></tr>
+<tr><td></td><td colspan="3" align="center"><span id="large">x<sub>1</sub>,x<sub>2</sub>, ... ,x<sub>n</sub> in {0,1,2,...}</span></td></tr>
+</tbody></table></td></tr></tbody></table></td></tr></tbody></table>
+
+
+<p>In other words, we shall consider four cases:</p>
+
+<table border="1" bordercolor="darkred" align="center" cellspacing="0" bgcolor="lightgrey"><tbody><tr><td>
+<table cellspacing="3" border="0" bordercolor="gray" cellpadding="5" bgcolor="beige">
+<tbody><tr><td>Case (max, &lt;=):</td><td> opt=max and the functional constraint is of the &lt;= type</td></tr>
+<tr><td>Case (max, =): </td><td>opt=max and the functional constraint is of the = type.</td></tr>
+<tr><td>Case (min, &lt;=):</td><td> opt=min and the functional constraint is of the &lt;= type.</td></tr>
+<tr><td>Case (min, =): </td><td>opt=min and the functional constraint is of the = type.</td></tr></tbody></table></td></tr></tbody></table>
+
+
+<p>The method we use to solve this problem is <font color="red">dynamic programming </font> (DP). For each case we shall consider two types of DP algorithms, namely <font color="red">Pull</font> and <font color="red">Push</font>. These have been traditionally called <font color="red">Pull</font> and <font color="red">Reach</font>, respectively. We introduce the new terminology because we believe that it better reflects how these algorithms work (Remark: The connection with the Pull vs Push Internet communication paradigms is not accidental). </p>
+
+<p>Let S denote the <font color="red">state space</font>, namely the set of feasible volumes that can be generated by placing items in the knapsack. This set can be constructed iteratively as follows: Let</p>
+
+<table width="90%" border="0" cellpadding="5" cellspacing="0" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td nowrap=""><span id="large">S<sup>(i+1)</sup> := {s': s' in S<sup>(i)</sup> and/or s' = s + v<sub>i</sub>, s in S<sup>(i)</sup>, s + v<sub>i</sub> &lt;= V,  j=1,2,...,n}, j=0,1,2,...;  S<sup>(0)</sup> := {0}.</span></td><td align="right">(1)</td></tr></tbody></table>
+<p></p>
+
+<p>Let k denote the smallest i such that S<sup>(i)</sup> = S<sup>(i+1)</sup>. Then, S = S<sup>(k)</sup>. Observe such a k exists because all the volumes (v<sub>j</sub>) are positive. In fact, it is clear that k cannot be greater than 1 + V/<u>v</u>, where <u>v</u>:= min {v<sub>j</sub>: j=1,2,...,n}. By construction S<sup>(i)</sup> consists of all volumes that can be composed out of no more than i items. </p>
+
+<p>It is also clear that S will consist of nonnegative integers if the volumes {v<sub>j</sub>} are positive integers. Thus, it is convenient to assume the following:</p>
+<ul>
+<li>V is a strictly positive integer.</li>
+<li>The volumes, v<sub>j</sub>, j=1,2,...,n, are strictly positive integers.</li>
+</ul>
+
+<p>Under these conditions S is a subset of <u>V</u> := {0,1,2,....,V}.</p>
+
+<p>We do not impose any particular conditions on the weights (w<sub>j</sub>), so if desired they can be non-integer, even negative.</p>
+
+
+<p><span id="header"><b>UB Version</b></span></p>
+
+<p>Let <br>
+
+<table width="90%" border="0" cellpadding="5" cellspacing="0" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>f(s) := optimal weight of a knapsack of volume s, (s in S).</td><td align="right">&nbsp;</td></tr></tbody></table>
+</p>
+
+
+<p>We are interested in the value of f(V) and the values of the decision variables {x<sub>1</sub>,...,x<sub>n</sub>} that yield this value. </p>
+
+<p><a name="initialization">By definition then,</a></p>
+
+<table width="90%" border="0" cellpadding="5" cellspacing="0" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td><span id="large">
+f(s) = C , for all s &lt; <u>v</u></span></td><td align="right">(2)</td></tr></tbody></table>
+
+
+<p>where</p>
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>C = &nbsp;0 , for Case(max,&lt;=) and Case(min,&lt;=).</td><td rowspan="4" align="right">(3)</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>C = -Infinity , for Case(max,=).</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>C = &nbsp;Infinity , for Case(min,=).</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td><u>v</u> := min {v<sub>j</sub>: j=1,2,...,n}.</td></tr>
+</tbody></table>
+
+
+<p>It is not difficult to show that f(s) satisfies the following DP functional equation:</p>
+<p><font color="red"><a name="theorem 1">Theorem 1</a></font><br>
+
+<table width="90%" border="0" cellpadding="5" cellspacing="0" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>Case(max,=), Case(min,=):</td><td><span id="large">
+f(s) = opt {w<sub>j</sub> + f(s - v<sub>j</sub>):  v<sub>j</sub> &lt;= s} ,  s &gt;= <u>v</u></span></td><td align="right" valign="middle">(4a)</td></tr>
+
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>Case(max,&lt;=), Case(min,&lt;=):</td><td><span id="large">
+f(s) = opt {f(s-1), opt {w<sub>j</sub> + f(s - v<sub>j</sub>):  v<sub>j</sub> &lt;= s}} ,  s &gt;= <u>v</u></span></td><td align="right" valign="middle">(4b)</td></tr>
+
+</tbody></table>
+</p>
+
+<p><font color="red">Remarks:</font></p>
+<ol>
+<li>If f(s) is equal to Infinity or -Infinity then the problem is not feasible for V=s. This can happen only in Case(min,=) and Case(max.=), as in the other two cases the trivial degenerate solution {x<sub>j</sub>=0, ... , x<sub>n</sub>=0} is feasible for all s = 0,1,2,...,V.<p>
+
+</p></li><li>The functional equation (4b) can be simplified to (4a) under suitable conditions.  For example, if all the weights (w<sub>j</sub>) are strictly positive, then (4a) is also valid for Case(max,&lt;=).<p>
+</p></li><li>In the remainder of this section we regard the f(s-1) 'fix' in (4b) as a minor irritation of (4a).  We shall thus focus exclusively on (4a).  <p>
+
+</p></li><li>A brief explanation of the reasons for the differences between (4a) and (4b) is given in the <a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#appendix">Appendix</a>.
+</li></ol>
+
+<p>We now describe two approaches for the solution of DP functional equations of the type specified in (4a)-(4b). </p>
+
+<p><font color="red">Pull</font></p>
+<p>This approach is straight forward: to determine the value of f(s) in accordance with (4a), you position yourself at state s and pull the values of f(s-v<sub>j</sub>) that are needed on the right-hand side of the functional equation from where they are stored. The basic assumption here is therefore that all those f(s-v<sub>j</sub>) values have already been computed. This can be achieve, for instance, by solving the functional equation for s=0,1,2,...,V - in this order.</p>
+
+<p><a name="Figure 1">The following is then a rough flowchart of the Pull algorithm for the functional equation specified by (4a):</a></p>
+
+<table border="1" bordercolor="darkred" cellspacing="0" cellpadding="5" align="center" bgcolor="beige">
+
+<tbody><tr><td align="center"><img border="0" src="fig_pull_ub.gif"><p>Figure 1: Pull Approach for functional equation (4a).</p></td></tr></tbody></table>
+
+
+<p><font color="red">Push</font></p>
+
+<p>In many cases it is worth while to refine the State Loop so that only relevant states are generated. In particular, observe that if V and v<sub>j</sub> are large and n is small, then many of the states in {0,...,V} are infeasible in the sense that they are not equal to any (intermediate) volume obtained by placing items in the knapsack. </p>
+
+<p>So an obvious improvement on this approach is to generate the set of  feasible states, S,  and then solve the functional equation only for these states.  However, this approach is also wasteful because the computational effort required to generate S constitutes a substantial part of the over all computational effort required for solving the functional equation itself, and this effort will be repeated when the functional equation is solved.</p>
+
+<p>This suggests the following: as we construct the set S according to (1) we can compute the values of  w<sub>j</sub>+f(s) for all j such that  s+v<sub>j</sub>&lt;=V. The point is that (1) implies the following:</p>
+
+<p><font color="red"><a name="lemma 1">Lemma 1</a></font><br>
+
+<table width="90%" border="0" cellpadding="5" cellspacing="0" align="center">
+<tbody><tr bgcolor="beige"><td width="12">&nbsp;</td><td>
+For every s'&gt;0 in S there is a j in {1,2,...,n} such that</td><td align="right">&nbsp;</td></tr>
+
+<tr bgcolor="beige"><td width="12">&nbsp;</td><td align="center" nowrap="">
+f(s') = F(s,j) := w<sub>j</sub> + f(s) , s' = s + v<sub>j<sub></sub></sub></td><td align="right">(5)</td></tr>
+</tbody></table>
+</p>
+
+<p>So as we generate the state s'=s+v<sub>j</sub> according to (1) we can compute the F(s,j) = w<sub>j</sub> + f(s) values for all j such that s + v<sub>j</sub>&lt;= V and use these values to update the respective 'current' values of f(s'). Observe, however, that when state s is generated for the first time in accordance with (1) the exact value of f(s) is typically not known yet - only an 'approximation' is known. So in the algorithm based on the Push approach we use an approximation g(s) to f(s) rather than f(s), where initially g(s) = C for all s in S. The important point is that when the algorithm terminates g(s) = f(s) for all s in S. We shall shortly see how this can be done.</p>
+
+<p>The conceptual framework for the Push appraoch is then this: once we know the exact value of f(s) for some feasible state s, we broadcast this value so that the 'current' (perhaps not yet exact) values of f(s') can be updated for all s'= s + v<sub>j</sub> such that s'&lt;V. The term Push is used to describe this metaphore. As in the case of the Pull/Push paradigm for Interent channels, these terms are used here to convey the distinction between client and server side operations.</p>
+
+<p>There is one more point to consider: in the above framework we may generate a given state, say s,  more than once and therefore will have to update the g(s') values of its successors s'=s+v<sub>j</sub> more than once. But why should we attempt the second updates if the current value of g(s) in is the same as the one we observed in the first update? The answer is that in fact there is no need to update the g(s') values of the sucessors of s unless there was an improvement in the value of g(s) since the previous update. So in short, we update the g(s') values of the successors of s only when g(s) had improved since the last update. </p>
+
+<p>For this purpose we keep record of all the values of s whose g(s) have been improved since the last update and update only the g(s') values of the successors of these states. The initial list of such 'live' states  is {0} and the procedure terminates when the set of 'live' states is empty.  The set of 'live' set is updated as follows:</p>
+<ul>
+<li>A state s in in L is <font face="red">removed</font> after the g(s') values of its successors are updated. </li>
+<li>A state s' is appended to L if its g(s') value was improved in the current update.</li>
+</ul>
+
+<p>The following is a rough flowchart of the Push procedure for the functional equation specified in (4a):</p>
+
+<table border="1" bordercolor="darkred" cellspacing="0" cellpadding="5" align="center" bgcolor="beige">
+
+<tbody><tr><td align="center"><img border="0" src="fig_push_ub.gif"><p>Figure 2: Push Approach for the functional equation (4a).</p></td></tr></tbody></table>
+
+<p>Note that the term 'better' incorporated in the second 'If' clause of the Decision Loop means 'less then' if opt=min and 'greater than' if opt =max.</p>
+
+<p><a href="javascript:void(0)" onclick="parent.Open_Push()"><img src="push.gif" border="0" align="left"></a>If you have never experimented with "Push" type DP algorithms, you may wish to play a bit with a simple module we provide here for this purpose. The objective of this module is to illustrate how the state s is generated in the State Loop, how its sucessors s' are generated in the Decision Loop and how the g(s) values are updated.</p>
+<p>The module dynamically displays the 'Live' states as the algorithms goes through the State Loop, as well as the states that have already been processed through this loop. The point to observe is that the same state might be processed through this loop more than once.</p>
+<p>For obvious reasons the module handles only very small problems (n=10, V=299).  It is restricted to Case (Max, &lt;=).</p>
+<br clear="">
+
+<p><span id="header"><b>0-1 Version</b></span></p>
+<p>Because the decisions variables are restricted to the domain {0,1}, the DP formulation here is a bit more complicated, as now it is necessary to introduce - in addition to the state variable s -  a <font color="red">stage</font> variable, j =1,2,...,n.</p>
+
+<p>To explain the <font color="red">Pull</font> approach, let</p>
+<table align="center">
+<tbody><tr><td nowrap="" valign="top"><font color="black">f(j,s) := </font></td><td valign="top"><font color="black">optimal weight of a knapsack of volume s, if only items i=j,...,n  are allowed (j=1,2,...,n; s in <u>V</u>).</font>
+</td></tr></tbody></table>
+
+<p>We are interested in the value of f(1,V) and the values of the decision variables {x<sub>1</sub>,...,x<sub>n</sub>} that yield this value. </p>
+
+<p>It is convenient to define f(j,s) for j=n+1 as follows:</p>
+
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td align="right">Case(min,&lt;=):</td><td>f(n+1,s) = 0 for all s.</td><td rowspan="4" align="right">(6)</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td align="right">Case(max,&lt;=):</td><td>f(n+1,s) = 0 for all s.</td></tr>
+
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td align="right">Case(min,=):</td><td>f(n+1,0) = 0; f(n+1,s) = Infinity  for all s&gt;0.</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td align="right">Case(max,=):</td><td>f(n+1,0) = 0; f(n+1,s) = -Infinity  for all s&gt;0.</td></tr>
+
+</tbody></table>
+
+<p>It is not difficult to show that f(j,s) satisfies the following DP functional equation:</p>
+<p><font color="red"><a name="theorem 2">Theorem 2</a></font><br>
+
+
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>f(j,s) = f(j+1,s) , s &lt; v<sub>j</sub> , s in <u>V</u>, j=1,...,n.</td><td rowspan="2" align="right">(7)</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>f(j,s) = opt {f(j+1,s) , w<sub>j</sub> + f(j+1, s - v<sub>j</sub>)} ,   s &gt;=  v<sub>j</sub> , s in <u>V</u>, j=1,...,n.</td></tr>
+
+</tbody></table>
+</p>
+
+<p>We are interested in the value of f(1,V). </p>
+
+<p>Note that for a given stage j &gt; 1, only values of s in the range </p>
+
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td><u>S</u><sup>(j)</sup>:= {max(0,V-V<sub>j</sub>), ... ,V} , V<sub>j</sub>:= v<sub>1</sub>+...+v<sub>j-1</sub></td><td align="right">(8)</td></tr>
+</tbody></table>
+
+<p>have to be considered, as it is clear that other values are not feasible at stage j. For j=1 let <u>S</u><sup>(1)</sup>: = {V}.</p>
+
+<p>Obviously, if V<sub>n+1</sub> &gt;= V then the problem is trivial, as the optimal values of {x<sub>j</sub>} can be determined independently for each j: if w<sub>j</sub> is positive set x<sub>j</sub> = 1, otherwise set   x<sub>j</sub> = 0. In Case(min,&lt;=), do it the other way around: set x<sub>j</sub> = 1 if w<sub>j</sub> is negative and set x<sub>j</sub> = 0 if w<sub>j</sub> is positive.</p>
+
+<p>The following is then a rough outline of a DP algorithm based on this functional equation.</p>
+
+
+<table border="1" bordercolor="darkred" cellspacing="0" cellpadding="5" align="center" bgcolor="beige">
+
+<tbody><tr><td align="center"><img border="0" src="fig_pull_01.gif"><p>Figure 3: Pull Approach for the 0-1 knapsack problem.</p></td></tr></tbody></table>
+
+
+<p>Note that if V is large and so are the volumes {v<sub>j</sub>}, then the set S<sup>(j)</sup> can be much smaller than  <u>S</u><sup>(j)</sup> in which case f(j,s) values are computed for many non-feasible values of (j,s) pairs.</p>
+
+<p>To overcome this difficulty it might be worth while to use a 'forward' DP functional equation rather than a 
+backward' one of the type we used above. To derive such an equation, let us first redefine the sets of feasibles states given in (1) to reflect the 0-1 constraints. So, let S<sup>(0)</sup> := {0} and </p>
+
+
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>S<sup>(j+1)</sup> := {s + bv<sub>j+1</sub>: s in S<sup>(j)</sup>, b in {0,1}, s + bv<sub>j+1</sub> &lt;= V}, j=0,1,2,...,n-1.</td><td align="right">(9)</td></tr>
+</tbody></table>
+
+<p>By construction, S<sup>(j)</sup>  is the set of feasible values of 
+x<sub>1</sub>v<sub>1</sub> + ... +  x<sub>j</sub>v<sub>j</sub>.  Next let, </p>
+
+<table align="center">
+<tbody><tr valign="top"><td nowrap=""><font color="black">f(j,s) := </font></td><td><font color="black">optimal weight of a knapsack of volume s that is completely full, if only items k=1,...,j  are allowed (j=1,2,...,n; s in S<sup>(j)</sup>).</font>
+</td></tr></tbody></table>
+
+<p>In Case(min,=) and Case(max,=) we are interested in the value of f(n,V) and in the other two cases we are interested in the value of opt{f(n,s): s in S<sup>(n)</sup>}. Also, we are interested in the the values of the decision variables {x<sub>1</sub>,...,x<sub>n</sub>} that yield the optimal value of the objecitve function. </p>
+
+<p>It is convenient to define f(0,0):= 0.</p>
+
+
+<p>It is not difficult to show that f(j,s) satisfies the following DP functional equation:</p>
+<p><font color="red"><a name="theorem 3">Theorem 3</a></font></p>
+
+
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>f(j+1,s) = f(j,s) , s &lt; v<sub>j+1</sub> , s in S<sup>(j+1)</sup>, j=0,...,n-1.</td><td rowspan="2" align="right">(10)</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>f(j+1,s) = opt {f(j,s) , w<sub>j+1</sub> + f(j, s - v<sub>j+1</sub>)} ,   s in S<sup>(j+1)</sup>, s &gt;=  v<sub>j+1</sub>, j=0,...,n-1.</td></tr>
+</tbody></table>
+
+
+<p>The folllowing is a rough flowchart of a forward pulling algorithm based on this functional equation.  Other than 'going forward' rather than backward, this type of algorithm is essentially similar to the pulling backward algorithm outlined above.</p>
+
+<table border="1" bordercolor="darkred" cellspacing="0" cellpadding="5" align="center" bgcolor="beige">
+
+<tbody><tr><td align="center"><img border="0" src="fig_pull_01_forward.gif"><p>Figure 4: Pull Forward Approach for the 0-1 knapsack problem.</p></td></tr></tbody></table>
+
+<p> Notice, however, that here we use the sets { S<sup>(j)</sup>}  rather than {<u>S</u><sup>(j)</sup>} . Often the construction of these sets is a substantial part of the overall effort and it is best done in conjunction with the solution of the functional equation, rather then as an initialization step.</p>
+
+<p>Therefore it is often more efficient to generate the sets {<u>S</u><sup>j</sup>} on the fly and modify a bit the way the functional equation is solved.  This is the <font color="red">Push</font> approach.</p>
+
+
+<p>Instead of computing the values of f(i,s) one at a time as suggested by (10) and the flowchard of the forward pulling algorithm, here the states in S<sup>(j+1)</sup>are generated one at a time and for each such state the f(j+1,s') values of its successors (s') are updated. </p>
+
+<p>The following is a rough flowchart of the procedure.</p>
+
+
+<table border="1" bordercolor="darkred" cellspacing="0" cellpadding="5" align="center" bgcolor="beige">
+
+<tbody><tr><td align="center"><img border="0" src="fig_push_01.gif"><p>Figure 5: Push Approach for the 0-1 knapsack problem.</p></td></tr></tbody></table>
+
+<p>In Case(min,&lt;=) and Case(max,&lt;=) the optimal value of the objective function is obtain by optimizing f(n,s) over all s in S<sup>(n)</sup>. Let S* := arg (opt{f(n,s): s in S<sup>(n)</sup>}).</p>
+
+<p><span id="header"><b>The Knapee Module</b></span></p>
+<p>We provide below access to an interactive module for experimenting with four DP algorithms:</p>
+<ul>
+<li>Pull approach to the UB problem (<a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#figure1">Figure 1</a>)</li>
+<li>Push approach to the UB problem (<a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#figure2">Figure 2</a>)</li>
+<li>Pull approach to the 0-1 problem (<a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#figure3">Figure 3</a>)</li>
+<li>Push approach to the 0-1 problem (<a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#figure5">Figure 5</a>)</li>
+</ul>
+<p>Please read the following before you experiment with the module.</p>
+
+<h3>Important Comments</h3>
+<table border="1" bordercolor="darkred" bgcolor="beige" width="90%" align="center" cellspacing="0" cellpadding="10">
+<tbody><tr><td><ol>
+<li>There are several ways to speed up DP algorithms based on the above functional equations, eg :<br>
+<ul>
+<li>Eliminating "bad" items</li>
+<li>Decreasing the value of V</li>
+</ul>
+We do plan to do this in due course.  At present, however, the algorithms we use are not smart. In fact, they are quite dumb: they do not eliminate bad (dominated) items nor do they attempt to decrease the value of V. 
+</li><li>Do not use large values for n and V before you check that your computer and/or browser can handle "large" problems. We suggest that you start your experiments with small problems, say (n=6, V=100), and then if necessary increase the size of the problem if your computer can handle larger problems.</li>
+<li>You are reminded that the objective of this module is to provide support for <font color="red">tutorials</font> on the knapsack problem, not support for experimentation with large scale knapsack problems.</li>
+</ol>
+<p></p></td></tr>
+</tbody></table>
+
+<p>Observe that to completely specify an instance of the problem you have to fill-in the following details:</p>
+
+<ul>
+<li>Number of items, n</li>
+<li>Volume of knapsack, V</li>
+<li>Weights of items, w<sub>1</sub>,...,w<sub>n</sub></li>
+<li>Volumes of items, v<sub>1</sub>,...,v<sub>n</sub></li>
+<li>Type of functional constraint (either "=" or "&lt;=")</li>
+<li>Optimality criterion (either min or max)</li>
+<li>Version of the problem (either 0-1 or UB)</li>
+<li>Method used (either Pull or Push)</li>
+</ul>
+
+
+<p>We provide a spread-sheet like user interface. Use the 'n'  button if you need a problem of a different size. When you are ready with your input, click the <font color="red">Solve</font> button. The optimal decisions and the optimal value of the objective function will appear in the gold cells.</p>
+
+<p>In the case of large problems (n &gt; 10), the form will be similar except that the items will be arranged row-wise rather than column-wise.</p>
+
+</blockquote>
+
+
+<h2><hr width="95%">Knapee<hr width="95%"></h2>
+
+<form name="Spready">
+
+<table align="center" border="1" bordercolor="darkred" cellspacing="0" cellpadding="0" width="620">
+<tbody><tr><td>
+
+<table cellspacing="0" border="1" bordercolor="lightgrey" align="center" cellpadding="5" width="100%">
+<tbody><tr nowrap="" bgcolor="white" valign="top">
+
+<td><a href="javascript:void(0)" onclick="parent.Solve(document.forms[0])"><img src="solve_gw.gif" border="0"><br></a><a href="javascript: void(0)" onclick="parent.Report(document.forms[0])"><img src="report_yw.gif" border="0&quot;"></a><br>
+<a href="javascript: void(0)" onclick="parent.Help(document.forms[0])"><img src="help_rw.gif" border="0&quot;"></a>
+</td>
+
+<td align="right" colspan="5"><center><a href="javascript: void(0)" onclick="parent.Randomize(document.forms[0])"><img src="random_gw.gif" border="0"></a></center>
+w<sub>j</sub><input type="input" name="random_w" size="8" value="100,200">&nbsp;&nbsp;<br>
+v<sub>j</sub><input type="input" name="random_v" size="8" value="10,20">&nbsp;&nbsp;</td>
+
+<td align="center" nowrap=""><select name="n" onchange="parent.formname=&#39;Spready&#39;;parent.Resize(this.form)"><option>n </option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option></select><br>
+<select name="constraint"><option> &lt;= </option><option> = </option></select><br>
+V <input type="text" size="8" name="V" value="60"></td>
+
+<td nowrap="" align="center"><select name="problem"><option>0-1</option><option>UB</option></select><br><select name="OPT"><option>max</option><option>min</option></select><br><select name="method"><option value="Pull">Pull</option><option value="Push">Push</option></select>
+</td>
+
+
+<td align="center"><a href="javascript:void(0)" onclick="parent.Explain(document.forms[0])"><img src="answer_yw.gif" border="0"></a><br>
+ j <select name="explain_stage"><option>0</option><option selected="">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select><br> s <input type="text" value="60" name="explain_state" size="8"></td>
+
+<td align="center"><a href="javascript:void(0)" onclick="parent.Stop(document.forms[0])"><img src="stop.gif" border="0"></a><br>
+<img src="blank.gif" width="1" height="2" border="0"><br><input type="button" value="Pause" onclick="parent.Pause(this.form)">
+</td></tr></tbody></table></td></tr>
+
+
+<tr><td><table cellspacing="0" border="1" bordercolor="gray" align="center" width="100%">
+
+<tbody><tr><td align="center" bgcolor="lightgrey" nowrap="" colspan="7">Status: <input name="stat" size="78" value="Idle" onfocus="this.blur()"></td></tr>
+
+
+<tr nowrap="" bgcolor="beige"><td nowrap="" width="90">Items (j)</td><th width="90">1</th><th width="90">2</th><th width="90">3</th><th width="90">4</th><th width="90">5</th><th width="90">6</th></tr>
+<tr align="center" bgcolor="lightgrey"><td align="left">Weights (w<sub>j</sub>)</td>
+<td><input type="text" size="6" name="w1" value="12"></td>
+<td><input type="text" size="6" name="w2" value="13"></td>
+<td><input type="text" size="6" name="w3" value="14"></td>
+<td><input type="text" size="6" name="w4" value="15"></td>
+<td><input type="text" size="6" name="w5" value="16"></td>
+<td><input type="text" size="6" name="w6" value="17"></td>
+</tr>
+
+<tr align="center" bgcolor="lightgrey"><td align="left">Volumes (v<sub>j</sub>)</td>
+<td><input type="text" size="6" name="v1" value="13"></td>
+<td><input type="text" size="6" name="v2" value="14"></td>
+<td><input type="text" size="6" name="v3" value="15"></td>
+<td><input type="text" size="6" name="v4" value="16"></td>
+<td><input type="text" size="6" name="v5" value="17"></td>
+<td><input type="text" size="6" name="v6" value="18"></td>
+</tr>
+
+
+<tr align="center" nowrap="" bgcolor="lightgrey"><td nowrap="" align="left">Decisions (x<sub>j</sub>)</td>
+<td bgcolor="gold"><input type="text" name="x1" onclick="this.blur()" size="6" value=" ?"></td>
+<td bgcolor="gold"><input type="text" name="x2" onclick="this.blur()" size="6" value=" ?"></td>
+<td bgcolor="gold"><input type="text" name="x3" onclick="this.blur()" size="6" value=" ?"></td>
+<td bgcolor="gold"><input type="text" name="x4" onclick="this.blur()" size="6" value=" ?"></td>
+<td bgcolor="gold"><input type="text" name="x5" onclick="this.blur()" size="6" value=" ?"></td>
+<td bgcolor="gold"><input type="text" name="x6" onclick="this.blur()" size="6" value=" ?"></td>
+</tr>
+
+<tr nowrap="" bgcolor="beige"><td align="right">z* = </td><td align="center" bgcolor="gold"><input value=" ?" name="z" size="6" onfocus="this.blur()"></td><td align="center" colspan="5"><a href="javascript:void(0)" onclick="document.forms[0].reset()"><img src="reset_rw.gif" border="0"></a></td></tr>
+
+
+<tr><td align="center" bgcolor="lightgrey" colspan="7"><textarea name="board" cols="90" rows="20" onfocus="this.blur()">Good morning/evening!</textarea></td></tr>
+</tbody></table></td></tr></tbody></table>
+</form>
+
+
+<center><p></p><hr width="95%"><font color="red" size="+1">Appendix</font><hr width="95%"><p></p></center>
+<blockquote>
+<p>It what follows we briefly explain the differences between the two DP functional equations, namely <a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#theorem 1">(4a) and (4b)</a>, of the UB version of the knpsack problem. More specifically, we explain the need to add the opt {0 , ... } term in the functional equation in Case(max,&lt;=) and Case (min,&lt;=). We also mention a slightly different way of handling the need for such a treatment.</p>
+
+<p><font color="red">Case(max,&lt;=)</font>:</p>
+
+<blockquote>If all the weights (w<sub>j</sub>) are non-negative, then there is no need to modify (4a).  It can be used as is in this case as well.  If some of the weights are negative, then it could be that for some s &gt; <u>v</u> we would have f(s)=0, namely it would be best to leave the knapsack empty. (4a) does not provide such an option, hence (4b).</blockquote>
+
+
+<p><font color="red">Case(min,&lt;=)</font>:</p>
+
+<blockquote>&gt;If all the weights (w<sub>j</sub>) are negative, then there is no need to modify (4a).  It can be used as is in this case as well.  If some of the weights are positive, then it could be that for some s &gt; <u>v</u> we would have f(s)=0, namely it would be best to leave the knapsack empty. (4a) does not provide such an option, hence (4b).</blockquote>
+
+<p>Another way of handling this minor irritation, as well as the initialization process <a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#initialization">(2)-(3)</a>, is through a <font color="red">dummy variable</font>.  Such a variable will have a volume v<sub>j</sub>=1 and weight w<sub>j</sub>=C, where</p>
+
+<table cellspacing="0" cellpadding="5" border="0" width="90%" align="center">
+<tbody><tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>C = &nbsp;0 , for Case(max,&lt;=) and Case(min,&lt;=).</td><td rowspan="4" align="right">(A.1)</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>C = -Infinity , for Case(max,=).</td></tr>
+<tr bgcolor="beige" nowrap=""><td width="12">&nbsp;</td><td>C = &nbsp;Infinity , for Case(min,=).</td></tr>
+</tbody></table>
+
+<p>Observe that, not surprisingly, the values of C here are identical to those specified in <a href="http://www.moshe-online.com/tutor/knapsack_new/engine_front.html#initialization">(2)-(3)</a>. As before, if the absolute value of f(s) is equal to Infinity, then no combination of items yields volume s. In particular, if the absolute value of f(V) is equal to Infinity then the problem is not feasible. Naturally, this can only happen in  Case(max,&lt;=) and Case(min,&lt;=), as in the other two cases there is always a feasible solution, namely x=(0, ... , 0).</p>
+
+<p><font color="red">Remark</font>:</p>
+<p>If you wonder why we bother to consider seemingly odd cases such as when some of the <font color="red">weights are negative</font>, it is important that you realize that such cases are not odd at all. They appear in many important applications.</p>
+</blockquote>
+
+<table width="90%">
+<tbody><tr>
+<td><p>Contributed by 
+<a href="http://www.tutor.ms.unimelb.edu.au/" target="_top"><img src="tutorlogo.gif" border="0" align="middle"></a>
+</p></td>
+<td align="right">
+<p><a href="http://www.ifors.org/tutorial/" target="_top"><img src="asmalllogo.gif" border="0"></a></p></td>
+</tr></tbody></table>
+
+
+
+<span>© The University of Melbourne 1994-2002.<br>
+<a href="http://www.unimelb.edu.au/disclaimer/" target="_top">Disclaimer and Copyright Information.</a><br>
+<a href="http://www.ifors.ms.unimelb.edu.au/tutorial/licence.html" target="_top">Conditions of use.</a>
+<hr width="95%" align="left">
+<font size="2" face="verdana,arial">Date created: January 15, 2002<br>
+Date last modified: February 15, 2002<br>
+Authorised by: Moshe Sniedovich<br>
+Maintained by: Moshe Sniedovich, <a href="http://www.ms.unimelb.edu.au/" target="_top">Department of Mathematics and Statistics.</a><br>
+Email:              <a href="mailto:m.sniedovich@ms.unimelb.edu.au">m.sniedovich@ms.unimelb.edu.au</a></font></span><font size="2" face="verdana,arial"> 
+
+
+
+
+</font></body></html>
