@@ -1,0 +1,17 @@
+SC 2016
+HPCC 2016
+EuroMPI
+Euro PAR
+VECPAR
+HPDC
+Cluster
+CCGrid
+ACM ICS
+HiPC
+Journal of Parallel and Distributed Computing
+ICPP
+HPCC
+IPDPS
+PPoPP
+PACT
+HPCA
