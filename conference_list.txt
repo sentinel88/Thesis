@@ -1,4 +1,4 @@
-SC 2016
+SC 2016 -  Mar 27
 HPCC 2016
 EuroMPI
 Euro PAR
@@ -7,11 +7,11 @@ HPDC
 Cluster
 CCGrid
 ACM ICS
-HiPC
+HiPC -  June 1
 Journal of Parallel and Distributed Computing
 ICPP
 HPCC
 IPDPS
 PPoPP
-PACT
+PACT -	Mar 12
 HPCA
