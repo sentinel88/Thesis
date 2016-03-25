@@ -1,0 +1,8 @@
+1.   Run time scheduling of malleable jobs favors only the queued jobs.
+2.   Run time estimate adjustment of the jobs which are shrunk or expanded has not been covered or mentioned as this will change the
+     state of the system and reservations also. But the paper says they update the reservations because the system state has changed. How
+     will this happen is not clearly mentioned.
+3.   Mentions naive equipartition strategy but does not clarify which specific strategy was used whether it was equigrow / equishrink or
+     the other flavor in their results section.
+4.   It is not clear as to how they are equi partitioning nodes to their malleable jobs for expansion, whether it is evenly distributed?? The
+     term equipartitioning has been used often but has never been clarified whether it meant equigrow policy or the naive equiparitioning ??
