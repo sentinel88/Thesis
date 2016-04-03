@@ -14,13 +14,15 @@ The following page shows the software architecture of how Invasive Resource Mana
 \end{itemize}
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=1.0\textwidth, height=185mm]{./figures/"software architecture".pdf}
+%\includegraphics[width=1.0\textwidth, height=185mm]{./figures/"software architecture".pdf}
+\includegraphics[width=1.0\textwidth, height=185mm]{./figures/"software architecture".eps}
 \caption{Invasive Resource Management Architecture}
 \label{fig:7}
 \end{figure}
 \begin{figure}[h]
 \centering
-\includegraphics[width=1.0\textwidth, height=80mm]{./figures/table.pdf}
+%\includegraphics[width=1.0\textwidth, height=80mm]{./figures/table.pdf}
+\includegraphics[width=1.0\textwidth, height=80mm]{./figures/table.eps}
 \caption{Message Types}
 \label{fig:8}
 \end{figure}
@@ -34,8 +36,10 @@ The following page shows the software architecture of how Invasive Resource Mana
 \item \textbf{\textit{Urgent Jobs:}} This protocol concerns the support for urgent jobs. At any given point of time a cluster or supercomputing center may want to support very high priority jobs immediately without any further delay. By introducing support for invasive computing, it makes it all the more feasible to help run these urgent jobs immediately by either shrinking the resources of other jobs or suspending/Killing them.
 \end{itemize}
 
+\textbf{\textit{Separation of Concerns: }}In this thesis, The idea of separating the batch and runtime scheduling components of a Job Scheduler is explored. 
 
 \subsection{Batch Scheduler}
+Today almost all resource management systems fall into the category of queuing systems. Several queues with different limits on the number of requested resources and the duration exist for the submission of resource requests. Jobs within a queue are ordered according to a scheduling policy, e. g. FCFS (first come, first serve). Queues might be activated only for specific times (e. g. prime time, non prime time, or weekend). The task of a queuing system is to assign free resources to waiting requests. The highest prioritized request is always the queue head. If it is possible to start more than one queue head, further criteria like queue priority or best fit (e. g. leaving less resources idle) are used to select a request. There might also exist a high priority queue whose jobs are preferred at any time. If not enough resources are available to start any of the queue heads, the system waits until enough resources become available. These idle resources may be utilized with less prioritized requests by backfilling mechanisms.
 \subsection{Distributed Run Time Scheduler}
 \subsection{MPI Process Manager}
 
@@ -46,7 +50,8 @@ The following page shows the software architecture of how Invasive Resource Mana
 \begin{figure}[!htbp]
 %\begin{figure}[H]
 \centering
-\includegraphics[width=1.0\textwidth, height=100mm]{./figures/figures.pdf}
+%\includegraphics[width=1.0\textwidth, height=100mm]{./figures/figures.pdf}
+\includegraphics[width=1.0\textwidth, height=100mm]{./figures/figures.eps}
 \caption{Scenario 1}
 \begin{itemize}
 \item Above diagram illustrates a scenario where both iScheduler and iHpervisor are negotiating with each other. The scenario is continued in the next page. \ref{fig:Seq2} illustrates another scenario where negotiations may stop when job queue becomes empty and iHypevisor then will wait for a request from iScheduler for a resource offer that will happen when new jobs arrive.
@@ -58,14 +63,16 @@ The following page shows the software architecture of how Invasive Resource Mana
 \vspace{-0.25in}
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures1.pdf}
+%\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures1.pdf}
+\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures1.eps}
 \caption{Scenario 1 contd.}
 \label{fig:Seq1}
 \vspace{0.25in}
 %\end{figure}
 %\begin{figure}[b]
 \centering
-\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures2.pdf}
+%\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures2.pdf}
+\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures2.eps}
 \caption{Scenario 2}
 \label{fig:Seq2}
 \end{figure}
@@ -74,7 +81,8 @@ This section focuses on iScheduler and a thread iRM\_AGENT that it spawns which 
 \vspace{10mm}
 \begin{figure}[h]
 \centering
-\includegraphics[width=1.0\textwidth, height=150mm]{./figures/"iRM Agent".pdf}
+%\includegraphics[width=1.0\textwidth, height=150mm]{./figures/"iRM Agent".pdf}
+\includegraphics[width=1.0\textwidth, height=150mm]{./figures/"iRM Agent".eps}
 \caption{iRM Agent}
 \label{fig:Init}
 \end{figure}
@@ -84,21 +92,24 @@ This section focuses on iScheduler and a thread iRM\_AGENT that it spawns which 
 \vspace{-20mm}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Init.pdf}
+%\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Init.pdf}
+\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Init.eps}
 \caption{Protocol Initialization}
 \label{fig:Init}
 \end{figure}
 \vspace{5mm}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Term.pdf}
+%\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Term.pdf}
+\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Term.eps}
 \caption{Protocol Termination}
 \label{fig:Term}
 \end{figure}
 \clearpage
 \begin{figure}[h]
 \centering
-\includegraphics[width=1.0\textwidth, height=210mm]{./figures/Negotiation.pdf}
+%\includegraphics[width=1.0\textwidth, height=210mm]{./figures/Negotiation.pdf}
+\includegraphics[width=1.0\textwidth, height=210mm]{./figures/Negotiation.eps}
 \caption{Negotiation}
 \label{fig:Neg}
 \end{figure}
