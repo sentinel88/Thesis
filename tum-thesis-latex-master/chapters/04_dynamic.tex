@@ -38,10 +38,10 @@ The following page shows the software architecture of how Invasive Resource Mana
 
 \textbf{\textit{Separation of Concerns: }}In this thesis, The idea of separating the batch and runtime scheduling components of a Job Scheduler is explored. 
 
-\subsection{Batch Scheduler}
+\subsection{Invasive Batch Scheduler}
 Today almost all resource management systems fall into the category of queuing systems. Several queues with different limits on the number of requested resources and the duration exist for the submission of resource requests. Jobs within a queue are ordered according to a scheduling policy, e. g. FCFS (first come, first serve). Queues might be activated only for specific times (e. g. prime time, non prime time, or weekend). The task of a queuing system is to assign free resources to waiting requests. The highest prioritized request is always the queue head. If it is possible to start more than one queue head, further criteria like queue priority or best fit (e. g. leaving less resources idle) are used to select a request. There might also exist a high priority queue whose jobs are preferred at any time. If not enough resources are available to start any of the queue heads, the system waits until enough resources become available. These idle resources may be utilized with less prioritized requests by backfilling mechanisms.
-\subsection{Distributed Run Time Scheduler}
-\subsection{MPI Process Manager}
+\subsection{Invasive Run Time Scheduler}
+\subsection{iMPI Process Manager}
 
 
 \section{Negotiation Protocol}
@@ -76,7 +76,7 @@ Today almost all resource management systems fall into the category of queuing s
 \caption{Scenario 2}
 \label{fig:Seq2}
 \end{figure}
-\subsection{State Machine Diagrams}
+%\subsection{State Machine Diagrams}
 This section focuses on iScheduler and a thread iRM\_AGENT that it spawns which is the one responsible for all the communication with the iHypervisor including spawning other agent threads for handling feedbacks and urgent jobs.
 \vspace{10mm}
 \begin{figure}[h]

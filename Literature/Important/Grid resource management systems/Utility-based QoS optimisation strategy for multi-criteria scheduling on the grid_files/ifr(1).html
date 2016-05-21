@@ -1,0 +1,1682 @@
+
+<!-- saved from url=(0700)http://sciverse-shindig.elsevier.com/gadgets/ifr?container=default&mid=1&nocache=1&country=ALL&lang=ALL&view=profile&parent=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0743731506001948%3Fnp%3Dy%3A%2F%2Fwww.sciencedirect.com&up_SiteCatalyst=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv3%2Fs_code_1.js&up_pii=S0743731506001948&up_serverForDDT=http%3A%2F%2Felsevier-apps.sciverse.com%2Fddt%2Fsavefile&up_Beacon=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv1%2Fs_beacon.js&up_gadgetId=301408&up_startMeInvisible=y&st=john.doe:john.doe:appid:cont:url:0:default&url=http%3A%2F%2Fae-content.elsevier.com%2Fsvapp%2F301408%2Fprod%2Fprivate%2Fspec.xml#rpctoken=1552632196 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">body,td,div,span,p{font-family:arial,sans-serif;}a {color:#0000cc;}a:visited {color:#551a8b;}a:active {color:#ff0000;}body{margin: 0px;padding: 0px;background-color:white;}</style><script>window['__isgadget']=true;</script><script src="core-rpc.js"></script><script>gadgets.sciverse={};
+(function(){gadgets.sciverse.getAllResults=function(A){gadgets.rpc.call(null,"getAllResults",A,null)
+};
+gadgets.sciverse.getArticleContent=function(A){if(typeof (A)=="undefined"||A==null){return 
+}var B="gac";
+gadgets.rpc.call(null,"getArticleContent",null,false,B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.getCurrentArticleContent=function(A){if(typeof (A)=="undefined"||A==null){return 
+}var B="gcac";
+gadgets.rpc.call(null,"getArticleContent",null,true,B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.getContent=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"getContent",null,B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.getContextInfo=function(A){gadgets.rpc.call(null,"getContextInfo",A,null)
+};
+gadgets.sciverse.getGadgetContext=function(A){gadgets.rpc.call(null,"getGadgetContext",A,null)
+};
+gadgets.sciverse.getBrowserProperty=function(A){gadgets.rpc.call(null,"getBrowserProperty",A,null)
+};
+gadgets.sciverse.getEuidCookie=function(A){gadgets.rpc.call(null,"getEuidCookie",A,null)
+};
+gadgets.sciverse.getPageUrl=function(A){gadgets.rpc.call("","getPageUrl",A,null)
+};
+gadgets.sciverse.getResults=function(A,B){gadgets.rpc.call(null,"getResults",B,A)
+};
+gadgets.sciverse.getSubjectAreas=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"getSubjectAreas",null,B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.getSubType=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"getSubType",null,B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.addButtonsToAllResults=function(D,A,C,B){if(typeof (D)=="undefined"||D==null){return 
+}if(typeof (B)=="undefined"||B==null){return 
+}gadgets.rpc.call("","addButtons",D,null,A,C);
+gadgets.rpc.register(C,B)
+};
+gadgets.sciverse.addButtonsToResults=function(E,A,B,D,C){if(typeof (E)=="undefined"||E==null){return 
+}if(typeof (C)=="undefined"||C==null){return 
+}gadgets.rpc.call("","addButtons",E,A,B,D);
+gadgets.rpc.register(D,C)
+};
+gadgets.sciverse.closeAllMyHovers=function(){gadgets.rpc.call("","closeAllMyHovers",null,null)
+};
+gadgets.sciverse.closeCanvasView=function(){gadgets.rpc.call("","closeCanvasView",null,null)
+};
+gadgets.sciverse.closeHover=function(A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"closeHover",null,A)
+};
+gadgets.sciverse.entitleGadget=function(A){gadgets.rpc.call("","entitleGadget",null,A)
+};
+gadgets.sciverse.executeSearch=function(A){gadgets.rpc.call(null,"executeSearch",null,A)
+};
+gadgets.sciverse.invokeColumnView=function(B,A){gadgets.rpc.call(null,"invokeColumnView",null,B,A)
+};
+gadgets.sciverse.invokeResultsView=function(A,B){gadgets.rpc.call(null,"invokeResultsView",null,A,B)
+};
+gadgets.sciverse.invokeWorkSpaceView=function(A){gadgets.rpc.call(null,"invokeWorkSpaceView",null,A)
+};
+gadgets.sciverse.callAPPIndexService=function(A){gadgets.rpc.call(null,"callAPPIndexService",null,A)
+};
+gadgets.sciverse.makeContentApiRequest=function(B,F,D){var C="1";
+var A="?";
+if(B.indexOf("?")>-1){A="&"
+}B=[B,A,"nocache=",C].join("");
+var E={};
+E[gadgets.io.RequestParameters.HEADERS]=D;
+E[gadgets.io.RequestParameters.AUTHORIZATION]=gadgets.io.AuthorizationType.NONE;
+if(D.Accept=="application/json"){E[gadgets.io.RequestParameters.CONTENT_TYPE]=gadgets.io.ContentType.JSON
+}else{if(D.Accept=="application/atom+xml"){E[gadgets.io.RequestParameters.CONTENT_TYPE]=gadgets.io.ContentType.FEED
+}}gadgets.io.makeRequest(B,F,E)
+};
+gadgets.sciverse.makeMeInvisible=function(){gadgets.rpc.call("","makeMeInvisible",null,null)
+};
+gadgets.sciverse.makeMeVisible=function(){gadgets.rpc.call("","makeMeVisible",null,null)
+};
+gadgets.sciverse.makeRequest=function(B,F,E,C){if(typeof (C)=="undefined"||C==null){C=true
+}if(C){var D="1";
+var A="?";
+if(B.indexOf("?")>-1){A="&"
+}B=[B,A,"nocache=",D].join("")
+}gadgets.io.makeRequest(B,F,E)
+};
+gadgets.sciverse.linkText=function(D,B,F,A,E,C){if(typeof (C)=="undefined"||C==null){return 
+}gadgets.rpc.call("","linkText",null,D,B,F,A,E);
+gadgets.rpc.register(E,C)
+};
+gadgets.sciverse.linkTagText=function(C,F,G,H,K,J,A,E,I,B,D){if(typeof (B)=="undefined"||B==null){return 
+}if(typeof D==="undefined"){D=false
+}gadgets.rpc.call("","linkTagText",null,C,F,G,H,K,J,A,E,D,I);
+gadgets.rpc.register(I,B)
+};
+gadgets.sciverse.removeButtonsFromAllResults=function(){gadgets.rpc.call("","removeButtons",null,null)
+};
+gadgets.sciverse.removeButtonsFromResults=function(A,B){gadgets.rpc.call("","removeButtons",null,A,B)
+};
+gadgets.sciverse.returnQuerySuggestions=function(B,A){if(typeof (B)=="undefined"||B==null||typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"suggest",null,B,A)
+};
+gadgets.sciverse.showHoverView=function(B,A,C){if(typeof (C)=="undefined"||C==null){return 
+}gadgets.rpc.call(null,"showHoverView",C,B,A)
+};
+gadgets.sciverse.subscribeHighlightedText=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"subscribe",null,"highlightedText",B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.subscribeToWindowScroll=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"subscribe",null,"windowscroll",B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.subscribeToInterRef=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"subscribe",null,"interRef",B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.subscribeToNavigatorSelection=function(B,A){if(typeof (A)=="undefined"||A==null){alert("Please provide a callback handler");
+return 
+}gadgets.rpc.call(null,"subscribe",null,"selection",B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.subscribeToResults=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"subscribe",null,"results",B);
+gadgets.rpc.register(B,A)
+};
+gadgets.sciverse.subscribeToQuery=function(B,A){if(typeof (A)=="undefined"||A==null){return 
+}gadgets.rpc.call(null,"subscribe",null,"query",B);
+gadgets.rpc.register(B,A)
+}
+}());;
+gadgets.window=gadgets.window||{};
+(function(){gadgets.window.getViewportDimensions=function(){var A=0;
+var B=0;
+if(self.innerHeight){A=self.innerWidth;
+B=self.innerHeight
+}else{if(document.documentElement&&document.documentElement.clientHeight){A=document.documentElement.clientWidth;
+B=document.documentElement.clientHeight
+}else{if(document.body){A=document.body.clientWidth;
+B=document.body.clientHeight
+}}}return{width:A,height:B}
+}
+})();;
+gadgets.window=gadgets.window||{};
+(function(){var C;
+function A(F,D){var E=window.getComputedStyle(F,"");
+var G=E.getPropertyValue(D);
+G.match(/^([0-9]+)/);
+return parseInt(RegExp.$1,10)
+}function B(){var E=0;
+var D=[document.body];
+while(D.length>0){var I=D.shift();
+var H=I.childNodes;
+for(var G=0;
+G<H.length;
+G++){var J=H[G];
+if(typeof J.offsetTop!=="undefined"&&typeof J.scrollHeight!=="undefined"){var F=J.offsetTop+J.scrollHeight+A(J,"margin-bottom");
+E=Math.max(E,F)
+}D.push(J)
+}}return E+A(document.body,"border-bottom")+A(document.body,"margin-bottom")+A(document.body,"padding-bottom")
+}gadgets.window.adjustHeight=function(I){var F=parseInt(I,10);
+var E=false;
+if(isNaN(F)){E=true;
+var K=gadgets.window.getViewportDimensions().height;
+var D=document.body;
+var J=document.documentElement;
+if(document.compatMode==="CSS1Compat"&&J.scrollHeight){F=J.scrollHeight!==K?J.scrollHeight:J.offsetHeight
+}else{if(navigator.userAgent.indexOf("AppleWebKit")>=0){F=B()
+}else{if(D&&J){var G=J.scrollHeight;
+var H=J.offsetHeight;
+if(J.clientHeight!==H){G=D.scrollHeight;
+H=D.offsetHeight
+}if(G>K){F=G>H?G:H
+}else{F=G<H?G:H
+}}}}}if(F!==C&&!isNaN(F)&&!(E&&F===0)){C=F;
+gadgets.rpc.call(null,"resize_iframe",null,F)
+}}
+}());
+var _IG_AdjustIFrameHeight=gadgets.window.adjustHeight;;
+var tamings___=tamings___||[];
+tamings___.push(function(A){caja___.whitelistFuncs([[gadgets.window,"adjustHeight"],[gadgets.window,"getViewportDimensions"]])
+});;
+gadgets.config.init({"shindig.auth":{},"rpc":{"passReferrer":"c2p:query","parentRelayUrl":"/container/rpc_relay.html","useLegacyProtocol":false,"commSwf":"http://idc311-sciverse-shindig.elsevier.com/xpc.swf"},"core.util":{"sciverse":{},"content-rewrite":{"include-tags":"","include-urls":"","exclude-urls":".*"},"dynamic-height":{},"core":{}},"core.io":{"proxyUrl":"//%host%/gadgets/proxy?container=default&refresh=%refresh%&url=%url%%rewriteMime%","jsonProxyUrl":"//%host%/gadgets/makeRequest"}});
+</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({"SiteCatalyst":"","pii":"","serverForDDT":"http://elsevier-apps.sciverse.com/ddt/savefile","Beacon":"","gadgetId":"","startMeInvisible":"y"});gadgets.io.preloaded_=[];</script><link class="include" href="jquery.jqplot.min.css" rel="stylesheet" type="text/css"><style id="mycss">
+		body {
+			font-family: Arial;
+			font-size: 12px;
+			width: 273px;
+		}
+
+		#outer-frame {
+			border: 0 none;
+			margin: 0;
+			padding: 0;
+			position: relative;
+			width: 273px;
+		}
+		#heading-bar {
+			color: #5C5C5C;
+			height: 30px;
+			/*line-height: 30px;*/
+			white-space: nowrap;
+			width: 271px;
+		}
+		#heading-bar-left {
+			color: #5C5C5C;
+			float: left;
+			font-size:13px;
+			font-weight:bold;
+			/*font-family:Arial Unicode MS;*/
+			font-family: Arial,Verdana,sans-serif;
+			margin-left: 7px;
+			/*width: 97%;*/
+			float: left;
+			white-space: nowrap;
+		}
+		#newwindow
+		{
+			cursor:pointer;
+			padding-left:6px;
+		}
+		#mainContent {
+			border-top: none;
+			margin-top: 5px;
+		}
+		#moreInfo {
+			text-decoration: none;
+		}
+		a {
+			color: #5C5C5C;
+		}
+		a:visited {
+			color: #5C5C5C;
+		}
+		#moreInfoContainer {
+			padding: 10px 0 0 10px;
+		}
+		#thumbContainer {
+			width: 271px;
+			overflow: hidden;
+		}
+		#thumbnails {
+			padding: 5px 9px;
+			/*margin-left: 4px;*/
+			overflow: hidden;
+			min-width: 250px;
+			height: 65px;
+			position: relative;
+		}
+		#thumbnails div{
+			float:left;
+		}
+		.unselectedThumb {
+			border: 1px solid #D7D7D7;
+			margin: 1px;
+		}
+		.selectedThumb {
+			border: 1px solid  #ecd47f;
+			margin: 1px;
+		}
+		#leftArrow {
+			background-color: #FFFFFF;
+			cursor: pointer;
+			height: 64px;
+			left: 1px;
+			position: absolute;
+			top: 38px;
+			width: 8px;
+			z-index: 1000;
+			display: none;
+		}
+		#leftArrow img {
+			margin-top: 26px;
+			margin-right: 2px;
+		}
+		#rightArrow {
+			background-color: #fff;
+			cursor: pointer;
+			float: right;
+			height: 69px;
+			margin-top: -69px;
+			position: relative;
+			top: 0;
+			width: 8px;
+			padding-left: 1px;
+			display: none;
+		}
+		#rightArrow img {
+			margin-top: 27px;
+		}
+		#tabArea {
+			clear: both;
+			margin-top: 10px;
+		}
+		#tabMenu {
+			border-bottom: 1px solid #d7d7d7;
+		}
+		#chartMenuTab {
+			float: left;
+		}
+		#chartMenuTab, #tableMenuTab {
+			color: #2e2e2e;
+			text-decoration: none;
+			padding: 5px 40px;
+			border: 1px solid #d7d7d7;
+			border-bottom: 0;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			-moz-border-radius-topleft: 3px;
+			-moz-border-radius-topright: 3px;
+			display: inline-block;
+			margin-left: 3px;
+			border-bottom: 1px solid #FFF;
+			color: #2e2e2e;
+			margin-bottom: 0;
+		}
+		
+		#chartMenuTab {
+		}
+		#tableMenuTab {
+			border-bottom: none;
+			background-color: #F1F3F6;
+		}
+		#chartTab, #tableTab 
+		{
+			clear: both;
+		}
+		#controlArea {
+			clear: both;
+			padding: 0 9px 0 9px;
+		}
+		#chartArea {
+			padding: 9px;
+		}
+		.button-reset {
+			float: right;
+			color: #316c9d;
+			text-decoration: none;
+			font-size: 0.9em;
+		}
+		#resetHolder {
+			padding:0 0 22px;
+		}
+		.button-reset:visited {
+			color: #316c9d;
+		}
+		#tableTab {
+			width: 93%;
+			overflow: auto;
+			padding: 9px;
+		}
+		#tableTab table {
+			border-left: 1px solid #ecf2f6;
+			width: 99%;
+		}
+		#tableTab th, td{
+			border-right: 1px solid #ecf2f6;
+			border-bottom: 1px solid #ecf2f6;
+		}
+		#tableTab table td{
+			color: #2e2e2e;
+		}
+		#dataTable {
+			font-family: Arial;
+			font-size: 12px;
+		}
+		#controlArea div {
+			color: #2e2e2e;
+		}
+		#xTitle {
+			clear: both;
+		}
+		#xTitle, #yTitle {
+			float: left;
+		}
+		#xAxisList, #yAxisList {
+			margin-left: 43px;
+			padding-bottom: 18px;
+		}
+		#xAxisOptions {
+			width: 200px;
+			padding: 0px;
+			margin: 0px;
+		}
+		#yAxisList div input {
+			float: left;
+		}
+		.chartLegend {
+			width: 10px;
+			height: 10px;
+			margin: 3px;
+			float:left;
+		}
+		.clear {
+			clear:both;
+		}
+		
+		#downloadCsv {
+			color: #316C9D;
+			padding-left: 9px;
+			font-size: 0.9em;
+			text-decoration: none;
+		}
+		#roundText {
+		    font-size: smaller;
+			display: none;
+			margin-top: 5px;
+		}
+	</style></head><body dir="ltr"><div id="mainArea">
+		
+
+		<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="http://cdn.els-cdn.com/gadgets/prod/iPlots/excanvas.js"></script><![endif]-->
+
+	
+		<script class="include" src="jquery.min.js" type="text/javascript"></script>
+		<script src="jquery.csv.min.js" type="text/javascript"></script>
+		<script src="s_code_1.js" type="text/javascript"></script>
+		<script src="s_beacon.js" type="text/javascript"></script>
+		
+		
+		<!--[if lt IE 9]>
+			<script language="javascript" type="text/javascript">
+				//var isIE = true;
+			</script>
+		<![endif]-->
+
+		
+	<script class="code" id="myjs" type="text/javascript">
+		var pii;
+		var context;
+		var legendKey = 0;
+		var attachmentCount = 0;
+		var roundTest = -1;
+		
+		var successPlot = 0;
+		var dataUrls       = [];
+		var allCharts      = [];
+		var currentLabels  = [];
+		var plotLabels     = [];
+		var showLabels     = [];
+		var currentColors  = [];
+		var currentChart;
+		var scroll = 0;
+		var w;
+		var showFull = false;
+		var activeChart;
+		var loadedCount = 0
+		var currentChartNo = 0;
+		var currentBCRCount = 0;
+		
+		var checkValue1;
+		var checkValue2;
+		var temp1 = 0;
+		var temp2 = 0;
+		var onLoadFlag = "true";
+		var onLoadThumbnailFlag = "true";
+		
+		var ATTACH_NODE = "attachment";
+		var FILE_TYPE   = 'csv'; //csv
+		var TAG_ATTRRIB = 'interactive-plot';
+		var CSVMaxCount = 250;
+		var thumbIndex =[];
+		var isMakeMeVisible = false;	
+		
+		//var urlWithContent = 'http://retrieval-services.elsevier.com/content/retrieve?cluster=SCIDIR&view=META_ATTACH&pii='; 
+		var urlWithContent = 'http://retrieval-services.elsevier.com/content/retrieve?cluster=SCIDIR&view=STORAGE&upc=C98&pii='; 
+		var contentURL     = 'http://binary-services.elsevier.com/content/';
+		var myapikey       = "0f3fe9bc379ba503eb0fe2552e4c50b7";
+		var authTok;
+		
+		var headers = {
+				'X-ELS-Consumer'		:	'SCIDIR',
+				'X-ELS-AUTHENTICATION'	:	'SCIDIR',
+				'ACCEPT'				:	'*/*',
+				'X-ELS-APIKey'			:	'0f3fe9bc379ba503eb0fe2552e4c50b7',
+				'X-ELS-ResourceVersion'	:	'XOCS'
+		};
+		
+		var colors         = ['#003', '#C69', '#069', '#F60', '#066', '#F90', '#6CF', '#C06', '#FC3', '#303'];
+		var tickStyles     = ['filledCircle', 'filledSquare', 'filledDiamond', 'circle', 'square', 'diamond'];
+		var gadgetContextInfo;
+		
+		var thumbPlotWidth = 61;
+
+		//App index variable declaration pii and gadgetId for SDFE - CIAPP-403
+		var gadgetId=301408;
+		
+		function run() {
+			//Beacon Initialization.
+			gadgets.sciverse.getGadgetContext(function(ctxInfo){gadgetContextInfo = ctxInfo}); 
+			
+			gadgets.sciverse.getContextInfo(init);
+		}
+		
+		
+		function init(data){
+
+			context = data;
+			pii     = data.pii;
+			
+			if (!showFull) {
+				//var url = urlWithContent + "S9999999413001475";
+				var url = urlWithContent + pii;
+
+				// edit
+				/*
+					authTok = data.secureAuthtoken;
+					var url = "http://api.elsevier.com/content/article/PII:" + pii;
+					var requestHeaders = {};
+					requestHeaders['X-ELS-APIKey']    = myapikey;
+					requestHeaders['X-ELS-Authtoken'] = authTok;
+					requestHeaders['X-ELS-ResourceVersion'] = 'XOCS';
+					requestHeaders['Accept'] = 'text/xml';
+					var params = {};
+					params[gadgets.io.RequestParameters.HEADERS] = requestHeaders;
+					gadgets.io.makeRequest(url, metaDataSuccess, params);
+					*/
+				///edit
+				//url = 'http://138.12.194.127:8085/StaticContent/science.xml';
+				gadgets.sciverse.makeContentApiRequest(url, metaDataSuccess, headers);						
+			}			
+						
+			var previousPoint = null;
+			
+			$(document).ready(function() {
+				setMainEvents($(this));
+				//$("#thumbDiv0").click();
+				selectThumb();
+			});
+			
+
+		}
+		
+		function metaDataSuccess(response) {
+//console.log(response);
+
+			if (response) {
+				var domData = parseXml(response);
+				if (!domData) {
+					return;
+				}
+
+				var attachments;
+				//if ( typeof isIE != "undefined" ) {
+				if ( isIECheck() != false ) {					
+					attachments = domData.getElementsByTagName("xocs:" + ATTACH_NODE);
+				}
+				else {					
+					attachments = domData.getElementsByTagNameNS("*", ATTACH_NODE);
+				}
+				
+				if (attachments) {
+
+					// Loop thru the attachments, find the files attached
+					for (x=0; x<attachments.length; x++) {
+						var fileUrl;
+						var isMatch = false;
+						var fileName;
+						
+						for (y=0; y<attachments[x].childNodes.length;y++) {
+							var node = attachments[x].childNodes.item(y);
+//console.log(node);
+							if (node.nodeName == 'xocs:extension' && node.childNodes[0].nodeValue == FILE_TYPE) {
+								isMatch = true;
+							}
+							if (node.nodeName == 'xocs:attachment-eid') {
+								fileUrl = node.childNodes[0].nodeValue;
+							}
+							if (node.nodeName == 'xocs:file-basename') {
+								fileName = node.childNodes[0].nodeValue; 
+							}
+						}
+
+						if (isMatch) {
+
+							//make sure the file found is actually an interactive plot
+							
+							var matchRole = false;
+							var attachmentsMatch;
+							//if ( typeof isIE != "undefined" ) {
+							if ( isIECheck() != false ) {
+								attachmentsMatch = domData.getElementsByTagName("ce:e-component");
+							}
+							else {
+								attachmentsMatch = domData.getElementsByTagNameNS("*", "e-component");
+							}
+							
+							if (attachmentsMatch) {
+								// Loop thru the attachmentsMatch
+								for (p = 0; p < attachmentsMatch.length; p++) {
+//console.log(attachmentsMatch[p]);
+									if (attachmentsMatch[p].getAttribute('role') == 'interactive-plot' ) {
+										for (q = 0; q < attachmentsMatch[p].childNodes.length; q++) {
+											
+											var node = attachmentsMatch[p].childNodes.item(q);
+//console.log(node);
+											if (node.nodeName == 'ce:link' && node.getAttribute('locator') == fileName) {
+//console.log('match found');												
+												matchRole = true;
+											}
+										}
+									}
+								}
+							}
+							
+							if (matchRole) {
+								dataUrls[attachmentCount] = fileUrl;
+								attachmentCount++;
+							}
+							
+						}
+					}
+				}
+
+				//if there are attachements, carry on and grab them. Otherwise do nothing, the gadget shouldn't show.
+				if (attachmentCount > 0) {
+					
+					//Supplementary attachment files are sorted based on the file name Number order
+					dataUrls = dataUrls.sort(function(x,y){
+						var a = x.toLowerCase();
+						var b = y.toLowerCase();
+						//File name like : "1-s2.0-S0021979714003506-mmc1.csv"
+						a = Number(a.substring((a.lastIndexOf('mmc')+3), (a.lastIndexOf('.csv'))));
+						b = Number(b.substring((b.lastIndexOf('mmc')+3), (b.lastIndexOf('.csv'))));						
+						return a-b;
+					});
+//console.log("Iplots dataUrls..  "+dataUrls.toString());							
+					getCSV();				
+				}
+			}
+		}
+		
+		function isIECheck () {
+			var rv = -1;
+			if (navigator.appName == 'Microsoft Internet Explorer'){
+				var ua = navigator.userAgent;
+				var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+				if (re.exec(ua) != null)
+				rv = parseFloat( RegExp.$1 );
+			}else if (navigator.appName == 'Netscape'){
+				var ua = navigator.userAgent;
+				var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+				if (re.exec(ua) != null){
+					rv = parseFloat( RegExp.$1 );
+				}
+			}
+			return (rv != -1)?rv:false;
+		}
+		
+		
+		function parseXml(obj) {			
+			//var parseXmlData;
+			//var xmlStr = obj.data;			
+			var domdata;
+			if (window.DOMParser && isIECheck()=== false ) {				
+				var parser = new DOMParser();
+				domdata = parser.parseFromString(obj.data,"text/xml");
+			}else { // Internet Explorer				
+				if(isIECheck() <=10){
+					var parser = new DOMParser();
+					domdata = parser.parseFromString(obj.data,"text/xml");
+				}else{
+					domdata = new ActiveXObject("Microsoft.XMLDOM");
+					domdata.async = "false";
+					domdata.loadXML(obj.data);
+				}
+			}
+			return domdata;
+		}		
+
+		
+		function setMainEvents(wBody) {
+			$('#tableTab').hide();
+
+			$('.button-reset').live("click", function(){
+				activeChart.resetZoom();
+			});
+			
+			/*
+			$('#xAxisOptions').change(function() {
+				var previousLegendKey = legendKey;
+				var previousLength    = showLabels.length;
+				
+				legendKey = $(this).val();
+				showLabels = [];
+				
+				if (previousLength > 2) {
+					showLabels[previousLegendKey] = false;
+				}
+				parseCSV(allCharts[currentChartNo], false, loadedCount);
+			});
+			*/
+			
+
+			$('input[id*="label"]').live("click", function() {
+				showLabels[$(this).attr('id').replace('label', '')] = !showLabels[$(this).attr('id').replace('label', '')];
+				parseCSV(allCharts[currentChartNo], false, loadedCount);
+			});
+			
+			$('div[id*="thumbDiv"]').live("click", function() {
+			
+			if(onLoadThumbnailFlag == "true")
+			{
+				onLoadThumbnailFlag = "false";
+			}	
+			else
+			{
+				//site catalyst code
+				scGadgetClickEvent = "Interactive plots thumbnail click event";
+				logSCUsage();
+			}
+				$('#thumbDiv' + currentChartNo).removeClass('selectedThumb').addClass('unselectedThumb');
+				$(this).addClass('selectedThumb');
+
+				legendKey = 0;
+				showLabels = [];
+				
+				currentChartNo = $(this).attr('id').replace('thumbDiv', '');			
+				parseCSV(allCharts[currentChartNo], false, loadedCount);
+			});
+			
+			$("#leftArrow").live("click", function() {
+					if (scroll > 0) {
+						scroll--;
+						$("#thumbnails").animate({
+							left: '+='+ (thumbPlotWidth+2)
+						});
+					}
+				}
+			);
+
+			$("#rightArrow").live("click", function(){	
+				var scrollPlot = scroll+4; // default Iplot thumb count is 4
+//console.log(scrollPlot +" scrollPlot  successPlot "+ successPlot);				
+				if(scrollPlot < successPlot){				
+					scroll++;
+					$("#thumbnails").animate({
+						left: '-='+ (thumbPlotWidth+2)
+					});
+				}			
+			});
+			
+			$(wBody).find("#chartMenuTab").live("click", function(){
+				
+				//site Catalyst Code
+				scGadgetClickEvent = "Interactive Plots Chart Tab click Event";
+				logSCUsage();
+				
+				$(wBody).find("#tableTab").hide();
+				$(wBody).find("#chartTab").show();
+				
+				$(wBody).find("#tableMenuTab").css('border-bottom', 'none');
+				$(wBody).find("#tableMenuTab").css('margin-bottom', '0');
+				$(wBody).find("#tableMenuTab").css('background-color', '#F1F3F6');
+
+				$(wBody).find("#chartMenuTab").css('border-bottom', '1px solid #FFF');
+				$(wBody).find("#chartMenuTab").css('background-color', '#FFF');
+				activeChart.replot(); 
+				gadgets.window.adjustHeight();
+			});
+
+			$(wBody).find("#tableMenuTab").live("click", function(){
+				
+				//site Catalyst Code
+				scGadgetClickEvent = "Interactive Plots Data table Tab click Event";
+				logSCUsage();
+				
+				$(wBody).find("#chartTab").hide();
+				$(wBody).find("#tableTab").show();
+
+				$(wBody).find("#tableMenuTab").css('border-bottom', '1px solid #FFF');
+				$(wBody).find("#tableMenuTab").css('margin-bottom', '-1px');
+				$(wBody).find("#tableMenuTab").css('background-color', '#FFF');
+
+				$(wBody).find("#chartMenuTab").css('border-bottom', 'none');
+				$(wBody).find("#chartMenuTab").css('background-color', '#F1F3F6');
+				gadgets.window.adjustHeight();
+
+			});
+		}
+		
+		function setCSVDownload() {
+			//Site catalyst Save Click Event
+			scGadgetClickEvent = "Interactive Plots Save data set click Event";
+			logSCUsage();
+			
+			//var uriContent = "data:application/csv;charset=UTF-8," + encodeURIComponent(allCharts[currentChartNo]);
+
+			//$('#downloadCsv').attr('href', uriContent);
+			
+			$('#buffer').val(allCharts[currentChartNo]);
+			$('#csvForm').attr("action","http://elsevier-apps.sciverse.com/ddt/savefile");
+			$('#csvForm').submit();
+		}
+		
+		function getCSV() {
+			var params = {};
+			$('#thumbnails').html("");			
+
+			//REMOVE
+			/*
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample.csv", getBCRFiles, params);
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample2.csv", getBCRFiles, params);
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample3.csv", getBCRFiles, params);
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample6.csv", getBCRFiles, params);
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample7.csv", getBCRFiles, params);
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample8.csv", getBCRFiles, params);
+			gadgets.sciverse.makeRequest("http://138.12.194.127:8085/StaticContent/sample9.csv", getBCRFiles, params);
+			*/
+			
+			/*			
+			for (var i = 0; i < dataUrls.length; i++) {
+				currentBCRCount = i;				
+				gadgets.sciverse.makeContentApiRequest(contentURL + dataUrls[i], getBCRFiles, headers);
+			}
+			*/
+			
+			loadCSVDataSync();		
+			
+			/* if (attachmentCount > 0) {	
+				//Site catalyst imperssion
+				scPlatform = "SD";
+			    scGadgetName = "CI Interactive Plots";
+				logSCDisplay();
+				
+				//App Index implementation for SDFE - CIAPP-403
+				var params = {'pii':pii,'gadgetId':gadgetId};
+				gadgets.sciverse.callAPPIndexService(params);
+				
+				//Initialization & triggering the Beacon
+				CIPA.setGadgetContext(gadgetContextInfo);
+				CIPA.init();
+				//gadgets.sciverse.makeMeVisible();
+				//gadgets.window.adjustHeight();
+			}*/
+		}
+		
+		function loadCSVDataSync(){
+			if (dataUrls.length > 0 && currentBCRCount < dataUrls.length ) {
+				//console.log("BCR URL.. "+contentURL + dataUrls[currentBCRCount]);
+				gadgets.sciverse.makeContentApiRequest(contentURL + dataUrls[currentBCRCount], getBCRFiles, headers);
+				currentBCRCount++;
+			}			
+		}
+
+		function getBCRFiles(data) {
+			if (data.text != null) {
+				/*
+				allCharts[loadedCount] = data.data;				
+				parseCSV(allCharts[loadedCount], true, loadedCount);
+				currentChartNo = loadedCount;				
+				loadedCount++;				
+				if (loadedCount > allCharts.length - 1) {
+					$("#thumbDiv0").click();
+				}*/			
+				
+				var escapeData = $.trim(data.data);			
+				allCharts.push(escapeData);
+				loadedCount = allCharts.length-1;
+				var count = allCharts.length-1;					
+				parseCSV(allCharts[loadedCount], true, count);
+				currentChartNo = loadedCount;				
+				selectThumb();
+				/*if(currentBCRCount == dataUrls.length-1){
+					selectThumb();
+				}*/
+			}
+			loadCSVDataSync();
+		}	
+		
+		function validateCSVData(csvData){			
+			if(csvData.length > CSVMaxCount){
+				return false;
+			}else{
+				for (var copyRow = 1; copyRow < csvData.length; copyRow++) {				
+					if(!validateNumericData(csvData[copyRow].toString())){
+						return false;
+					};
+					
+					//Validate each cell value as a Number or scientific data type.If the value is string then return false.
+					var ln = csvData[copyRow].length;
+					for(var i=0;i<ln;i++){
+						var num = (csvData[copyRow][i]);						
+						if(isNaN(num)){
+							return false;
+						}						
+					}
+				}				
+			}
+			return true;
+		}		
+		
+		function validateNumericData(str){
+			//console.log(typeof str+"   validateNumericData..   "+str);
+			if(typeof str === "string"){
+				var Exp = /^[-]?[0-9]*\.?[0-9]+([eE][-]?[0-9]+)?$/;
+				var	Exp2 = /^[-]?[0-9\./\-/]*$/;
+				var tempStr = str.replace(/,/g,'');
+				tempStr = tempStr.replace(/\s/g, '');
+				var isVal = Exp.test(tempStr);
+				newTempStr = str.split(",");
+				if(typeof newTempStr != "undefined"){
+					for(var i=0;i<newTempStr.length;i++){					
+						if(Exp.test(newTempStr[i]) || newTempStr[i]==""){
+							isVal = true;
+						}
+						else{
+							if(Exp2.test(newTempStr[i])){
+								isVal = true;
+							}
+							else{
+								if(newTempStr[i].indexOf(".") != -1){
+									isVal = true;
+								}
+								else{
+									isVal = false;
+								}
+							}
+						}
+					}
+				}
+			}else{
+				isVal = false;
+			}
+			//console.log("validateNumericData...  "+isVal);
+			return isVal;
+		}
+		
+		function selectThumb(){			
+			if (thumbIndex.length > 0) {
+				checkGadgetVisible();				
+				var index = thumbIndex[0];
+				onLoadThumbnailFlag = "true";
+				$("#thumbDiv"+ index).click();
+			}
+		}
+		
+		function checkGadgetVisible(){
+			if(!isMakeMeVisible){
+				gadgets.sciverse.makeMeVisible();
+				gadgets.window.adjustHeight();	
+				isMakeMeVisible = true;
+				logGadgetImpression();
+			}
+		}
+		
+		function logGadgetImpression(){
+			//console.log("logGadgetImpression.... ");
+			//Site catalyst imperssion
+			scPlatform = "SD";
+			scGadgetName = "CI Interactive Plots";
+			logSCDisplay();
+			
+			//App Index implementation for SDFE - CIAPP-403
+			var params = {'pii':pii,'gadgetId':gadgetId};
+			gadgets.sciverse.callAPPIndexService(params);
+			
+			//Initialization & triggering the Beacon
+			CIPA.setGadgetContext(gadgetContextInfo);
+			CIPA.init();
+		}
+		
+		function validateCellPoints(x){
+			if(x === 0){
+				return true;
+			}
+			if(x){
+				return true;
+			}
+			return false;
+		}
+		
+		var dataFlag = -1;
+		
+		
+		function removeEmptyDataCells(tempcsvData){
+			var emptyCell = [];
+			for (var a = 0; a < tempcsvData[0].length; a++) {
+				if(	tempcsvData[0][a] === ''){
+					emptyCell.push(a);
+				}
+			}
+//console.log("tempcsvData.toString..   "+tempcsvData.toString());
+			for (var b = 0; b < tempcsvData.length; b++) {				
+				for (var c = emptyCell.length-1; c >= 0; c--) {
+					tempcsvData[b].splice(emptyCell[c],1);
+				}
+			}
+//console.log("after tempcsvData.toString..   "+tempcsvData.toString());		
+		}
+		
+		function parseCSV(data, drawThumb, lc) {
+//console.log("data: " + data);
+			if(data != undefined && data != null){
+				data = data.replace(/;/g,",");
+				//alert("yes");
+			}
+			else{
+				data = " ";
+				//alert("no");
+			}
+
+			//data = data.replace(/;/g,",");
+			currentChart    = data;
+			var csvData     = jQuery.csv()(currentChart);
+			var tempcsvData = jQuery.csv()(currentChart);
+			
+			
+			var isCSV = validateCSVData(csvData);
+//console.log("isCSV data... "+isCSV);
+			
+			if(!isCSV){
+				return;
+			}			
+			
+			//remove Empty DataCells from the CSV file
+			removeEmptyDataCells(csvData);
+			
+			var numTestReg = /^[-]?[0-9\./]*$/;		
+			//var tempStr = "";
+			for (var i = 0; i < csvData.length; i++) {
+				for (var j = 0; j < csvData[i].length; j++) {
+					//tempStr+= csvData[i][j]+",";
+					if(numTestReg.test(csvData[i][j])) {
+						var numDecimal = csvData[i][j].length - (csvData[i][j].lastIndexOf('.')) -1;
+						var isDot = csvData[i][j].lastIndexOf('.');
+						if(numDecimal>3 && isDot!==-1){
+							//csvData[i][j] = parseFloat(csvData[i][j]).toFixed(3);
+						}
+					}					
+				}
+				//tempStr+= "\n";
+			}			
+//console.log("tempStr.. "+tempStr);
+			
+			drawTable(csvData);
+			
+			plotLabels      = [];
+			
+			currentLabels   = csvData[0];
+			
+			var series      = [];
+			var seriesSize  = csvData[0].length;
+			var newRowCount = 0;
+			var maxXValue   = 0;
+			var maxYValue   = 0;
+			var minXValue   = null;
+			var minYValue   = null;
+			
+//console.log(csvData);
+
+			//sort by the X column
+			var csvOrderContent = []; 
+			
+			//remove the headers, so we can sort the rest
+			for (var copyRow = 1; copyRow < csvData.length; copyRow++) {
+				csvOrderContent[copyRow - 1] = csvData[copyRow];
+			}
+
+//console.log(csvOrderContent);
+
+			//sort with the headers removed
+			/*csvOrderContent.sort(function(a, b) {
+				return (a[legendKey]) - (b[legendKey]);
+			});*/
+
+			//add the header back in
+			csvOrderContent.splice(0, 0, currentLabels);
+			csvData = csvOrderContent;
+//console.log(csvData);			
+			
+			//var columIndexArr = findDynamicColumnIndex(csvData, seriesSize);
+			
+			//transform the array for jqplot
+			for (var currentColumn = 0; currentColumn < seriesSize; currentColumn++) {
+				if (typeof showLabels[currentColumn] == 'undefined' || showLabels[currentColumn]) {
+					if (currentColumn == legendKey) {
+						
+						for (var rowCount = 1; rowCount < csvData.length; rowCount++) {
+							if ((csvData[rowCount][currentColumn] * 1) > maxXValue) {
+								maxXValue = (csvData[rowCount][currentColumn] * 1);
+							}
+							if (minXValue === null || (csvData[rowCount][currentColumn] * 1) < minXValue) {
+								minXValue = (csvData[rowCount][currentColumn] * 1);
+							}
+						}
+						continue;
+					}
+					
+					var newRow = [];
+					
+					for (var rowCount = 1; rowCount < csvData.length; rowCount++) {						
+						var plotX = csvData[rowCount][legendKey];
+						var plotY = csvData[rowCount][currentColumn];				
+						if(validateCellPoints(plotX) && validateCellPoints(plotY)){
+							newRow[rowCount - 1] = [plotX, plotY];
+						}										
+						if ((csvData[rowCount][currentColumn] * 1) > maxYValue) {
+							maxYValue = (csvData[rowCount][currentColumn] * 1);
+						}
+						if (minYValue === null || (csvData[rowCount][currentColumn] * 1) < minYValue) {
+							minYValue = (csvData[rowCount][currentColumn] * 1);
+						}
+					}
+					series[newRowCount] = newRow;
+					newRowCount++;
+				}
+			}
+			
+			var newSeries = [];
+
+			for(var i=0; i<series.length;i++){
+				if(series[i] && series[i] != "" && series[i]!=null){
+					newSeries.push(series[i]);
+				}
+			}
+			
+			for(var i=0;i<newSeries.length;i++){
+				var j=0;
+				while(j<newSeries[i].length){
+					if(typeof newSeries[i][j] == 'undefined'){
+						newSeries[i].splice(j,1);
+						dataFlag = 1;
+					}
+					else{
+						j++;
+					}
+				}
+			}
+			
+			
+//console.log(series);
+			
+			createXAxis();
+			createYAxis(drawThumb, isMatchingValue(csvData, legendKey));
+
+			maxXValue = maxXValue * 1.05;
+			maxYValue = maxYValue * 1.05;
+			
+			minXValue = minXValue - (maxXValue * 0.05);
+			minYValue = minYValue - (maxYValue * 0.05);
+			
+			if ( $('input[id*="label"]:checked').length < 2) {
+				$('input[id*="label"]:checked').each(function(index, domEle){ $(this).attr('disabled', 'disabled'); });
+			}
+			else {
+				$('input[id*="label"]').each(function(index, domEle){ $(domEle).removeAttr('disabled'); });
+			}
+
+			if (drawThumb) {
+				var classText = 'unselectedThumb';
+				if (lc == 0) {
+					classText = 'selectedThumb';
+				}
+			
+				if(dataFlag==1){
+					if(successPlot==0){
+						gadgets.sciverse.makeMeInvisible();
+						dataFlag=0;
+					}
+				}else{
+					$('#thumbnails').append('<div id="thumbDiv' + lc + '" style="width: 59px; height: 59px;" class="' + classText + '"></div>');
+					thumbIndex.push(lc);
+					createChart("thumbDiv" + lc, series, false, maxXValue, maxYValue, minXValue, minYValue, false, false, false, true);
+					successPlot++;										
+					if(successPlot > 4){						
+						var w = (successPlot * thumbPlotWidth) + 18; // thumbPlot Width = 61px and Left/right arrow total width = 18px
+						$('#thumbnails').css('width', w);
+						$('#leftArrow').show();
+						$('#rightArrow').show();
+					}					
+					dataFlag=0;
+				}
+			}
+			else {
+				/*
+				if(dataFlag==1){
+					if(successPlot==0){
+						gadgets.sciverse.makeMeInvisible();
+					}
+				}else{
+				*/
+				activeChart = createChart("chart1", series, true, maxXValue, maxYValue, minXValue, minYValue, true, false, false, false);
+				//successPlot++;					
+				//}
+			}
+			if(roundTest == 1){
+				$("#roundText").css('display','block');
+				roundTest = 0;
+			}
+			else{
+				$("#roundText").css('display','none');
+			}
+			gadgets.window.adjustHeight();
+		}
+		
+		
+		
+		
+		function findDynamicColumnIndex(csvData, seriesSize){
+			var columArr = [];
+			for (var currentColumn = 0; currentColumn < seriesSize; currentColumn++) {
+				var index = 0;
+				for (var rowCount = 1; rowCount < csvData.length; rowCount++) {						
+						var plotX = csvData[rowCount][legendKey];
+						var plotY = csvData[rowCount][currentColumn];
+						
+						if(validateCellPoints(plotX) && validateCellPoints(plotY)){
+//console.log(rowCount +"  true ");
+							index++
+						}else{
+//console.log(rowCount +"  FALSE ");
+						}
+				}
+				columArr.push(index);
+			}
+			return columArr;
+		}
+		
+		function getChartThumb(id, i) {
+			//var imgData = $('#' + id).jqplotToImageStr({}); // given the div id of your plot, get the img data
+			//var divElem = $('<div><a href="#"><img width="46" height="46" class="thumbImg" id="thumb' + i + '" src="' + imgData + '" /></a></div>');
+			var divElem = $('<div width="46" height="46" id="thumb' + i + '"></div>');
+			return divElem;
+		}
+		
+		function isMatchingValue(checkList, position) {
+			var foundMatch = false;
+			//loop through array once
+			for (var outer = 0; outer < checkList.length; outer++) {
+				//look at every other element in the array
+				for (var inner = 0; inner < checkList.length; inner++) {
+					//ignore the same position
+					if (inner != outer) {
+						if (checkList[inner][position] == checkList[outer][position]) {
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+		
+		function createXAxis() {
+			$('#xAxisOptions').html('');
+			if(currentLabels.length > 0){
+				$('#xAxisOptions').html(currentLabels[0]);
+			}
+			
+			/*
+			$('#xAxisOptions').html('');
+			for (var l = 0; l < currentLabels.length; l++) {
+				var selected = "";
+				
+				if (l == legendKey) {
+					selected = "selected";
+				}
+				
+				$('#xAxisOptions').append("<option value=\"" + l + "\" " + selected + " >" + currentLabels[l] + "</option>");
+			}*/
+		}
+		
+		function createYAxis(isThumb, isScatter) {
+			$('#yAxisList').html('');
+			
+			var actualL    = 0;
+			var colorCount = 0;
+			var dotSize    = 5;
+			
+			if (isScatter && isThumb) {
+				dotSize = 3;
+			}
+			else if (isScatter) {
+				dotSize = 6;
+			}
+			
+			for (l = 0; l < currentLabels.length; l++) {
+				if (typeof showLabels[l] == 'undefined') {
+					showLabels[l] = true;
+				}
+				var checked = '';
+				
+				
+				if (l != legendKey) {
+					if (showLabels[l]) {
+						checked = 'checked';
+						currentColors[colorCount++] = { color : colors[getColor(l)], showLine:!isScatter, markerOptions: {style: tickStyles[getTickStyle(l)], show:!isThumb||isScatter, size: dotSize }};
+						plotLabels[plotLabels.length] =  currentLabels[l];
+					}
+
+					var clearClass = '';
+					
+					if (actualL > 0) {
+						clearClass = 'clear';
+					}
+					
+					$('#yAxisList').append("<div class=\"" + clearClass + "\"><input type=\"checkbox\" id=\"label" + l + "\" " + checked + " /> <div class=\"chartLegend\" id=\"legend" + l + "\"></div>" + currentLabels[l] + "</div>");
+
+					
+					var color = l;
+					
+					if (legendKey > 0) {
+						color++;
+					}
+					
+							//if ( typeof isIE != "undefined" ) {
+							if ( isIECheck() != false ) {
+						$('#legend' + l).css('background-color', colors[getColor(l)]);
+					}
+					else {
+						var newCanvas = $('<canvas id="theCanvas' + l + '" width="15" height="15">');
+						
+						$('#legend' + l).append(newCanvas);
+						
+						var ctx = $("#theCanvas" + l).get(0).getContext('2d')
+						
+						setTickStyle(ctx, l, colors[getColor(l)]);
+					}
+					
+					actualL++;
+				}
+			}
+
+		}
+		
+		function setTickStyle(ctx, l, color) {
+			ctx.moveTo(0,0);
+			ctx.fillStyle   = color;
+			ctx.strokeStyle = color;
+			
+			//		var tickStyles     = ['filledCircle', 'filledSquare', 'filledDiamond', 'circle', 'square', 'diamond'];
+
+			if (tickStyles[getTickStyle(l)] == "filledSquare") {
+				ctx.fillRect(0,0,10,10);
+			}
+			if (tickStyles[getTickStyle(l)] == "filledCircle") {
+				ctx.arc(6,6,5,0,2*Math.PI);
+				ctx.fill();
+			}
+			if (tickStyles[getTickStyle(l)] == "circle") {
+				ctx.beginPath();
+				ctx.arc(6,6,5,0,2*Math.PI);
+				ctx.stroke();
+			}
+			if (tickStyles[getTickStyle(l)] == "square") {
+				ctx.rect(1,1,9,9);
+				ctx.stroke();
+			}
+			if (tickStyles[getTickStyle(l)] == "filledDiamond") {
+				ctx.rotate(45*Math.PI/180);
+				ctx.fillRect(4,-3,6,6);
+			}
+			if (tickStyles[getTickStyle(l)] == "diamond") {
+				ctx.rotate(45*Math.PI/180);
+				ctx.rect(4,-3,6,6);
+				ctx.stroke();
+			}
+		}
+		
+		function getTickStyle(i) {
+			return (Math.floor(i / 10.0) % tickStyles.length);
+		}
+		
+		function drawTable(csvData) {
+			$('#tableColumns').html('');
+			$('#tableData').html('');			
+			
+			for (var currentColumn = 0; currentColumn < csvData[0].length; currentColumn++) {
+				$('#tableColumns').append("<td style=\"border: none; background-color: #f9fbfc;\">" + csvData[0][currentColumn] + "</td>");
+			}
+			
+			var tableBody = '';
+			for (var rowCount = 1; rowCount < csvData.length; rowCount++) {
+				tableBody += "<tr>";
+				for (var currentColumn = 0; currentColumn < csvData[0].length; currentColumn++) {					
+					tableBody += "<td>" + csvData[rowCount][currentColumn] + "</td>";
+				}
+
+				tableBody += "</tr>";
+			}
+			
+			$('#tableData').html(tableBody);
+		}
+
+		function getColor(i) {
+			var r = (i % colors.length) ;
+			
+			if (r < 0) {
+				return 0;
+			}
+			
+			return (i % colors.length) ;
+		}
+				
+		function zoomHandler() 
+		{
+			
+			var c = this.plugins.cursor;
+			
+			if(c._zoom.zooming) 
+			{
+				//site catalyst code
+				scGadgetClickEvent = "Interactive Plots Zoom In Click Events";
+				logSCUsage();
+			} 
+			else 
+			{
+				onLoadFlag = "true"
+				//site catalyst code
+				//scGadgetClickEvent = "Interactive Plots Show Grid Click Events";
+				//logSCUsage();
+			}
+		}
+		
+		function createChart(id, seriesData, showLabels, maxXValue, maxYValue, minXValue, minYValue, showMinorGridlines, full, w, isThumb) {
+			var borderWidth = 2;
+			var gridColor = '#ccc';		
+			
+			if (!showMinorGridlines) {
+				borderWidth = 0;
+			}
+			
+			if (isThumb) {
+				gridColor = '#fff';
+				borderWidth = 0;
+				showMinorGridlines = false;
+			}
+			
+			var accuracy = "%.1f";
+			
+			if (maxXValue < 0.1) {
+				var accuracy = "%." + Math.round((1/maxXValue)*.2) + "f";
+				if(Math.round((1/maxXValue)*.2) > 20){
+					accuracy = "%.8f";
+					roundTest = 1;
+				}
+				else{
+					roundTest = 0;
+				}
+			}
+			
+			var yAccuracy = "%.1f";
+			
+			if(maxYValue < 0.1){
+				var yAccuracy = "%." + Math.round((1/maxYValue)*.2) + "f";
+				if(Math.round((1/maxYValue)*.2) > 20){
+					yAccuracy = "%.8f";
+					roundTest = 1;
+				}
+			}
+			
+			if (full) {
+				//$(w.document.body).find('#chartArea').html('<div id="' + id + '" style="width: 247px; height: 300px"></div>');
+				
+			}
+			else {
+				//alert('<div id="' + id + '" style="width: ' + width + 'px; height: ' + height + 'px"></div>');
+				$('#chartArea').html('<div id="' + id + '" style="width: 247px; height: 299px;"></div>');
+			}
+			
+			var plot = $.jqplot(id,  seriesData, {
+				// Turns on animatino for all series in this plot.
+				animate : false,
+				// Will animate plot on calls to plot1.replot({resetAxes:true})
+				animateReplot : false,
+				cursor : {
+					show : !isThumb,
+					zoom : true,
+					looseZoom : true,
+					showTooltip : false
+				},
+				series : currentColors,
+				seriesDefaults: {
+					rendererOptions: {
+						padding: 0,
+						sliceMargin: 0
+					},
+					lineWidth: 1
+				},				
+				axesDefaults : {
+					pad : 0,
+					tickOptions: {
+						showLabel: showLabels,
+						showGridline: showMinorGridlines,
+						showMark: !isThumb
+					}
+				},
+				axes : {
+					// These options will set up the x axis like a category axis.
+					xaxis : {
+						drawMajorGridlines : false,
+						drawMinorGridlines : showMinorGridlines,
+						drawMajorTickMarks : false,
+						max : maxXValue,
+						min: minXValue,
+						pad : 0,
+						tickOptions : {
+							formatString : accuracy
+						},
+						labelOptions: {
+							fontSize: '10pt'
+						},
+						numberTicks: 5
+					},
+					yaxis : {
+						max : maxYValue,
+						min: minYValue,
+						tickOptions : {
+							formatString : yAccuracy,
+							showMark: !isThumb
+						},
+						rendererOptions : {
+							forceTickAt0 : true
+						}
+					},
+					y2axis : {
+						tickOptions : {
+							formatString : yAccuracy
+						},
+						rendererOptions : {
+							// align the ticks on the y2 axis with the y axis.
+							alignTicks : true,
+							forceTickAt0 : true
+						}
+
+					}
+				},
+				highlighter: {
+					show: !isThumb,
+					sizeAdjust: 3.5,
+					tooltipLocation: 'e',
+					useAxesFormatters: false,
+					tooltipFormatString: '%.6f',
+					highlightMouseOver: true,
+					tooltipContentEditor: function (str, seriesIndex, pointIndex, jqPlot) {
+					plot.series[seriesIndex].highlightMouseOver = true;			
+					checkValue1 = seriesData[seriesIndex][pointIndex][0];
+					checkValue2 = seriesData[seriesIndex][pointIndex][1];
+						return "<div id='hoverDivValue' tabindex='0' style='background-color:#f7f37b;color:#000; padding:2px; border:none; text-align:center;'>" + plotLabels[seriesIndex].substring(0, 20) + "<br /> (" + seriesData[seriesIndex][pointIndex][0] + ", " + seriesData[seriesIndex][pointIndex][1] + ")</div>";
+					}
+				},
+				grid: {
+					drawGridLines: showMinorGridlines,
+					borderWidth : borderWidth,
+					shadow: false,
+					gridLineColor: '#fff',
+					background: '#fff'
+				}
+			});			
+			
+			$('#'+id).bind('jqplotDataHighlight', function (ev, seriesIndex, pointIndex, data) {
+				logSCUsage('Interactive Plots Tooltip MouseOver Event');
+//console.log('Interactive Plots Tooltip MouseOver Event');
+			});
+			
+			if(onLoadFlag == "true")
+			{
+				onLoadFlag = "false";
+			}
+			else
+			{
+				$.jqplot.preDrawHooks.push(zoomHandler);
+			}
+			
+			return plot;			
+		}
+		
+		function openLargeView() {
+			if (null == w || w.closed) {
+				w = window.open();				
+				var myHtml = $("body").html();
+				$(w.document.body).html(myHtml);
+				$(w.document.body).append("<style>" +  $('#mycss').html() + "</style>");
+				//w.activeChart.replot(); 
+
+			}
+		}
+		
+		gadgets.util.registerOnLoadHandler(run);
+	</script>
+	
+	<script class="include" src="jquery.jqplot.js" type="text/javascript"></script>
+	<script class="include" src="jqplot.highlighter.min.js" type="text/javascript"></script>
+	<script class="include" src="jqplot.cursor.min.js" type="text/javascript"></script>
+	<script class="include" src="jqplot.pointLabels.min.js" type="text/javascript"></script>
+	<!-- End additional plugins -->
+	
+	
+
+	<!--[if lt IE 9]>
+		<style>
+			#leftArrow {
+				top:0;
+				width: 7px;
+			}
+			#rightArrow {
+				width: 18px;
+				margin-right:0px;
+			}
+		</style>
+	<![endif]-->
+	
+	<!--[if lte IE 9]>
+		<style>
+			#newWindowIcon
+			{
+				padding-top:10px;
+			}
+		</style>
+	<![endif]-->
+
+	<div id="outer-frame">	
+		<div id="heading-bar">
+			<span alt="More information about this application" id="heading-bar-left" onclick="logSCUsage(&#39;Interactive Plots Header Click Event&#39;);window.open(&#39;http://www.elsevier.com/about/content-innovation/interactive-plots&#39;);" style="display:inline-block;padding-top:10px;" title="More information about this application">
+					Interactive plots for this article
+			</span>
+			<a id="newwindow" target="_blank" title="click to open app in a new browser window"><img id="newWindowIcon" src="detach.png" style="display:inline-block;vertical-align:middle;padding-top:11px;"></a>
+		</div>
+	
+		<div id="mainContent">
+			<div id="thumbContainer">
+				<div id="thumbnails"></div>
+				<div id="leftArrow"> <img src="thumbnav-arrow-left-static.gif"> </div>
+				<div id="rightArrow"> <img src="thumbnav-arrow-right-static.gif"> </div>
+			</div>
+
+			
+			<div id="tabArea">
+				<div id="tabMenu">
+					<a href="http://sciverse-shindig.elsevier.com/gadgets/ifr?container=default&mid=1&nocache=1&country=ALL&lang=ALL&view=profile&parent=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0743731506001948%3Fnp%3Dy%3A%2F%2Fwww.sciencedirect.com&up_SiteCatalyst=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv3%2Fs_code_1.js&up_pii=S0743731506001948&up_serverForDDT=http%3A%2F%2Felsevier-apps.sciverse.com%2Fddt%2Fsavefile&up_Beacon=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv1%2Fs_beacon.js&up_gadgetId=301408&up_startMeInvisible=y&st=john.doe:john.doe:appid:cont:url:0:default&url=http%3A%2F%2Fae-content.elsevier.com%2Fsvapp%2F301408%2Fprod%2Fprivate%2Fspec.xml#" id="chartMenuTab">Plot</a>
+					<a href="http://sciverse-shindig.elsevier.com/gadgets/ifr?container=default&mid=1&nocache=1&country=ALL&lang=ALL&view=profile&parent=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0743731506001948%3Fnp%3Dy%3A%2F%2Fwww.sciencedirect.com&up_SiteCatalyst=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv3%2Fs_code_1.js&up_pii=S0743731506001948&up_serverForDDT=http%3A%2F%2Felsevier-apps.sciverse.com%2Fddt%2Fsavefile&up_Beacon=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv1%2Fs_beacon.js&up_gadgetId=301408&up_startMeInvisible=y&st=john.doe:john.doe:appid:cont:url:0:default&url=http%3A%2F%2Fae-content.elsevier.com%2Fsvapp%2F301408%2Fprod%2Fprivate%2Fspec.xml#" id="tableMenuTab">Data table</a>
+				</div>
+				<div id="chartTab">
+					<div id="chartArea"></div>
+					<div id="controlArea">
+						<div id="resetHolder"><a class="button-reset" href="http://sciverse-shindig.elsevier.com/gadgets/ifr?container=default&mid=1&nocache=1&country=ALL&lang=ALL&view=profile&parent=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0743731506001948%3Fnp%3Dy%3A%2F%2Fwww.sciencedirect.com&up_SiteCatalyst=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv3%2Fs_code_1.js&up_pii=S0743731506001948&up_serverForDDT=http%3A%2F%2Felsevier-apps.sciverse.com%2Fddt%2Fsavefile&up_Beacon=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv1%2Fs_beacon.js&up_gadgetId=301408&up_startMeInvisible=y&st=john.doe:john.doe:appid:cont:url:0:default&url=http%3A%2F%2Fae-content.elsevier.com%2Fsvapp%2F301408%2Fprod%2Fprivate%2Fspec.xml#">Reset</a></div>
+						<div id="xTitle">X axis</div>
+						<div id="xAxisList">
+							<p id="xAxisOptions"></p>
+							<!-- <select id="xAxisOptions"></select> -->
+						</div>
+						<div id="yTitle">Y axis</div>
+						<div id="yAxisList"></div>
+					</div>
+				</div>
+				<div id="tableTab" style="display: none;">
+					<table cellpadding="1" cellspacing="0" id="dataTable"><thead><tr id="tableColumns"></tr></thead><tbody id="tableData"></tbody></table>
+				</div>
+
+				<form action="" id="csvForm" method="post">
+					<input id="fneId" name="userFilename" type="hidden" value="tables.csv">
+					<input id="buffer" name="buffer" type="hidden" value="">
+				</form>
+				
+				<a href="http://sciverse-shindig.elsevier.com/gadgets/ifr?container=default&mid=1&nocache=1&country=ALL&lang=ALL&view=profile&parent=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0743731506001948%3Fnp%3Dy%3A%2F%2Fwww.sciencedirect.com&up_SiteCatalyst=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv3%2Fs_code_1.js&up_pii=S0743731506001948&up_serverForDDT=http%3A%2F%2Felsevier-apps.sciverse.com%2Fddt%2Fsavefile&up_Beacon=http%3A%2F%2Fcdn.els-cdn.com%2Fgadgets%2Fprod%2Fjs%2Fv1%2Fs_beacon.js&up_gadgetId=301408&up_startMeInvisible=y&st=john.doe:john.doe:appid:cont:url:0:default&url=http%3A%2F%2Fae-content.elsevier.com%2Fsvapp%2F301408%2Fprod%2Fprivate%2Fspec.xml#" id="downloadCsv" onclick="setCSVDownload();">Save dataset</a>
+				<div id="roundText">*The number of decimals of the numbers in this table may have been limited to fit the interface. Please open the .csv in the supplementary files section to access the data as provided by the author</div>
+			</div>
+		</div>
+	</div>	
+	</div>
+	<script type="text/javascript">
+		$("#newwindow").click(function (){
+				//site catalyst code
+			scGadgetClickEvent = "Full Screen view Click"; 
+			logSCUsage();
+			var newWindowUrl;
+			//newWindowUrl = "http://cert-elsevier-apps.sciverse.com/interactiveplots/iPlots.jsp?" ;
+			newWindowUrl = "http://elsevier-apps.sciverse.com/interactiveplots/iPlots.jsp?";
+			var dataUrl = "url="+dataUrls;
+			var environment = ['prod', 'cert' , 'dev'];
+			var environmentParam = "&env="+environment[0];
+			var URLNewTemp = newWindowUrl+dataUrl+environmentParam;
+			window.open(URLNewTemp,"",""); 
+			
+		});
+	</script>
+
+<script>gadgets.util.runOnLoadHandlers();</script></body></html>

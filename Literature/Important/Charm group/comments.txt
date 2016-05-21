@@ -6,3 +6,5 @@
      the other flavor in their results section.
 4.   It is not clear as to how they are equi partitioning nodes to their malleable jobs for expansion, whether it is evenly distributed?? The
      term equipartitioning has been used often but has never been clarified whether it meant equigrow policy or the naive equiparitioning ??
+5.   The algorithm does not respect conservative backfilling at all. It launches the jobs if it can map them based on the current resource
+     availability. But this should only be done after all the steps of the algorithm have been completed and not in between.
