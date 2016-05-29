@@ -139,8 +139,22 @@ PLugins are typically loaded when the daemon or command starts and persist indef
 \end{figure}
 
 
-\section{Support for Invasive Computing}
+\section{Invasive Resource Management}
 \subsection{Invasive MPI}
+Message Passing has for long remained the dominant programming model for distributed memory systems. MPI stands for Message Passing Interface. It is a standardized and portable message passing system designed to function on a wide variety of parallel computers. It defines the syntax and semantics of a core of library routines for writing portable programs in C, C++ and Fortran. It implements a message passing type of parallel programming model where the application consists of a set of processes with separate address spaces. The processes exchange messages by explicit send/receive operations. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain. These have fostered the development of a parallel software industry, and encouraged development of portable and scalable large-scale parallel applications.\\ 
+
+In the context of invasive computing, parallel applications are resource aware and will invade or retreat from resources depending on their availability and on the load imbalances encountered during their runtime. To support this, some form of dynamic process management of the parallel application is necessary. And, in order to realize this in practice, the most basic requirement would be the need of a library that will serve as an application programming interface for programmers to implement such invasic applications that are capable of adapting to a changing set of resources. \\
+
+The original MPI computational model was static in terms of the number of processes. Dynamic processes support was later added in version 2.0 of the standard in the form of MPI{\_}COMM{\_}SPAWN and its related operations. The spawn operation creates new processes in a separate child process group, whereas the callers belong to the parent process group. The callers, or parents, block in the spawn operation, while the resource manager creates the new children processes. The two process groups are connected to each other via an intercommunicator which is generated during this spawn process and returned to the application. This intercommunicator can then be used to reach children processes from the parent's process group, or parent processes from the children's process group. Another form of spawn is the multiple version which allows the callers to specify multiple binaries to start as children processes. Additional operations were also introduced so that applications could start independently and later connect their process groups, such as: MPI{\_}OPEN{\_}PORT, MPI{\_}PUBLISH{\_}NAME, MPI{\_}OPEN{\_}PORT, MPI{\_}LOOKUP{\_}NAME, MPI{\_}COMM{\_}ACCEPT and MPI{\_}COMM{\_}CONNECT. \\
+
+Although the MPI standard provides support for dynamic processes, it suffers from many drawbacks as mentioned below:
+\begin{itemize}
+\item The spawn operations are collective operations and are synchronous across both the parent and child process groups. This effects performance and can induce delays of several seconds.
+\item These operations produce intercommunicators based on disjoint process groups. Subsequent creation of processes result in multiple disjoint process groups. These factors can complicate the development of an MPI application.
+\item Destruction of processes can be done only on entire process groups. This shortcoming limits the granularity of operations that can be carried out as only entire process groups can be destroyed. This also limits the location of the resources that the application can release at runtime.
+\item The processes created with spawn are typically run in the same unmodified resource allocation. Although, not a limitation of the standard itself, but, lack of support from resource manager will result in limiting the usefulness of this spawn operation by not changing the physical resource set of the application.
+\end{itemize}
+
 
 \subsection{Resource Management Extensions}
 Existing batch systems usually only support static allocation of resources to applications before job start. Hence we need some kind of an Invasive Resource Management to be integrated into these existing batch systems so that we can support malleable jobs allowing us to change the allocated resources dynamically at runtime. In order to achieve this we will follow the below approach:
