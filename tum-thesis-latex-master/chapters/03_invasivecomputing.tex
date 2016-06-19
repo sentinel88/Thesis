@@ -1,46 +1,5 @@
 \chapter{Invasive Computing}\label{chapter:invasive computing}
 Explain a little about the INVASIC project and about the invasic computing concept with some of its terms and maybe a diagram.
-\section{Job Classification}
-The throughput of HPC Systems depends not only on efficient job scheduling but also on the type of jobs forming the workload. As defined by Feitelson, and Rudolph, Jobs can be classified into four categories based on their flexibility:
-\begin{itemize}
-\item \textbf{\textit{Rigid Job:}} Requires a fixed number of resources throughout its execution.
-\item \textbf{\textit{Moldable Job: }} The resource requirement of the job can be molded or modified by the batch system before starting the job(e.g. to effectively fit alongside other rigid jobs). Once started its resource set cannot be changed anymore.
-\item \textbf{\textit{Evolving Job: }} These kind of jobs request for resource expansion or shrinkage during their execution. Applications that use Multi-Scale Analysis or Adaptive Mesh Refinement (AMR) exhibit this kind of behavior typically due to unexpected increases in computations or having reached hardware limits (e.g. memory) on a node.
-\item \textbf{\textit{Malleable Job: }} The expansion and shrinkage of resources are initiated by the batch system in contrast to the evolving jobs. The application adapts itself to the changing resource set.
-\end{itemize}
-\section{Resource Aware Programming}
-In this section, we will briefly look into the details of the earlier invasive extensions to OpenMP and MPI done as a part of this ongoing research project. This will give us an insight into the earlier approach taken towards realizing such resource-aware programming models and also serve as a prelude to the approach currently undertaken.\\ \\
-\textbf{iOMP}\\
-Earlier efforts were made in the ongoing INVASIC project to extend the OpenMP parallel programming model for shared memory systems. This was called as invasive OpenMP or iOMP and it allows the programming of resource aware applications. Resource awareness could mean either that the program can allocate or free resources according to the amount of available parallelism / the dynamic size of the data or it could mean that it can adapt to the available resources for execution.\\ \\
-%%%%%
-OpenMP is implemented as a set of compiler directives, library routines and environment variables. Parallelization is based on directives inserted into the application's source code to define parallel regions that are executed in parallel using a fork-join parallelization model. The parallel region would then be executed by a team of threads whereas the sequential region would be executed by a single master thread. There are different ways to control the number of threads in a parallel region, most common approach is through the environment variable, or through OpenMP library call or as an additional clause in its directives. iOMP is implemented as a library in C++ using an object oriented approach. It provides two important methods available in its class \textbf{\textit{Claim}}:
-%%%%
-\begin{itemize}
-\item \textbf{\textit{Invade}}: This operation allocates additional resources / PE's. A constraint parameter passed as an argument to this operation specifies the details such as which resources and how many of them [range] are additionally required from the resource manager.
-\item \textbf{\textit{Retreat}}: This operations deallocates resources / PE's. A constraint parameter passed as an argument to this operation specifies the details such as which resources and how many of them must be freed to the resource manager.
-\end{itemize}
-%%%%%%
-iOMP follows a similar terminology as mentioned in section x.x.x for X10 in invasive computing. A \textit{Claim} in iOMP referes to all the resources / PE's allocated to the application. This means that an iOMP program will always have a single claim. Initially, the claim size is 1 but it will increase and decrease during the runtime of the application. The constraint parameter mentioned before also allows the programmer to specify several other constraints such as memory, pinning strategy, architecture specific optimizations etc. Below is a small snippet of code from the paper that shows an example of iOMP program.
-\begin{lstlisting}[frame=single]
-int main() 
-{
-	Claim claim;
-	int sum = 0;
-	/* Acquire resources according to the given constraints */
-	claim.invade(PEQuantity(1, 3));
-	
-	/* Executing a parallel for loop on the given resources */
-	#pragma omp for reduce reduction(+:sum)
-	for (int i=0; i < 100000; i++)
-		sum += i;
-	
-	/* Free resources and delete pinning */
-	claim.retreat();
-}		
-\end{lstlisting}
-%%%%%%%%
-As another part of iOMP, A resource manager has also been implemented. This has a global view of the resources in the shared memory system and acts like a server to every other running application that are its clients. Every client-server communication happens over a message queue. The resource manager handles the redistribution of the resources over time to all running applications based on their invade / retreat operations. 
-
 \section{Traditional Resource Management}
 The role of a resource manager is to act like a \textit{glue} for a parallel computer to execute parallel jobs. It should make a parallel computer as easy to use as almost a personal computer. MPI would typically be used to manage communications within the parallel program. A resource manager allocates resources within a cluster, launches and otherwise manages the jobs. Some of the examples of widely used open source as well as commercial resource managers are \textbf{SLURM, TORQUE, OMEGA, IBM Platform LSF} etc. Together with a scheduler it is termed as a \textbf{\textit{Batch System}}. The Batch System serves as a middleware for managing supercomputing resources. The combination of \textit{Scheduler}$+$\textit{Resource Manager} makes it possible to run parallel jobs.\par
 \noindent
@@ -113,7 +72,7 @@ Therefore, EASY required users to provide a runtime estimate for all submitted j
 \end{figure}
 %%%%%%%
 \subsection{SLURM}
-The prime focus of this work will be on \textbf{SLURM(Simple Linux Utility For Resource Management)} which will be the choice of batch system upon which the support for Invasive Computing will be demonstrated. SLURM is a sophisticated open source batch system with about 500,000 lines of C code whose development started in the year 2002 at Lawrence Livermore National Laboratory as a simple resource manager for Linux Clusters and a few years ago spawned into an independent firm under the name SchedMD. SLURM has since its inception also evolved into a very capable job scheduler through the use of optional plugins. It is used on many of the world's largest supercomputers and is used by a large fraction of the world's TOP500 Supercomputer list. It supports many UNIX falvors like AIX, Linux, Solaris and is also fault tolerant, highly scalable, and portable.
+The prime focus of this work will be on \textbf{SLURM(Simple Linux Utility For Resource Management)} which will be the choice of batch system upon which the support for Invasive Computing will be demonstrated. SLURM is a sophisticated open source batch system written in C whose development started in the year 2002 at Lawrence Livermore National Laboratory as a simple resource manager for Linux Clusters. A few years ago it spawned into an independent firm under the name SchedMD. SLURM has since its inception also evolved into a very capable job scheduler through the use of optional plugins. It is used on many of the world's largest supercomputers and is used by a large fraction of the world's TOP500 Supercomputer list. It supports many UNIX flavors like AIX, Linux, Solaris and is also fault tolerant, highly scalable, and portable.\\ \\
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=1.0\textwidth, height=150mm]{./figures/"SLURM Architecture".pdf}
@@ -121,7 +80,10 @@ The prime focus of this work will be on \textbf{SLURM(Simple Linux Utility For R
 \label{fig:6}
 \end{figure}
 %%%%%
-\textbf{Plugins} are dynamically linked objects loaded at run time based upon configuration file and/or user options. \ref{fig:6} shows where these plugins fit inside SLURM. Approximately $80$ plugins of different varities are currently available. Some of them are listed below:\\
+\noindent
+SLURM has a centralized manager called \textbf{\textit{slurmctld}}(controller daemon) that is the main nerve center of SLURM. SLURM operates in a style simlar to the Master-Slave paradigm where the Master is the \textbf{\textit{slurmctld}}. It takes centralized decisions to monitor resources and work. In the event of a failure, there may also be a backup controller. Each of the nodes in the cluster has a daemon running on it called as \textit{slurmd} and these are the slaves. These daemons are started on every node and they are responsible for monitoring them. This can resemble a remote shell: it waits for work from the controller, executes that work, returns status and waits for more work. The \textit{slurmd} daemons provide fault-tolerant hierarchical communications and also are responsible for spawning an additional daemon called \textit{slurmstepd}. The step daemon as it is called is responsible for the node local part of the job step that are the subset of processes running on the local node. A job step in SLURM referes to an application started with the help of srun and its allocated resources. srun could be used independently to launch jobs or one can specify the same within a batch script while using sbatch. \textbf{\textit{srun}} is one of the tools SLURM provides that allows the user to launch interactive jobs on the cluster, \textbf{\textit{sbatch}} to launch batch jobs and several others relating to accounting, job status, cancellation operation etc.\\ \\
+The figure x.x shows the high level architecture of SLURM with the interaction between the several of its key components. It also shows the interaction between an MPI application through the PMI(Process Management Interface), \textit{slurmd} daemon of a node and the \textit{slurmstepd}.
+\textbf{Plugins} are dynamically linked objects loaded at run time based upon configuration file and/or user options. \ref{fig:6} shows where these plugins fit inside SLURM. Approximately $80$ plugins of different varities are currently available. Some of them are listed below:
 \begin{itemize}
 \item \textbf{\textit{Accounting storage:}} MySQL, PostgreSQL, textfile.
 \item \textbf{\textit{Network Topology:}} 3D-Torus, tree.
@@ -136,20 +98,65 @@ PLugins are typically loaded when the daemon or command starts and persist indef
 \caption{SLURM with optional Plugins}
 \label{fig:6}
 \end{figure}
-
-The collection of binaries that make up SLURM include: the controller (SLURMCTLD), the node daemons (SLURMD), the launcher (SRUN), as well as several account management and information utilities. Each of these binaries is highly threaded and have a collection of plugin interfaces for several extendible functions, such as: scheduling, topology, MPI/PMI support, and so forth. Figure 5 shows how these binaries interact and where they reside on an HPC system. In the following subsections, the extensions made to SLURM binaries: SLURMCTLD, SLURMD and SRUN and any related plugins where applicable will be covered.\par
-SLURMCTLD\\
-The SLURM controller is the component where centralized decisions are made. This component runs the batch scheduling thread, manages security, tracks each individual node (by reaching each \textit{slurmd}), and so forth.\\
-SLURMD\\
-The SLURMD binaries are daemons that are started at each node that is part of a partition. Each daemon monitors its individual node. They are also responsible for setting up and starting an additional type of daemon: the SLURMSTEPD. These second type of daemons track the node local part of a job step, which are the subset of processes that run on the local node. A job step in SLURM is an application started with SRUN, and its allocated resources. Figure 6 illustrates the interaction between the SLURMD daemon of a node, the local SLURMSTEPD daemon, and the MPI processes through the PMI. The figure also illustrates how the SRUN binary runs in the master node of an allocation.\par
-SRUN\\
-
+%%%%%
+\section{Job Classification}
+The throughput of HPC Systems depends not only on efficient job scheduling but also on the type of jobs forming the workload. As defined by Feitelson, and Rudolph, Jobs can be classified into four categories based on their flexibility:
+\begin{itemize}
+\item \textbf{\textit{Rigid Job:}} Requires a fixed number of resources throughout its execution.
+\item \textbf{\textit{Moldable Job: }} The resource requirement of the job can be molded or modified by the batch system before starting the job(e.g. to effectively fit alongside other rigid jobs). Once started its resource set cannot be changed anymore.
+\item \textbf{\textit{Evolving Job: }} These kind of jobs request for resource expansion or shrinkage during their execution. Applications that use Multi-Scale Analysis or Adaptive Mesh Refinement (AMR) exhibit this kind of behavior typically due to unexpected increases in computations or having reached hardware limits (e.g. memory) on a node.
+\item \textbf{\textit{Malleable Job: }} The expansion and shrinkage of resources are initiated by the batch system in contrast to the evolving jobs. The application adapts itself to the changing resource set.
+\end{itemize}
+%%%%%
+\section{Resource Aware Programming}
+In this section, we will briefly look into the details of the earlier invasive extensions done to OpenMP and MPI done as a part of this ongoing research project. This will give us an insight into the earlier approach taken towards realizing such resource-aware programming models and also serve as a prelude to the approach currently undertaken. These invasic extensions provide us with a new parallel programming model that allows us to implement resource aware programs. Depending on the semantics of these new extensions, the resulting application can either be evolving(application dictates the changes to its resource set) or a malleable job(resource manager dictates the change in resources to which the application must adapt). Resource awareness could mean that either the program can allocate or free resources according to the amount of available parallelism / the dynamic size of the data or it could mean that it can adapt to the available resources for execution.\\ \\
+%%%%%%%%%
+In the context of invasive computing, parallel applications are resource aware and will invade or retreat from resources depending on their availability and on the load imbalances encountered during their runtime. To support this, some form of dynamic process management of the parallel application is necessary. And, in order to realize this in practice, the most basic requirement would be the need for a library that will serve as an application programming interface for programmers to implement such invasic applications that are capable of adapting to a changing set of resources. This requirement needs to be complemented by the extension of the resource management systems which would need to allocate / deallocate resources and coordinate with the library to allow for such adaptive operations of an invasive parallel application.\\ \\
+\textbf{iOMP}\\
+The OpenMP parallel programming model for shared memory systems was extended to support the programming of resource aware applications and is named as Invasive OpenMP or iOMP. OpenMP is implemented as a set of compiler directives, library routines and environment variables. Parallelization is based on directives inserted into the application's source code to define parallel regions that are executed in parallel using a fork-join parallelization model. The parallel region would then be executed by a team of threads whereas the sequential region would be executed by a single master thread. There are different ways to control the number of threads in a parallel region and the most common approach is through the environment variable, or through OpenMP library call or as an additional clause in its directives. It has language bindings for C, C++ and Fortran. iOMP has been implemented as a library in C++ using an object oriented approach and provides two important methods / operations available in its class \textbf{\textit{Claim}}:
+%%%%
+\begin{itemize}
+\item \textbf{\textit{Invade}}: This operation allocates additional resources / PE's. A constraint parameter passed as an argument to this operation specifies the details such as which resources and how many of them [range] are additionally required from the resource manager.
+\item \textbf{\textit{Retreat}}: This operations deallocates resources / PE's. A constraint parameter passed as an argument to this operation specifies the details such as which resources and how many of them must be freed to the resource manager.
+\end{itemize}
+%%%%%%
+iOMP follows a similar terminology as mentioned in section x.x.x for X10 in invasive computing. A \textit{Claim}(not the C++ Class) in iOMP refers to all the resources / PE's allocated to the application. This means that an iOMP program will always have a single claim. Initially, the claim size is $1$ but it will increase and decrease during the runtime of the application. The constraint parameter mentioned before also allows the programmer to specify several other constraints such as memory, pinning strategy, architecture specific optimizations etc. Below is a small snippet of code from the paper that shows an example of iOMP program.
+\begin{lstlisting}[frame=single]
+int main() 
+{
+	Claim claim;
+	int sum = 0;
+	/* Acquire resources according to the given constraints */
+	claim.invade(PEQuantity(1, 3));
+	
+	/* Executing a parallel for loop on the given resources */
+	#pragma omp for reduce reduction(+:sum)
+	for (int i=0; i < 100000; i++)
+		sum += i;
+	
+	/* Free resources and delete pinning */
+	claim.retreat();
+}		
+\end{lstlisting}
+%%%%%%%%
+As another important part of the iOMP implementation,  A resource manager has also been implemented. This has a global view of the resources in the shared memory system and acts like a server to every other running application that are its clients. Every client-server communication happens over a message queue. The resource manager handles the redistribution of the resources over time to all running applications based on their invade / retreat operations.\\ \\
+%%%%%%%%
+%%%%%%%%
+\textbf{iMPI}\\
+Similar to \textbf{iOMP}, previous research effort in this project was also directed towards extending parallel programming models for distributed memory systems. iMPI which stands for Invasive MPI is an extension to the MPI library that can support resource aware programming. The Single-chip Cloud Computer(SCC) from Intel Labs was an experimental CPU that integrates 48 cores and is basically a distributed memory system on the chip. This hardware platform along with its interesting memory features was used in order to evaluate this invasive programming model.\\ \\
+%%%%%%
+Message Passing has for long remained the dominant programming model for distributed memory systems. MPI stands for Message Passing Interface. It is a standardized and portable message passing system designed to function on a wide variety of parallel computers. It defines the syntax and semantics of a core of library routines for writing portable programs in C, C++ and Fortran. It implements a message passing type of parallel programming model where the application consists of a set of processes with separate address spaces. The processes exchange messages by explicit send/receive operations. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain. These have fostered the development of a parallel software industry, and encouraged development of portable and scalable large-scale parallel applications. Some of the most popular and widely used open-source implementations of MPI standard are MPICH and OpenMPI. LAM / MPI was the predecessor of OpenMPI and was another early MPI implementation. There are also commercial implementations from HP, Intel and Microsoft.\\  \\
+%%%%%%
+The following are the invasive extensions to MPI:
+\begin{itemize}
+\item \textbf{\textit{MPI\_Comm\_invade}}: The main purpose of this operation is to reserve resources and for this it looks into what resources are currently available and invades them.
+\item \textbf{\textit{MPI\_Comm\_infect}}: This operation is used by the application to specify the total number of cores to infect and which ones are preferred. This number can be less than or equal to the total number of cores that were reserved by the invade operation. 
+\item \textbf{\textit{MPI\_Comm\_retreat}}: This operation does the reverse of the invade+infect sequence. Instead of reserving and claiming resources, it returns them so that other invasive applications can claim them.
+\end{itemize}
+The above extensions were based on the MPICH2 library. A new process manager called \textbf{Invasive Process Manager(IPM)} was also developed as a part of the iMPI implementation. It was responsible for launching of the MPI jobs, as well as spawn operations(invade+infect) with low latency and functionality for resource awareness.
 \section{Invasive Resource Management}
+In this section, we will look at the latest extensions done to the MPI library for programming on HPC systems like clusters, supercomputers etc and also the extensions done to a resource managers managing these HPC systems. This is in contrast to the earlier version of the iMPI which was targeted towards the Intel SCC platform.
 \subsection{Invasive MPI}
-Message Passing has for long remained the dominant programming model for distributed memory systems. MPI stands for Message Passing Interface. It is a standardized and portable message passing system designed to function on a wide variety of parallel computers. It defines the syntax and semantics of a core of library routines for writing portable programs in C, C++ and Fortran. It implements a message passing type of parallel programming model where the application consists of a set of processes with separate address spaces. The processes exchange messages by explicit send/receive operations. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain. These have fostered the development of a parallel software industry, and encouraged development of portable and scalable large-scale parallel applications. Some of the most popular and widely used open-source implementations of MPI standard are MPICH and OpenMPI. LAM / MPI was the predecessor of OpenMPI and was another early MPI implementation. There are also commercial implementations from HP, Intel and Microsoft.\\ \\ 
-\noindent
-In the context of invasive computing, parallel applications are resource aware and will invade or retreat from resources depending on their availability and on the load imbalances encountered during their runtime. To support this, some form of dynamic process management of the parallel application is necessary. And, in order to realize this in practice, the most basic requirement would be the need for a library that will serve as an application programming interface for programmers to implement such invasic applications that are capable of adapting to a changing set of resources. This requirement needs to be complemented by the extension of the resource management systems which would need to allocate / deallocate resources and coordinate with the MPI library to allow for such expand / shrink operations of an invasive parallel application.\\ \\
-\noindent
 Traditionally MPI applications are static in nature which means that they are executed with a fixed number of processes. Dynamic process support is available through the MPI spawn and its related operations. The spawn operation creates new processes in a separate child process group, whereas the callers belong to the parent process group. This is a blocking operation where the processes in the parent process group block till the operation is completed. The two process groups are connected to each other via an intercommunicator which is generated during this spawn operation and returned to the application. This intercommunicator can then be used to reach children processes from the parent's process group, or parent processes from the children's process group. Another form of spawn is the multiple version which allows the callers to specify multiple binaries to start as children processes and few other related operations with their own usefulness.\\ \\
 \noindent
 Although the MPI standard provides support for dynamic processes, it suffers from many drawbacks as mentioned below:
