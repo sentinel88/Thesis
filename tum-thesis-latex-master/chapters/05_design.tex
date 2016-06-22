@@ -1,5 +1,51 @@
 \chapter{Design}
 \label{chapter:ischeduler}
+Include state machine diagrams, pseudo code of all the algorithms, internal details of their working, diagrams like those of runtime system transformations etc.\\ \\
+Remove the content in the introduction chapter about expand / shrink strategies and place it in this chapter.\\ \\
+%%%%%%
+%%%%%%
+\RestyleAlgo{boxed}
+\begin{algorithm}[H]
+ \KwData{Resource Offer}
+ \KwResult{Map : Jobs --> Offer}
+ build invasive job queue\;
+ \If{empty queue}{
+  return empty Map\;
+ }
+ sort queue by job priorities\;
+ reservations <-- Offer.Reservations\;
+ freenodes <-- Offer.ResidualNodes\;
+ \While{not at end of the invasive job queue}{
+  read queue entry\;
+  \If{entry.jobId in reservations}{
+   resv <-- reservations(entry.jobId)\;
+   \eIf{entry.bitmap is NULL}{
+    entry.start\_time <-- resv.start\_time\;
+    entry.node\_count <-- 0\;
+    adjustNodeCount(entry.jobId)\;
+   }{
+    entry.start\_time <-- 0\;
+    entry.node\_count <-- resv.node\_count\;
+    entry.bitmap <-- resv.bitmap\;
+    create forward job record using entry\;
+    append record to Map\;
+    mapped <-- true\;
+   }
+  }
+  \If{mapped is true}{
+   continue\;
+  }
+  
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{Batch Scheduling Algorithm}
+\end{algorithm}
+%%%%%%%
 \section{Job Mappings - Description and its generic structure}
 \section{Resource Offers}
 \section{Negotiation Protocol - Use state machine diagrams here}

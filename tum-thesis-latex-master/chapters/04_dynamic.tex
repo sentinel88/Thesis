@@ -42,17 +42,41 @@ The following page shows the software architecture of how invasive resource mana
 %%%%%%%%%%%%%%%%%
 \section{Dynamic Resource Management}
 \textbf{\textit{Separation of Concerns: }}In this thesis, We explore the idea of separating the concerns of batch and runtime scheduling into
-two different software layers / components in contrast to the existing systems where both are merged together. A negotiation protocol will be implemented as a means of communication between the two. The motivation behind the negotiation protocol is the conflicting set of objectives between batch scheduler(user perspective: faster response time, fairness for jobs etc.) and run time scheduler(system perspective: maximize utilization, throughput, energy efficiency etc.). The role of the batch scheduler is to forward jobs to a runtime scheduler which is managing the resources in the partition(s) and supports runtime scheduling of adaptive applications. Runtime scheduler will make intelligent expand / shrink decisions by observing scalability behavior of the running applications and use it to predict future resource requirements. The proposed protocol will also allow us to integrate such adaptive resource management systems into existing batch systems and thereby allowing for an easy migration from legacy system to invasive resource management systems. Negotiation also helps us to realize a dynamic and flexible scheduling strategy by balancing the conflicting objectives at the two layers.\\ \\
+two different software layers / components in contrast to the existing systems where both are merged together. A negotiation protocol will be implemented as a means of communication between the two. The motivation behind the negotiation protocol is the conflicting set of objectives between batch scheduler(user perspective: faster response time, fairness for jobs etc.) and run time scheduler(system perspective: maximize utilization, throughput, energy efficiency etc.). The role of the batch scheduler is to forward jobs to a runtime scheduler which is managing the resources in the partition(s) and supports runtime scheduling of adaptive applications. Runtime scheduler will make intelligent expand / shrink decisions by observing scalability behavior of the running applications and use it to predict future resource requirements. The proposed protocol will also allow us to integrate such adaptive resource management systems into existing batch systems and thereby allowing for an easy migration from legacy systems to invasive resource management systems. Negotiation also helps us to realize a dynamic and flexible scheduling strategy by balancing the conflicting objectives at the two layers.\\ \\
 %%%%%%%%%%%%%%%
-We will briefly look at the important components in this architecture that work together in order to support adaptive applications on HPC systems by dynamically managing the resouce allocation of running jobs. 
+We will briefly look at the important components and their respective roles in this architecture in order to support adaptive applications on HPC systems by dynamically managing the resouce allocation of running jobs. 
 \subsection{Invasive Batch Scheduler}
-The purpose of a batch scheduler is to select jobs from its queue according to some algorithm and dispatch this to the runtime scheduler. This is similar to a long term scheduler which by its definition: admits new processes to the system and controls the degree of multiprogramming( number of processes in memory). The batch scheduler for HPC workloads also does something similar but it is also merged with runtime scheduler. In this work, we have separated the two because of which it now looks analagous to long term scheduler(batch scheduler) that admits jobs into the system and a short term scheduler(runtime scheduler) which will manage the running / ready jobs using either space sharing or time sharing. Batch scheduler runs less frequently and there may be quite a lot of time gap when the next job may be admitted into the system. This depends upon available resources, any events like job termination, completion etc. 
+This component will be an extension to the existing batch systems for batch scheduling of invasive jobs. The scheduling decisions are communicated via the negotiation protocol to iRTSched. The scheduling decisions will be made on the basis of available resources in the partition and iRTSched communicates this to iBSched in the form of resource offers. Batch scheduler is making its decisions to optimize for certain local metrics such as reduced job waiting times, fairness, deadlines, priorities etc. The purpose of a batch scheduler is to select jobs from its queue according to some algorithm and dispatch this to the runtime scheduler. This is similar to a long term scheduler which by its definition: admits new processes to the system and controls the degree of multiprogramming( number of processes in memory). The batch scheduler for HPC workloads also does something similar but it is also merged with the runtime scheduler. In this work, we have separated the two because of which it now looks analagous to a long term scheduler(batch scheduler) that admits jobs into the HPC system and a short term scheduler(runtime scheduler) which will manage the running jobs. Batch scheduler runs less frequently and there may be quite a lot of time gap until the next job may be admitted into the system. This depends upon available resources, any events like job termination, completion where we can expect to receive a resource offer from the runtime scheduler.\\ \\
+This batch scheduler is termed as invasive batch scheduler because it supports the negotiation interface to talk to an invasive run time scheduler. It will now consider a mix of job types which are: \textit{malleable, moldable, rigid, and evolving} and perform the following tasks as per the existing functionalities provided by SLURM:
+\begin{itemize}
+\item It is based on an event-driven batch scheduling where scheduling decisions would be made only when an offer is received from iRTSched. Scheduling is performed here at the granularity level of nodes.
+\item Dispatch jobs from the batch queue that have been specifically submitted to the invasic partition according to a scheduling algorithm. This algorithm will consider the resource constraints of the job that can include the number of nodes(exclusive / shared), memory size, duration, quality of service parameters etc. Scheduling here is done at the granularity of nodes.
+\item With every negotiation attempt, the batch scheduler will try to relax the constraints of those jobs which could not be mapped to the available resource offer from the runtime scheduler. As the negotiation attempts increase the degree to which the constraints are relaxed also increases. By doing this the batch scheduler is trying to bargain as best as it can in order to get an offer from iRTSched to best fit as many jobs as possible.
+\item It will process the feedbacks received from iRTSched and update the job details in the queue such that it is then visible to the administrator in the graphical user interface provided by SLURM to view the current status of the jobs.
+\item The batch scheduler can also process jobs which have an urgent priority. These jobs will receive special service and are going to be dispatched immediately to iRTSched. It will also consider jobs that may have some quality of service requirements such as deadlines and start time.
+\item Based on the negotiation and the offers received from the iRTSched, the batch scheduler may try to bias its scheduling decisions towards certain jobs.
+\item If a job that is in the queue has already been submitted in the past and there is some history stored in the system about it, Then the batch scheduler will use the history information from the database to update the job details. This can lead to better scheduling decisions for this job.
+\end{itemize}
 \subsection{Invasive Run Time Scheduler}
+An independent component which can talk to the existing batch systems via a protocol to obtain invasive jobs submitted specifically to a partition that can support invasive computing.
+The runtime scheduler is like a short term scheduler that manages the running jobs via space sharing, time sharing or both. The runtime scheduler here is invasive because of the different job types it handles and the ability to support elastic execution of adaptive jobs. It can now redistribute resouces to running jobs by either expanding or shrinking them based on their performance and scalability. Following points describe the role of iRTSched:
+\begin{itemize}
+\item It manages all the resources in the partition and is responsbile for runtime scheduling at the granularity of cores / sockets, resource management and process management(infrastructure to launch, adapt and monitor parallel jobs).
+\item It will use an intelligent expand / shrink algorithm to dynamically adjust the resources of running jobs which are adaptive in nature. 
+\item Runtime scheduler will bias its decisions towards maximizing throughput, energy efficiency, optimize for topology, resource utilization etc.
+\item Similar to iBSched, iRTSched will increase the degree of transformation of the runtime state of the system to better serve the batch scheduler. As the negotiation attempts increase, the scheduler will try its best to fit every batch job forwarded by performing an aggressive transformation of the running jobs. Aggressive here means that the scheduler will try to either expand / shrink jobs to their maximum / minimum.
+\item In addition to expand / shrink strategy, The runtime scheduler can support scheduling algorithms like backfilling, gang scheduling, preemption etc.
+\item iRTSched will build a performance model of the running application or will refine an existing model if it was forwarded by the batch scheduler in the job details. It will also make its scheduling decisions using this performance model to estimate the scalability, performance and efficiency of the application at different job sizes.
+\item It will send the generated models and other relevant information about a completed job like runtime, energy consumption, IO consumption, performance model in a feedback report to the iBSched.
+\end{itemize}
 \subsection{iMPI Process Manager}
+The iMPI process manager in this architecture refers to multiple components as they all are necessary to successfully provide an elastic execution framework for adaptive applications. These components are \textbf{\textit{srun}}, \textbf{\textit{slurmd}} and \textbf{\textit{slurmstepd}}. The previous chapter already described as to how the extended MPI library called as iMPI allows the programmer to create invasive MPI applications and how the extensions on the resource manager side in coordination with iMPI provide a complete infrastructure necessary for the elastic execution of adaptive applications.
 \section{Negotiation Protocol}
+This protocol forms the core of the interaction between the iBSched and iRTSched. It allows for iRTSched to make one or a set of resource offers to iBSched which then needs to select jobs from its job queue to be mapped to these resource offers and send back the mapping to the iRTSched. The iRTSched will then decide whether to accept/reject this mapping based on whether it satisfies its local metrics. If it accepts it will launch them based on some run time scheduling and if it rejects then it informs this to iBSched in addition to sending it a new resource offer
+that will also contain possible future start times for pending jobs. The iBSched can also reject the resource offer in which case it will forward the previous job mapping(if any) again with relaxed resource constraints for jobs that could not be mapped. On accepting an offer, the iBSched will again send back a mapping to iRTSched. This exchange of messages continue until both reach an agreement. If the number of such exchanges reach a threshold then iBSched will just accept whatever offer it receives and iRTSched will also accept the final mapping it received and try its best to satisfy all the jobs forwarded. This will close the transaction.
 \subsection{Protocol Sequence Diagrams}
 %\vspace{-0.15in}
-\begin{figure}[!htbp]
+\begin{figure}[!t]
 %\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth, height=100mm]{./figures/scenario1.pdf}
@@ -67,19 +91,19 @@ The purpose of a batch scheduler is to select jobs from its queue according to s
 \end{itemize}
 %\label{fig:Seq1}
 %\end{figure}
-\begin{figure}[!htbp]
+\begin{figure}[!t]
 \vspace{-0.25in}
 \centering
-\includegraphics[width=0.9\textwidth, height=100mm]{./figures/scenario1contd.pdf}
+\includegraphics[width=0.9\textwidth, height=90mm]{./figures/scenario1contd.pdf}
 %\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures1.eps}
 \caption{Scenario 1 contd.}
 \label{fig:Seq1}
 %\vspace{-0.10in}
 \end{figure}
-\begin{figure}[!htbp]
+\begin{figure}[!b]
 %\vspace{-0.15in}
 \centering
-\includegraphics[width=0.9\textwidth, height=100mm]{./figures/scenario2.pdf}
+\includegraphics[width=0.9\textwidth, height=90mm]{./figures/scenario2.pdf}
 %\includegraphics[width=0.9\textwidth, height=100mm]{./figures/figures2.eps}
 \caption{Scenario 2}
 \label{fig:Seq2}
