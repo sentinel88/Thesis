@@ -4,48 +4,161 @@ Include state machine diagrams, pseudo code of all the algorithms, internal deta
 Remove the content in the introduction chapter about expand / shrink strategies and place it in this chapter.\\ \\
 %%%%%%
 %%%%%%
-\RestyleAlgo{boxed}
+%\RestyleAlgo{boxed}
+\IncMargin{1em}
 \begin{algorithm}[H]
+ \DontPrintSemicolon
  \KwData{Resource Offer}
- \KwResult{Map : Jobs --> Offer}
+ \KwResult{Map : Jobs $\rightarrow$ Offer}
  build invasive job queue\;
  \If{empty queue}{
   return empty Map\;
  }
  sort queue by job priorities\;
- reservations <-- Offer.Reservations\;
- freenodes <-- Offer.ResidualNodes\;
+ reservations $\leftarrow$ Offer.Reservations\;
+ freenodes $\leftarrow$ Offer.ResidualNodes\;
  \While{not at end of the invasive job queue}{
   read queue entry\;
   \If{entry.jobId in reservations}{
-   resv <-- reservations(entry.jobId)\;
-   \eIf{entry.bitmap is NULL}{
-    entry.start\_time <-- resv.start\_time\;
-    entry.node\_count <-- 0\;
+   resv $\leftarrow$ reservations(entry.jobId)\;
+   \eIf{resv.bitmap is NULL}{
+    entry.start\_time $\leftarrow$ resv.start\_time\;
+    entry.node\_count $\leftarrow$ $0$\;
     adjustNodeCount(entry.jobId)\;
    }{
-    entry.start\_time <-- 0\;
-    entry.node\_count <-- resv.node\_count\;
-    entry.bitmap <-- resv.bitmap\;
+    entry.start\_time $\leftarrow$ $0$\;
+    entry.node\_count $\leftarrow$ resv.node\_count\;
+    entry.bitmap $\leftarrow$ resv.bitmap\;
     create forward job record using entry\;
     append record to Map\;
-    mapped <-- true\;
+    mapped $\leftarrow$ true\;
    }
   }
   \If{mapped is true}{
    continue\;
   }
-  
-  \eIf{understand}{
-   go to next section\;
-   current section becomes this one\;
-   }{
-   go back to the beginning of current section\;
+  try mapping to the residual nodes\;
+  \If{successfully mapped}{
+   update the residual nodes\;
   }
+  create forward job record using entry\;
+  append record to Map\; 
  }
+ try\_to\_best\_fit(Map, invasive job queue, Offer)\;
+ return Map\;
  \caption{Batch Scheduling Algorithm}
 \end{algorithm}
 %%%%%%%
+\pagebreak
+\IncMargin{1em}
+\begin{algorithm}
+ \DontPrintSemicolon
+ \KwData{Map, Invasive Job Queue, Offer}
+ \KwResult{Updated Map : Jobs $\rightarrow$ Offer}
+ avail\_bitmap $\leftarrow$ Offer.ResidualNodes\;
+ \While{not at end of the Map}{
+  read Map entry\;
+  \If{(entry.start\_time EQ $0$) AND (entry.bitmap NEQ NULL)}{
+   continue\;
+  } 
+  \tcc{Try to map this job by shrinking other mapped jobs}
+  try\_sched(entry, Map, avail\_bitmap)\;
+  \If{successfully scheduled}{
+   update avail\_bitmap\;
+  }
+ }
+ \If{avail\_bitmap not empty}{
+  Rescan the invasive job queue to fill the residual nodes with some new jobs\;
+ }
+ \caption{Best Fit Algorithm}
+\end{algorithm}
+%%%%%%%%%
+%\IncMargin{1em}
+\begin{algorithm}[H]
+ \DontPrintSemicolon
+ \KwData{Entry, Map, avail\_bitmap}
+ \KwResult{Updated entry: Mapped to some nodes}
+ \tcc{The mapped jobs in the Map would be analyzed in the reverse order which is increasing in the priority}
+ Analyze in increasing order of priority if the mapped jobs in the Map can be shrunk to find enough nodes for entry\;
+ \If{sufficient nodes available}{
+  shrink the mapped jobs as per the analysis\;
+ }
+ entry.bitmap $\leftarrow$ bitmap(available nodes)\;
+ \caption{Try Schedule Algorithm}
+\end{algorithm}
+%%%%%%%
+\IncMargin{1em}
+\begin{algorithm}
+ \DontPrintSemicolon
+ \KwData{Attempts, Jobs2Map, Error Code, Offer<empty>}
+ \KwResult{Offer<Reservations, Residual nodes>}
+ \If{Error Code is SUCCESS}{
+ \tcc{Batch Scheduler accepted the previously sent offer}
+  \If{(Jobs2Map NEQ NULL) AND (Attempts GT $1$)}{
+   initialize runtime state\;
+  }
+  \tcc{Repeat the transformation of the system which was done for the previous attempt}
+  schedule((Attempts GT $1$) ? (Attempts - 1) : Attempts, Jobs2Map, Error Code, Offer)\;
+  \tcc{Offer being generated for the first time if attempts is equal to $1$}
+  \If{Attempts EQ $1$}{
+   return SUCCESS\;
+  }
+  \If{schedule was successful AND Jobs2Map NEQ NULL AND Attempts GT $1$}{
+   commit the mapped jobs to the running list\;
+   return SUCCESS\;
+  }
+ }
+ \tcc{Batch Scheduler rejected the previously sent offer}
+ \If{Error Code NEQ SUCCESS}{
+  initialize runtime state\;
+  schedule(Attempts, Jobs2Map, Error Code, Offer)\;
+ }
+ return error code\; 
+ \caption{Algorithm for generating a resource offer}
+\end{algorithm}
+%%%%%%%
+\pagebreak
+\IncMargin{1em}
+\begin{algorithm}[H]
+ \DontPrintSemicolon
+ %\TitleOfAlgo{Runtime Scheduling Algorithm}
+ \KwData{Attempts, Jobs2Map, Error Code, Offer}
+ \KwResult{Updated Offer}
+ schedule requests and create reservations(without job start)\;
+ \If{Jobs2Map EQ NULL}{ \tcc{new resouce offer being sent to batch scheduler}
+  return\;
+ }
+ update job dependencies according to the new system state\;
+ \For{each reserved job}{ \do 
+  Prioritize malleable jobs in the order: (1) malleable job expanded for this reserved job, (2) malleable job expanded for no specific reserved  job, (3) malleable job expanded for other reserved jobs\;
+  Analyze if expanded malleable jobs can be shrunk in the above order to make enough nodes available to start the reserved job\;
+  \If{enough nodes found then}{
+   Shrink the selected malleable jobs\;
+   Insert the job as an entry in Offer.Reservations\;
+  }
+ }
+ reschedule requests and create reservations(without job start)\;
+ update job dependencies according to the new system state\;
+ \For{each reserved job}{ \do 
+  \If{job depends on a malleable job}{
+   Expand the malleable job with the available nodes\;
+   Update the dependency information for this job\;
+  }
+ }
+ \If{Error Code is SUCCESS}{ \tcc{Runtime scheduler will decide now whether to accept / reject the mapping}
+  \If{Attempts LT MAX\_LIMIT}{
+   decision $\leftarrow$ decision\_logic(Offer, Jobs2Map, Attempts, count(idle nodes))\;
+  }
+ }
+ \If{Attempts EQ MAX\_LIMIT}{
+  decision $\leftarrow$ accept\;
+ }
+ \If{Error Code is SUCCESS AND decision is reject}{
+  return\;
+ }
+ equipartition the available idle nodes among other remaining running malleable jobs\;
+ \caption{Runtime Scheduling Algorithm}
+\end{algorithm}
 \section{Job Mappings - Description and its generic structure}
 \section{Resource Offers}
 \section{Negotiation Protocol - Use state machine diagrams here}
