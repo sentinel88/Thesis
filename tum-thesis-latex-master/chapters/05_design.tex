@@ -2,11 +2,69 @@
 \label{chapter:ischeduler}
 Include state machine diagrams, pseudo code of all the algorithms, internal details of their working, diagrams like those of runtime system transformations etc.\\ \\
 Remove the content in the introduction chapter about expand / shrink strategies and place it in this chapter.\\ \\
+\section{Entities}
+\textbf{Job Mappings}\\
+A job mapping is basically a job and its allocated set of resources. A forward job record is a job mapping and other related job details important for its launch. A list of such forward job records are sent by the batch scheduler in response to receiving a resource offer from the runtime scheduler.\\
+%\vspace{-0.5in}
+%\begin{center}
+\begin{equation*}
+%\begin{multlined}
+\begin{aligned}
+&M_{i}\ \ \ \textit{:=\ \ \ Job Mapping\ \ \ :=}\ \ \ \{jobid,node count,bitmap\}\\
+&Map_{i}\ \ \ \textit{:=\ \ \ Forward Job Record\ \ \ :=}\ \ \ \{M_{i},details_{i}\}\\
+&Map\ \ \ \textit{:=\ \ \ {$<Map_{1}><Map_{2}>...<Map_{n}>$}}
+%\end{multlined}
+\end{aligned}
+\end{equation*}
+%\end{center}
+In the above description $details_{i}$ refers to the details of any $i^{th}$ job such as \textit{constraints, priority, runtime estimate, max nodes, min nodes, job name, start time, deadline}. In these details, the constraints are specific to the purpose of negotiation and this can be related to node count that the job is requesting for, memory size, exclusive / shared resource access etc. Currently, we support only the constraints for node count. The node count constraint will again have a min and max both of which will fall within the window of max and min nodes of the job. It is using these constraints that the batch scheduler will negotiate with the runtime scheduler and with every negotiation attempt it will relax the constraints to bargain better. By realxing the constraints we mean that the min constraint of node count will be lowered.\\ \\
+\textbf{Resource Offers}\\
+A reservation is basically a job being guaranteed a set of resources for a certain period of time. A resource offer is a list of such reservations and the set of nodes which are free in the partition after the runtime scheduler has guaranteed these reservations. The runtime scheduler will send such a resource offer to the batch scheduler if it rejected its mapping or it is sending a new offer that it generated.\\
+%\vspace{-0.5in}
+%\begin{center}
+\begin{equation*}
+%\begin{multlined}
+\begin{aligned}
+&Resv_{i}\ \ \ \textit{:=\ \ \ Job Reservation\ \ \ :=}\ \ \ \{jobid,node count,bitmap,start time,end time\}\\
+&IdleNodes\ \ \ \textit{:=\ \ \ Residual Nodes\ \ \ :=}\ \ \ \{bitmap\}\\
+&Offer\ \ \ \textit{:=\ \ \ $<Resv_{1}><Resv_{2}>...<Resv_{n}>$,\ IdleNodes}
+%\end{multlined}
+\end{aligned}
+\end{equation*}
+%\end{center}
+\textbf{Feedback Reports}\\
+Periodic or event-driven feedback reports on the latest status of the running jobs are sent by the runtime scheduler to the batch scheduler. It is event-driven for events such as job termination, job completion, acceptance of a mapping received from batch scheduler.
+%\vspace{-0.2in}
+%\begin{center}
+\begin{equation*}
+%\begin{multlined}
+\begin{aligned}
+&P_{i}\ \ \ \textit{:=\ \ \ Performance Data\ \ \ :=}\ \ \ \{model,energy,io,memory,hint\}\\
+&Report_{i}\ \ \ \textit{:=\ \ \ Status Report\ \ \ :=}\ \ \ \{jobid,node count,bitmap,run time,end time,state,P_{i}\}\\
+&Feedback\ \ \ \textit{:=\ \ \ $<Report_{1}><Report_{2}>...<Report_{n}>$}
+%\end{multlined}
+\end{aligned}
+\end{equation*}
+%\end{center}
+%%%%%%%%%%
+\section{Negotiation}
+\begin{figure}[!htbp]
+%\centering
+\hspace*{-0.5in}
+\includegraphics[width=1.2\textwidth, height=120mm]{./figures/negotiation.pdf}
+\caption{Negotiation protocol}
+\label{fig:1}
+\end{figure}
+%%%%%%%%%%
+\section{Scheduling Algorithms}
+\subsection{Batch Scheduling}
+%\clearpage
 %%%%%%
 %%%%%%
 %\RestyleAlgo{boxed}
+\RestyleAlgo{boxruled}
 \IncMargin{1em}
-\begin{algorithm}[H]
+\begin{algorithm}[!htbp]
  \DontPrintSemicolon
  \KwData{Resource Offer}
  \KwResult{Map : Jobs $\rightarrow$ Offer}
@@ -49,9 +107,40 @@ Remove the content in the introduction chapter about expand / shrink strategies 
  \caption{Batch Scheduling Algorithm}
 \end{algorithm}
 %%%%%%%
-\pagebreak
-\IncMargin{1em}
-\begin{algorithm}
+\textbf{\textit{Algorithm 1}} presents a high level pseudo code of the batch scheduling algorithm. Following points describe the algorithm:
+\begin{itemize}
+\item It takes as input a resource offer from iRTSched and maps jobs from its queue to the offered resources.
+\item \textbf{\textit{Line \boldmath{$1$}}}: A separate job queue is constructed by scanning the main job queue for jobs which have been submitted specifically for the invasic partition. These jobs are then sorted according to their priorities.
+\item \textbf{\textit{Line \boldmath{$8$-$34$}}}: For every job in the invasive queue: If it is found in the reservation list from the resource offer and if it can start immediately(has a bitmap allocated) then we will just append this to the Map after creating a new forward job record.
+\item If it starts in future(has a NULL bitmap) then we will relax its node count constraints by a step size calculated as below and try to map it to the residual nodes.
+\vspace{-0.30in}
+\begin{center}
+\boldmath\begin{equation*}
+step\ size = \frac{(Job.MaxNodes - Job.MinNodes)}{MAX\_NEGOTIATION\_ATTEMPTS}
+\end{equation*}
+\end{center}
+\item If \textbf{\textit{step size}} in the above calculation comes up as $0$ then we will set it as $1$.
+\item \textbf{\textit{job.node\_count.min $=$ job.node\_count.min - step size}}. If the computed value is negative or less than the job's minimum number of nodes then we just set \textbf{\textit{job.node\_count.min $=$ job.min\_nodes}}.
+\item If the job is not found in the reservation list then this must be a new job that was submitted after the previous dispatch of jobs was completed by batch scheduler in the previous negotiation attempt. We will directly try to map it to the residual nodes.
+\item If a job could not be mapped, then we will just append it to the Map by creating a new forward job record. If it was mapped, then we will set the current node count of that job to the count of the allocated nodes. The node count constraints remain the same.
+\item \textbf{\textit{Line \boldmath{$35$}}}: We will try to map reserved(could not be mapped due to lack of sufficient resources in the offer) batch jobs by shrinking jobs which have been currently mapped. The shrink operation considers mapped jobs in the reverse order of their priority so that the operation can start from the lowest priority mapped job till the highest one.
+\item Result would be a best fit mapping of the invasic jobs ready to be forwarded to iRTSched.
+\item \textbf{\textit{Algorithm 2:}} This algorithm shows how the best fit mapping is computed. It considers all those jobs which could not be mapped. For every such job, it will try to shrink the mapped jobs in an increasing order of priorities until sufficient nodes have been found to map the job. 
+\item If we were successful in mapping any new jobs by shrink operations, then we must rescan the invasive job queue to fill the Map by jobs which had been previously skipped due to a limit on the reservation depth.
+\item \textbf{\textit{Algorithm 3:}} This algorithm shows how the analysis of running jobs are done in order to shrink them to satisfy a job request. Analysis will consider shrinking the jobs by a step size computed as shown below. If analysis is successful, then jobs are shrunk.
+\vspace{-0.30in}
+\begin{center}
+\boldmath\begin{equation*}
+step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTEMPTS}
+\end{equation*}
+\end{center}
+\end{itemize}
+%%%%%%
+\setcounter{AlgoLine}{0}
+%%%%%%%
+%\pagebreak
+%\newpage
+\begin{algorithm}[!htbp]
  \DontPrintSemicolon
  \KwData{Map, Invasive Job Queue, Offer}
  \KwResult{Updated Map : Jobs $\rightarrow$ Offer}
@@ -72,9 +161,10 @@ Remove the content in the introduction chapter about expand / shrink strategies 
  }
  \caption{Best Fit Algorithm}
 \end{algorithm}
+\setcounter{AlgoLine}{0}
 %%%%%%%%%
 %\IncMargin{1em}
-\begin{algorithm}[H]
+\begin{algorithm}[!htbp]
  \DontPrintSemicolon
  \KwData{Entry, Map, avail\_bitmap}
  \KwResult{Updated entry: Mapped to some nodes}
@@ -86,9 +176,10 @@ Remove the content in the introduction chapter about expand / shrink strategies 
  entry.bitmap $\leftarrow$ bitmap(available nodes)\;
  \caption{Try Schedule Algorithm}
 \end{algorithm}
+\setcounter{AlgoLine}{0}
 %%%%%%%
-\IncMargin{1em}
-\begin{algorithm}
+\subsection{Runtime Scheduling}
+\begin{algorithm}[!htbp]
  \DontPrintSemicolon
  \KwData{Attempts, Jobs2Map, Error Code, Offer<empty>}
  \KwResult{Offer<Reservations, Residual nodes>}
@@ -116,17 +207,37 @@ Remove the content in the introduction chapter about expand / shrink strategies 
  return error code\; 
  \caption{Algorithm for generating a resource offer}
 \end{algorithm}
+\noindent
+\textbf{\textit{Algorithm 4}} presents a high level pseudo code of the algorithm to generate a resource offer. Following points describe the algorithm:
+\begin{itemize}
+\item If batch scheduler accepted the previously sent offer, then we will repeat the system transformation of the previous negotiation attempt to check if runtime scheduler will accept this mapping. If the mapping was accepted, then the runtime scheduler will commit the mapped jobs to the running list. 
+\item If this is the first attempt and there are no forwarded jobs then it means that the runtime scheduler is generating a new offer. In this case it will perform a partial transformation and will return back from the function to send the offer.
+\item If the mapping was rejected after repeating the previous transformation, then the runtime scheduler will reset the runtime state of the system and perform a new transformation for generating an offer to satisfy the forwarded job requests.
+\item If the response from batch scheduler was reject, then the runtime scheduler will go through the same step as described in the previous point.
+\end{itemize}
+\textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. Following points describe the algorithm:
+\begin{itemize}
+\item Run the backfill algorithm to schedule the forwarded job requests. Some jobs can immediately start whereas for others it will give reservations. Both of these are written into the resource offer.
+\item If there were no forwarded job requests received then this was a new offer being generated and therefore it will return back from the function with the constructed resource offer.
+\item Update job dependencies according to the new system state. This means that some running malleable jobs may be maintaining invalid job dependencies. If a forwarded job has been mapped successfully to some nodes and a running malleable job has its dependency on this forwarded job from before because it was reserved, then this dependency should be cleared now as it is no longer valid.
+\item Analyze running malleabe jobs according to the approach mentioned in the pseudo code for shrink operations to generate sufficient resources for immediate start of reserved jobs. If analysis was successful, then shrink the jobs.
+\item Reschedule forwarded job requests using backfill algorithm and compute reservations(without job start). In this step we will not consider jobs which could get immediate start time in the previous steps.
+\item Update job dependencies according to the new system state similar to point $3$.
+\item For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency of that running malleable job to this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
+\item Once all the previous steps of the algorithm have been completed, runtime scheduler will decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back an offer to iBSched.
+\end{itemize}
+\setcounter{AlgoLine}{0}
 %%%%%%%
-\pagebreak
-\IncMargin{1em}
-\begin{algorithm}[H]
+%\pagebreak
+\newpage
+\begin{algorithm}[!htbp]
  \DontPrintSemicolon
  %\TitleOfAlgo{Runtime Scheduling Algorithm}
  \KwData{Attempts, Jobs2Map, Error Code, Offer}
  \KwResult{Updated Offer}
  schedule requests and create reservations(without job start)\;
- \If{Jobs2Map EQ NULL}{ \tcc{new resouce offer being sent to batch scheduler}
-  return\;
+ \If{Jobs2Map EQ NULL}{ 
+  return  \tcc*[h]{new resouce offer generated}\;
  }
  update job dependencies according to the new system state\;
  \For{each reserved job}{ \do 
@@ -153,16 +264,17 @@ Remove the content in the introduction chapter about expand / shrink strategies 
  \If{Attempts EQ MAX\_LIMIT}{
   decision $\leftarrow$ accept\;
  }
+ \caption{Runtime Scheduling Algorithm}
+\end{algorithm}
+\RestyleAlgo{boxed}
+\pagebreak
+%%%%%%%%
+\begin{algorithm}[!htbp]
+ \DontPrintSemicolon
  \If{Error Code is SUCCESS AND decision is reject}{
   return\;
  }
  equipartition the available idle nodes among other remaining running malleable jobs\;
- \caption{Runtime Scheduling Algorithm}
+ %\caption{Runtime Scheduling Algorithm}
 \end{algorithm}
-\section{Job Mappings - Description and its generic structure}
-\section{Resource Offers}
-\section{Negotiation Protocol - Use state machine diagrams here}
-\section{Feedback Reports}
-\section{Job Scheduling Algorithms}
-\subsection{Problem Formulation}
-\subsection{Pseudo Code}
+\RestyleAlgo{boxruled}
