@@ -1,8 +1,8 @@
 \chapter{Design}
+In this section, we will describe the internal details of the architecture specifically on how the scheduling algorithms work in order to realize the negotiation, the meaning of job mappings, resource offers and feedback reports. 
 \label{chapter:ischeduler}
-Include state machine diagrams, pseudo code of all the algorithms, internal details of their working, diagrams like those of runtime system transformations etc.\\ \\
-Remove the content in the introduction chapter about expand / shrink strategies and place it in this chapter.\\ \\
 \section{Entities}
+A design entity is an element(component) of a design that is structurally and functionally distinct from other elements and that is separately named and referenced. They result from the decomposition of the software system requirements. The objective is to divide the system into separate components that can be considered, implemented, changed, and tested with minimal effect on other entities. Examples of design entities are: \textbf{\textit{protocol, application layer, state machine, data model, object, task, sub-systems, modules}} etc.\\ \\
 \textbf{Job Mappings}\\
 A job mapping is basically a job and its allocated set of resources. A forward job record is a job mapping and other related job details important for its launch. A list of such forward job records are sent by the batch scheduler in response to receiving a resource offer from the runtime scheduler.\\
 %\vspace{-0.5in}
@@ -32,6 +32,8 @@ A reservation is basically a job being guaranteed a set of resources for a certa
 \end{aligned}
 \end{equation*}
 %\end{center}
+The \boldmath{$Resv_{i}$} entry in the resource offer corresponding to a particular job id must match the job id of the \boldmath{$Map_{i}$} entry in the forwarded jobs. This means that the sequence in which jobs were forwarded to runtime scheduler will be the same sequence of jobs for which reservations will be sent to the batch scheduler.\\ \\
+%%%%%%%%%
 \textbf{Feedback Reports}\\
 Periodic or event-driven feedback reports on the latest status of the running jobs are sent by the runtime scheduler to the batch scheduler. It is event-driven for events such as job termination, job completion, acceptance of a mapping received from batch scheduler.
 %\vspace{-0.2in}
@@ -45,18 +47,12 @@ Periodic or event-driven feedback reports on the latest status of the running jo
 %\end{multlined}
 \end{aligned}
 \end{equation*}
+The feedback reports can also contain performance specific data such as energy consumption, performance model of completed jobs that can be used by batch scheduler for making better decisions on same jobs submitted again in the future. For running jobs, the reports can contain similar information but most important ones would be the current assigned node count, expected end time, memory usage etc.
 %\end{center}
 %%%%%%%%%%
-\section{Negotiation}
-\begin{figure}[!htbp]
-%\centering
-\hspace*{-0.5in}
-\includegraphics[width=1.2\textwidth, height=120mm]{./figures/negotiation.pdf}
-\caption{Negotiation protocol}
-\label{fig:1}
-\end{figure}
-%%%%%%%%%%
 \section{Scheduling Algorithms}
+<Include the decision logic algorithm also here in this section>
+Following pages present the pseudo code for both the batch and runtime scheduling algorithms. 
 \subsection{Batch Scheduling}
 %\clearpage
 %%%%%%
@@ -179,7 +175,7 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \setcounter{AlgoLine}{0}
 %%%%%%%
 \subsection{Runtime Scheduling}
-\begin{algorithm}[!htbp]
+\begin{algorithm}[!t]
  \DontPrintSemicolon
  \KwData{Attempts, Jobs2Map, Error Code, Offer<empty>}
  \KwResult{Offer<Reservations, Residual nodes>}
@@ -229,7 +225,7 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \setcounter{AlgoLine}{0}
 %%%%%%%
 %\pagebreak
-\newpage
+%\newpage
 \begin{algorithm}[!htbp]
  \DontPrintSemicolon
  %\TitleOfAlgo{Runtime Scheduling Algorithm}
@@ -269,7 +265,7 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \RestyleAlgo{boxed}
 \pagebreak
 %%%%%%%%
-\begin{algorithm}[!htbp]
+\begin{algorithm}[!t]
  \DontPrintSemicolon
  \If{Error Code is SUCCESS AND decision is reject}{
   return\;
@@ -278,3 +274,22 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
  %\caption{Runtime Scheduling Algorithm}
 \end{algorithm}
 \RestyleAlgo{boxruled}
+%%%%%%
+\section{Negotiation}
+%%%%%%%%
+The above figure illustrates one possible scenario of the negotiation between batch and runtime scheduler. Following points describe it in detail:
+\begin{itemize}
+\item The alphabets \textbf{A,B,C,D,E} represent runtime states(running jobs and idle nodes in the invasic partition) of the system. \textbf{TRF} means transformation of the system state through expand and shrink operations. This happens when a list of forwarded job requests are received from batch scheduler and the runtime scheduler runs its algorithm to fit as many requests as possible by expanding / shrinking running jobs.
+\item \textbf{INIT} means initialize state. It will reset the transformed state back to the original state that the system was at the beginning of the negotiation. This is done in order to perform a new system transformation during every negotiation and this must start from the original state otherwise the state of the system will be saturated very soon.
+\item Saturation means that we can no more perform any expand / shrink operations on the running jobs as they will be either at there min or max node counts due to a result of the previous transformations. This would result in making no progress on the following negotiation attempts.
+\item The green boxes labelled \textbf{"Algo 1"} represent the batch scheduling algorithm which will run every time the batch scheduler receives a resource offer. On every such attempt, it will relax the constraints of the job much more than its previous attempt for all those jobs which could not be mapped.
+\item The box labelled \textbf{"Update"} will update its job details once it receives a feedback. This is important as a subsequent negotiation must not result in the batch scheduling algorithm dispatching a job that is already running.
+\item Once the negotiation completed then the runtime scheduler will accept the mapping and commit the jobs. The box labelled \textbf{"COMM"} represents the step where the commit of new forwarded jobs to the running list happens. These jobs would be started very soon. The runtime state of the system will take up the transformed state going forward as shown by the box \textbf{E}.
+\end{itemize}
+\begin{figure}[!htbp]
+%\centering
+\hspace*{-0.5in}
+\includegraphics[width=1.2\textwidth, height=120mm]{./figures/negotiation.pdf}
+\caption{Negotiation protocol}
+\label{fig:1}
+\end{figure}

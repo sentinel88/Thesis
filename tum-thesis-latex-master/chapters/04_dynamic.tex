@@ -108,43 +108,4 @@ that will also contain possible future start times for pending jobs. The iBSched
 \caption{Scenario 2}
 \label{fig:Seq2}
 \end{figure}
-%\subsection{State Machine Diagrams}
-This section focuses on iBSched and a thread iRM\_AGENT that it spawns which is the one responsible for all the communication with the iRTSched including spawning other agent threads for handling feedbacks and urgent jobs.
-%\vspace{10mm}
-\begin{figure}[h]
-\centering
-%\includegraphics[width=1.0\textwidth, height=150mm]{./figures/"iRM Agent".pdf}
-\includegraphics[width=1.0\textwidth, height=150mm]{./figures/"iRM Agent".eps}
-\caption{iRM Agent}
-\label{fig:Init}
-\end{figure}
-\begin{itemize}
-\item Above diagram and the ones in the following pages illustrate state machine diagrams for few of the communication phases described earlier starting first with a general diagram of how the mulithreaded component iRM agent inside iBSched starts up and shuts down.
-\end{itemize}
-\vspace{-20mm}
-\begin{figure}[h]
-\centering
-%\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Init.pdf}
-\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Init.eps}
-\caption{Protocol Initialization}
-\label{fig:Init}
-\end{figure}
-\vspace{5mm}
-\begin{figure}[h]
-\centering
-%\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Term.pdf}
-\includegraphics[width=0.9\textwidth, height=90mm]{./figures/Term.eps}
-\caption{Protocol Termination}
-\label{fig:Term}
-\end{figure}
-\clearpage
-\begin{figure}[h]
-\centering
-%\includegraphics[width=1.0\textwidth, height=210mm]{./figures/Negotiation.pdf}
-\includegraphics[width=1.0\textwidth, height=210mm]{./figures/Negotiation.eps}
-\caption{Negotiation}
-\label{fig:Neg}
-\end{figure}
-\clearpage
-
 \section{Invasive Jobs}
