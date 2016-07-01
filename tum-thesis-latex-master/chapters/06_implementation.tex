@@ -251,8 +251,9 @@ extern int _decision_logic(resource_offer_msg_t *, List, int, bool);
 The runtime scheduler decides whether to accept / reject the mapping received from batch scheduler by calling this routine. This routine checks through the mapping to see how many jobs can be started immediately and based on how well it is suitable for its metrics a decision will be taken.
 %%%%%%%%%%%%%
 \section{State Machine Diagrams}
-\subsection{iBSched}
-\begin{figure}[!t]
+Following pages give the state machines diagrams of both the batch and the runtime scheduler. These diagrams illustrate their implementation and the general flow of their working highlighting the important details. Many of the error handling or subordinate threads related to feedback, urgent job handling, signal handling for termination etc. have not been shown here due to space constraints. The diagrams in both the pages represent the main control thread for both the batch and runtime scheduler. This control thread is responsible to spawn other subordinate threads, drive the control loop responsible for doing / initiating all the work such as receiving processing and sending protocol messages.\\ \\
+%%%%%%%%
+\begin{figure}[!htbp]
 \hspace*{0.1in}
 \centering
 \includegraphics[width=1.0\textwidth, height=195mm]{./figures/iBSched.pdf}
@@ -260,11 +261,20 @@ The runtime scheduler decides whether to accept / reject the mapping received fr
 \caption{iBSched}
 \label{fig:Neg}
 \end{figure}
-\subsection{iRTSched}
+\noindent
+iBSched is a SLURM plugin, hence it is dynamically loaded by the SLURM controller(slurmctld) due to which a plugin initialization happens for iBSched during which a main plugin thread is created. This plugin thread is then responsible to create the main control thread for iBSched. The plugin thread is responsible for starting and shutting down this plugin(in case slurmctld sends a shutdown signal) and other threads it spawned. The main control thread is responsible for shutting down all the slave threads it had spawned. iRTSched also has multithreaded design exactly similat to iBSched except that it is an independent binary and is launched independently but not by any SLURM application.
+%\begin{figure}[!htbp]
+%\hspace*{0.1in}
+%\centering
+%\includegraphics[width=1.0\textwidth, height=195mm]{./figures/iBSched.pdf}
+%\includegraphics[width=1.0\textwidth, height=180mm]{./figures/Negotiation.eps}
+%\caption{iBSched}
+%\label{fig:Neg}
+%\end{figure}
 \begin{figure}[!htbp]
 \centering
-%\includegraphics[width=1.0\textwidth, height=180mm]{./figures/iBSched.eps}
+\includegraphics[width=1.0\textwidth, height=160mm]{./figures/iRTSched.pdf}
 %\includegraphics[width=1.0\textwidth, height=180mm]{./figures/Negotiation.eps}
 \caption{iRTSched}
-\label{fig:Neg}
+\label{fig:Neg1}
 \end{figure}

@@ -1,8 +1,76 @@
 \chapter{Evaluation}\label{chapter:evaluation}
 May be a page illustrating a scenario of negotiation with 2d node space map diagrams will be good.
+The evaluation of job schedulers depend on two important factors: use of appropriate metrics, and the use of appropriate workloads on which the scheduler can operate. Before we consider these two factors in details, the following definitions will be assumed going forward.
+\begin{itemize}
+\item \textit{${t_{i}}^{a}$} is the arrival or submission time of job i.
+\item \textit{${t_{i}}^{s}$} is the start time of job i.
+\item \textit{${t_{i}}^{e}$} is the end time of job i.
+\item \textit{$w_{i}$} is the width (number of requested / used resources) of job i.
+\end{itemize}
+From these parameters are computed:
+\begin{itemize}
+\item \textit{$l_{i}\ =\ {t_{i}}^{e}\ -\ {t_{i}}^{s}$} is the runtime(length) or duration of job i.
+\item \textit{${t_{i}}^{w}\ =\ {t_{i}}^{s}\ -\ {t_{i}}^{a}$} is the waiting time of job i.
+\item \textit{${t_{i}}^{r}\ =\ {t_{i}}^{w}\ +\ l_{i}$} is the response time of job i.
+\item \textit{$s_{i}\ =\ \frac{{t_{i}}^{r}}{l_{i}}\ = 1\ +\ \frac{{t_{i}}^{w}}{l_{i}}$} is the slowdown of job i.
+\item \textit{$a_{i}\ =\ w_{i}.l_{i}$} is the area of job i.
+\end{itemize}
+The performance metrics on which one can evaluate a parallel job scheduler falls into two categories usually with some overlap tolerated between the two:\\ \\
+\textbf{User-Centric metrics}\\
+These type of metrics refer to the actual job performance. The performance of the scheduler directly affects the waiting time of jobs. Below mentioned are some of the commonly used user-centric metrics. We will assume $N$ as the number of jobs for which the metric is computed.
+\begin{itemize}
+\item \textbf{\textit{Average Waiting Time:}} It refers to the average over the waiting time for all jobs.
+\boldmath\begin{equation*}
+\centering
+\text{\textit{AWT}}\ =\ \frac{1}{N}.\sum_{i=1}^{N}{t_{i}}^{w}
+\end{equation*}
+\item \textbf{\textit{Average Response Time:}} It refers to the time when job results are available. It is computed from the waiting time plus the execution time(time interval from job submission to job completion).
+\boldmath\begin{equation*}
+\centering
+\text{\textit{ART}}\ =\ \frac{1}{N}.\sum_{i=1}^{N}{t_{i}}^{r}
+\end{equation*}
+\item \textbf{\textit{Average Response Time Weighted by Job Width:}}
+\boldmath\begin{equation*}
+\centering
+\text{\textit{ARTwW}}\ =\ \frac{\sum_{i=1}^{N}{w_{i}.t_{i}}^{r}}{\sum_{i=1}^{N}{w_{i}}}
+\end{equation*}
+\item \textbf{\textit{Average Slowdown Weighted by Job Area:}}
+\boldmath\begin{equation*}
+\centering
+\text{\textit{SLDwA}}\ =\ \frac{\sum_{i=1}^{N}{a_{i}.s_{i}}}{\sum_{i=1}^{N}{a_{i}}}
+\end{equation*}
+\end{itemize}
+The last 2 metrics would not be suitable to use for adaptive jobs or malleable / evolving jobs since there width changes dynamically at runtime.\\ \\
+\textbf{System-Centric metrics}\\
+These type of metrics focus on the effective usage of the resources in the system. Below mentioned are some of the commonly used metrics:
+\begin{itemize}
+\item \textbf{\textit{Utilization}} Percentage of all resources were actually used on average over a specific time frame
+\item \textbf{\textit{Throughput}} Number of jobs that were processed during a specific time frame
+\item \textbf{\textit{Makespan}} The time of the completion of the last job in the workload
+\item \textbf{\textit{Loss of Capacity}} Percentage of resources that were idle, although workload for processing was available
+\end{itemize}
 \section{Method of Evaluation}
-\subsection{Emulation of Workload}
-\subsection{Real Invasic Applications}
+In order to select a scheduling algorithm for a system, it needs to be evaluated based on certain criterias, many of which have been defined earlier. The performance of such an algorithm depends a lot on the workload which it is processing, hence a workload benchmark maybe useful in evaluating a scheduler or even comparing it with other schedulers. There are various methods used to perform such an evaluation based on a workload:
+%\subsection{Emulation of Workload}
+\begin{itemize}
+\item \textbf{\textit{Deterministic Modeling}} This evaluation takes a pre-determined workload and defines the performance of each algorithm for that workload. For example: $5$ jobs arriving at time $0$ in a particular order. One can then use a criteria such as average waiting time to find which algorithm performs the best. This method is simple and fast in giving exact results if the inputs are the same. But, the results only apply to these cases. The main usage of deterministic modeling can be to describe algorithms or serve as examples and over a set of inputs may indicate a trend or behavior that can help for further analysis. 
+\item \textbf{\textit{Queueing Models}} The drawback of deterministic modeling is that there is no static set of processes, this varies from day to day. In the method of queueing models, a model of the system is constructed by describing the arrival of jobs having some inter-arrival time, job sizes and job runtime estimates as probability distributions respectively. With all these details, one can then mathematically derive serveral metric values such as average waiting time, utilization, average queue length etc. This method of evaluation is useful in comparing algorithms but has its own limitations. It is only an approximation of the real system and only certain class of algorithms and distributions can be handled as of now in addition to a number of independent assumptions made that may not be accurate.
+\item \textbf{\textit{Simulations}} A better and a more accurate approach to evaluating scheduling algorithms is a simulation. In such a method a model of the complete system is implemented using programming and the simulation is driven in time by moving the clock(variable representing time) forward. With time, the state of the system is modified by the simulator to reflect the activities taking place. As the simulation executes, statistics that indicate algorithm performance are gathered and printed. The data to drive the simulation can be generated in several ways: probability distributions for generating job arrivals, job sizes, runtime estimates etc or trace data generated by monitoring real systems and recording the actual sequence of events. Simulations can often be expensive requiring huge hours of computer time, effort to implement the simulator, a more detailed simulator will give a more accurate result but increases the effort.
+\item \textbf{\textit{Implementation}} Simulation is of limited accuracy and hence the last approach requires the entire algorithm to be implemented and tested in a real system. This requires much more effort but also brings more uncertainity into the performance of the scheduler as the environment is constantly changing in with real jobs on real physical resources.
+\end{itemize}
+%\subsection{Real Invasic Applications}
 \section{Setup}
+The scheduling algorithm implemented in this thesis will be tested by the approach of simulation. This means that the jobs are not actually launched and iRTSched instead will simulate this by changing the state of the system and modifying the necessary metadata to run the simulation in time. This also means that we do not need actual physical resources or a real cluster to do this testing and just need to emulate a cluster using SLURM to serve our purpose. For the purpose of doing this simulation, below are the steps taken:
+\begin{itemize}
+\item Configure the SLURM using --enable-front-end and install it. This allows us to emulate a cluster by this front end node which in practical systems will actually dispatch the jobs it receives to all the resources in a cluster managed by a different middleware.
+\item Run the SLURM by configuring the scheduler plugin as iBSched and the priority plugin as multifactor.
+\item Run iRTSched as an independent binary(it is not a SLURM application).
+\item iBSched and iRTSched will connect with each other and complete a handshake to prepare for future negotiations.
+\item All jobs submitted to SLURM with partition as invasic will be ignored by the main batch scheduler but picked up by the plugin iBSched. This is just a simple hack to redirect the stream of incoming jobs towards iRTSched and not towards the configured front end node. 
+\item This has been done to ease the effort for the purpose of simulation. In reality invasic jobs must be directed towards invasic partition and due to some load balancing by the batch system, legacy(rigid) jobs can also be assigned to invasic partition when other partitions are busy. 
+\item Simulation continues until we shutdown iRTSched and subsequently SLURM. Feedback data from iRTSched will be used to update job states in SLURM. Output data corresponding to job start and end times will be written in a separate file by iRTSched for post-simulation analysis.
+\end{itemize}
+The experiments have been executed on a laptop with a $64$-bit CPU($8$ cores) each having a max. speed of approx. $3$GHz. The $64$-bit version of Ubuntu $14.04$ LTS is running on the laptop and the version of SLURM used for this thesis is $15.08$.
+%%%%%%%
 \section{Experiments and Results}
 \section{Performance and Graphs}
