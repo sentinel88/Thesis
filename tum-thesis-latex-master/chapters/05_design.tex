@@ -1,5 +1,5 @@
 \chapter{Design}
-In this section, we will describe the internal details of the architecture specifically on how the scheduling algorithms work in order to realize the negotiation, the meaning of job mappings, resource offers and feedback reports. 
+In this section, we will describe the internal details of the components in the architecture specifically on how the scheduling algorithms work in order to realize the negotiation, the meaning of job mappings, resource offers and feedback reports. 
 \label{chapter:ischeduler}
 \section{Entities}
 A design entity is an element(component) of a design that is structurally and functionally distinct from other elements and that is separately named and referenced. They result from the decomposition of the software system requirements. The objective is to divide the system into separate components that can be considered, implemented, changed, and tested with minimal effect on other entities. Examples of design entities are: \textbf{\textit{protocol, application layer, state machine, data model, object, task, sub-systems, modules}} etc.\\ \\
@@ -17,7 +17,7 @@ A job mapping is basically a job and its allocated set of resources. A forward j
 \end{aligned}
 \end{equation*}
 %\end{center}
-In the above description $details_{i}$ refers to the details of any $i^{th}$ job such as \textit{constraints, priority, runtime estimate, max nodes, min nodes, job name, start time, deadline}. In these details, the constraints are specific to the purpose of negotiation and this can be related to node count that the job is requesting for, memory size, exclusive / shared resource access etc. Currently, we support only the constraints for node count. The node count constraint will again have a min and max both of which will fall within the window of max and min nodes of the job. It is using these constraints that the batch scheduler will negotiate with the runtime scheduler and with every negotiation attempt it will relax the constraints to bargain better. By realxing the constraints we mean that the min constraint of node count will be lowered.\\ \\
+In the above description $details_{i}$ refers to the details of any $i^{th}$ job such as \textit{constraints, priority, runtime estimate, max nodes, min nodes, job name, start time, deadline}. In these details, the constraints are specific to the purpose of negotiation and this can be related to node count that the job is requesting for, memory size, exclusive / shared resource access etc. Currently, we support only the constraints for node count. The node count constraint will again have a min and max both of which will fall within the window of max and min nodes of the job. It is using these constraints that the batch scheduler will negotiate with the runtime scheduler and with every negotiation attempt it will relax the constraints to bargain better.\\ \\
 \textbf{Resource Offers}\\
 A reservation is basically a job being guaranteed a set of resources for a certain period of time. A resource offer is a list of such reservations and the set of nodes which are free in the partition after the runtime scheduler has guaranteed these reservations. The runtime scheduler will send such a resource offer to the batch scheduler if it rejected its mapping or it is sending a new offer that it generated.\\
 %\vspace{-0.5in}
@@ -32,7 +32,7 @@ A reservation is basically a job being guaranteed a set of resources for a certa
 \end{aligned}
 \end{equation*}
 %\end{center}
-The \boldmath{$Resv_{i}$} entry in the resource offer corresponding to a particular job id must match the job id of the \boldmath{$Map_{i}$} entry in the forwarded jobs. This means that the sequence in which jobs were forwarded to runtime scheduler will be the same sequence of jobs for which reservations will be sent to the batch scheduler.\\ \\
+The \textbf{\textit{$Resv_{i}$}} entry in the resource offer corresponding to a particular job id must match the job id of the \textbf{\textit{$Map_{i}$}} entry in the forwarded jobs. This means that the sequence in which jobs were forwarded to runtime scheduler will be the same sequence of jobs for which reservations will be sent to the batch scheduler.\\ \\
 %%%%%%%%%
 \textbf{Feedback Reports}\\
 Periodic or event-driven feedback reports on the latest status of the running jobs are sent by the runtime scheduler to the batch scheduler. It is event-driven for events such as job termination, job completion, acceptance of a mapping received from batch scheduler.
@@ -101,12 +101,13 @@ Following pages present the pseudo code for both the batch and runtime schedulin
  try\_to\_best\_fit(Map, invasive job queue, Offer)\;
  return Map\;
  \caption{Batch Scheduling Algorithm}
+ \label{algo:1}
 \end{algorithm}
 %%%%%%%
-\textbf{\textit{Algorithm 1}} presents a high level pseudo code of the batch scheduling algorithm. Following points describe the algorithm:
+\textbf{\textit{Algorithm }}\ref{algo:1} presents a high level pseudo code of the batch scheduling algorithm. Following points describe the algorithm:
 \begin{itemize}
 \item It takes as input a resource offer from iRTSched and maps jobs from its queue to the offered resources.
-\item \textbf{\textit{Line \boldmath{$1$}}}: A separate job queue is constructed by scanning the main job queue for jobs which have been submitted specifically for the invasic partition. These jobs are then sorted according to their priorities.
+\item \textbf{\textit{Line \boldmath{$1$}}}: A separate job queue is constructed by scanning the main job queue for jobs which have been submitted specifically to the invasic partition. These jobs are then sorted according to their priorities.
 \item \textbf{\textit{Line \boldmath{$8$-$34$}}}: For every job in the invasive queue: If it is found in the reservation list from the resource offer and if it can start immediately(has a bitmap allocated) then we will just append this to the Map after creating a new forward job record.
 \item If it starts in future(has a NULL bitmap) then we will relax its node count constraints by a step size calculated as below and try to map it to the residual nodes.
 \vspace{-0.30in}
@@ -119,10 +120,10 @@ step\ size = \frac{(Job.MaxNodes - Job.MinNodes)}{MAX\_NEGOTIATION\_ATTEMPTS}
 \item \textbf{\textit{job.node\_count.min $=$ job.node\_count.min - step size}}. If the computed value is negative or less than the job's minimum number of nodes then we just set \textbf{\textit{job.node\_count.min $=$ job.min\_nodes}}.
 \item If the job is not found in the reservation list then this must be a new job that was submitted after the previous dispatch of jobs was completed by batch scheduler in the previous negotiation attempt. We will directly try to map it to the residual nodes.
 \item If a job could not be mapped, then we will just append it to the Map by creating a new forward job record. If it was mapped, then we will set the current node count of that job to the count of the allocated nodes. The node count constraints remain the same.
-\item \textbf{\textit{Line \boldmath{$35$}}}: We will try to map reserved(could not be mapped due to lack of sufficient resources in the offer) batch jobs by shrinking jobs which have been currently mapped. The shrink operation considers mapped jobs in the reverse order of their priority so that the operation can start from the lowest priority mapped job till the highest one.
+\item \textbf{\textit{Line \boldmath{$35$}}}: We will try to map batch jobs that could not be mapped due to lack of sufficient resources in the offer by shrinking jobs which have been currently mapped. The shrink operation considers mapped jobs in the reverse order of their priority so that the operation can start from the lowest priority mapped job till the highest one.
 \item Result would be a best fit mapping of the invasic jobs ready to be forwarded to iRTSched.
 \item \textbf{\textit{Algorithm 2:}} This algorithm shows how the best fit mapping is computed. It considers all those jobs which could not be mapped. For every such job, it will try to shrink the mapped jobs in an increasing order of priorities until sufficient nodes have been found to map the job. 
-\item If we were successful in mapping any new jobs by shrink operations, then we must rescan the invasive job queue to fill the Map by jobs which had been previously skipped due to a limit on the reservation depth.
+\item If we were successful in mapping any new jobs by shrink operations, then we must rescan the invasive job queue to fill the Map by jobs which had been previously skipped due to a limit on the reservation depth. This means that we have a limit on the number of jobs that have not been successfully mapped to be forwarded to runtime scheduler.
 \item \textbf{\textit{Algorithm 3:}} This algorithm shows how the analysis of running jobs are done in order to shrink them to satisfy a job request. Analysis will consider shrinking the jobs by a step size computed as shown below. If analysis is successful, then jobs are shrunk.
 \vspace{-0.30in}
 \begin{center}
@@ -214,7 +215,7 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. Following points describe the algorithm:
 \begin{itemize}
 \item Run the backfill algorithm to schedule the forwarded job requests. Some jobs can immediately start whereas for others it will give reservations. Both of these are written into the resource offer.
-\item If there were no forwarded job requests received then this was a new offer being generated and therefore it will return back from the function with the constructed resource offer.
+\item If there were no forwarded job requests then this was a new offer being generated.
 \item Update job dependencies according to the new system state. This means that some running malleable jobs may be maintaining invalid job dependencies. If a forwarded job has been mapped successfully to some nodes and a running malleable job has its dependency on this forwarded job from before because it was reserved, then this dependency should be cleared now as it is no longer valid.
 \item Analyze running malleabe jobs according to the approach mentioned in the pseudo code for shrink operations to generate sufficient resources for immediate start of reserved jobs. If analysis was successful, then shrink the jobs.
 \item Reschedule forwarded job requests using backfill algorithm and compute reservations(without job start). In this step we will not consider jobs which could get immediate start time in the previous steps.
@@ -222,6 +223,10 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \item For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency of that running malleable job to this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
 \item Once all the previous steps of the algorithm have been completed, runtime scheduler will decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back an offer to iBSched.
 \end{itemize}
+Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}. Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance. If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand and instead use it to send an offer. These partial transformations will only be done on every alternate periodic
+ time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of r
+unning applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quali
+ty of service to batch scheduler.
 \setcounter{AlgoLine}{0}
 %%%%%%%
 %\pagebreak
@@ -274,10 +279,10 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
  %\caption{Runtime Scheduling Algorithm}
 \end{algorithm}
 \RestyleAlgo{boxruled}
-%%%%%%
+ %%%%%%
 \section{Negotiation}
 %%%%%%%%
-The above figure illustrates one possible scenario of the negotiation between batch and runtime scheduler. Following points describe it in detail:
+The figure \ref{fig:2} illustrates one possible scenario of the negotiation between batch and runtime scheduler. Following points describe it in detail:
 \begin{itemize}
 \item The alphabets \textbf{A,B,C,D,E} represent runtime states(running jobs and idle nodes in the invasic partition) of the system. \textbf{TRF} means transformation of the system state through expand and shrink operations. This happens when a list of forwarded job requests are received from batch scheduler and the runtime scheduler runs its algorithm to fit as many requests as possible by expanding / shrinking running jobs.
 \item \textbf{INIT} means initialize state. It will reset the transformed state back to the original state that the system was at the beginning of the negotiation. This is done in order to perform a new system transformation during every negotiation and this must start from the original state otherwise the state of the system will be saturated very soon.
@@ -291,5 +296,5 @@ The above figure illustrates one possible scenario of the negotiation between ba
 \hspace*{-0.5in}
 \includegraphics[width=1.2\textwidth, height=120mm]{./figures/negotiation.pdf}
 \caption{Negotiation protocol}
-\label{fig:1}
+\label{fig:2}
 \end{figure}

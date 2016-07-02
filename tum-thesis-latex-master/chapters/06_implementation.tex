@@ -1,8 +1,8 @@
 \chapter{Implementation}\label{chapter:implementation}
 \section{Plugin}
-iBSched is implemented as an extension to SLURM in the form of a scheduler plugin. A Slurm plugin is a dynamically linked code object which is loaded explicitly at run time by the Slurm libraries. A plugin provides a customized implementation of a well-defined API connected to tasks such as authentication, interconnect fabric, and task scheduling. There are several other existing scheduler plugins of SLURM such as: the default(FCFS) plugin, Backfill, wiki and wiki2(Interfaces to external schedulers) etc. A related plugin that is of importance to scheduling is the priority plugin because the job queue is first constructed and then sorted based on priorities before the scheduling algorithm runs through it. Slurm provides a basic priroity plugin and a multifactor priority plugin. The basic version provides a standard FIFO based job priority whereas the multifactor version provides priorities to job based on several factors such as age, fair-share, job size(also considers the job duration to calculate a weight factor for job size relative to time), partition, quality of service etc. The multifactor priority plugin has been refactored for this work to be better suitable for our implementation. Specifically, the multifactor priority plugin now assigns priority to jobs based on age and size(also considers the job duration to calculate a weight factor for job size relative to time). As its default behavior it also re-calculates periodically the priority of the jobs.\\ \\
+iBSched is implemented as an extension to SLURM in the form of a scheduler plugin. A Slurm plugin is a dynamically linked code object which is loaded explicitly at run time by the Slurm libraries. A plugin provides a customized implementation of a well-defined API connected to tasks such as authentication, interconnect fabric, and task scheduling. There are several other existing scheduler plugins of SLURM such as: the default(FCFS) plugin, Backfill, wiki and wiki2(Interfaces to external schedulers) etc. A related plugin that is of importance to scheduling is the priority plugin because the job queue is first constructed and then sorted based on priorities before the scheduling algorithm runs through it. Slurm provides a basic priroity plugin and a multifactor priority plugin. The basic version provides a standard FIFO based job priority whereas the multifactor version provides priorities to job based on several factors such as age, fair-share, job size(also considers the job duration to calculate a weight factor for job size relative to time), partition, quality of service etc. The multifactor priority plugin has been refactored for this work to be better suitable for our implementation. Specifically, the multifactor priority plugin now assigns priority to jobs based on age and size(relative to time). As its default behavior it periodically re-calculates the priorities of the jobs.\\ \\
 %%%%%
-For the current scope of the work, iRTSched has been implemented as an independent binary that talks to iBSched via the negotiation protocol. The purpose of this independent binary is to fake an actual runtime scheduler by simulating the runtime states of the system in time by employing the runtime scheduling algorithm and also negotiating with iBSched. In reality, a full-fledged runtime scheduler will be managing the resources in the invasic partition, will launch the jobs and perform dynamic resource management. In order to evaluate the negotiation-based separation of batch and runtime scheduling system, a simulation of the same involving a fake runtime scheduler would be very useful and sufficient for our objectives. 
+For the current scope of the work, iRTSched has been implemented as an independent binary that talks to iBSched via the negotiation protocol. The purpose of this independent binary is to fake an actual runtime scheduler by simulating the runtime states of the system in time by employing the runtime scheduling algorithm and also negotiating with iBSched. In reality, a full-fledged runtime scheduler will be managing the resources in the invasic partition, will launch the jobs and perform dynamic resource management. In order to evaluate the negotiation-based separation of batch and runtime scheduling system, a simulation of the same would be very useful and sufficient for our objectives. 
 \section{Data Structures}
 This section will enumerate some of the important data structures that are a part of the implementation.\\ \\
 \lstset{breaklines=true}
@@ -41,18 +41,7 @@ struct forward_job_details {
                                          * each task */
         uint8_t hint;                   /* Job characteristic: IO / Compute / Memory bound */
         uint8_t job_type;                       /* Type of job: Static or Dynamic */
-        uint32_t max_cpus;              /* maximum number of cpus */
-        uint32_t min_cpus;              /* minimum number of cpus */
-
-        /* job constraints: */
-        uint32_t pn_min_cpus;           /* minimum processors per node */
-        uint32_t pn_min_memory;         /* minimum memory per node (MB) OR
-                                         * memory per allocated
-                                         * CPU | MEM\_PER\_CPU */
-        uint32_t pn_min_tmp_disk;       /* minimum tempdisk per node, MB */
-        uint8_t share_res;              /* set if job can share resources with
-                                         * other jobs */
-        uint8_t whole_node;             /* 1: --exclusive * 2: --exclusive=user */
+        /* Ideally this structure should further contain all the necessary details required for launching this job. For the purpose of this thesis, we are only doing a simulation without running jobs, hence other details in this structure are not important */
 };
 \end{lstlisting}
 %%%%%%%
@@ -169,8 +158,6 @@ struct run_job_record {
         uint8_t adapt;  /* 0 - No change, 1 - Expand, 2 - Shrink */
         uint8_t transformed;
         time_t exp_end_time;
-        time_t last_resize_time;
-        uint32_t adapt_interval;
 };
 \end{lstlisting}
 %%%%%%%
@@ -232,7 +219,7 @@ This is the runtime scheduling algorithm whose steps have been described in the 
 \begin{lstlisting}[mathescape,frame=single]
 extern bitstr_t * _try_transf(bool);
 \end{lstlisting}
-This routine performs a runtime transformation of the system state by performing expand / shrink of the running malleable jobs considering their performance and scalability. In case the result of this transformation are some free resources, then those will be sent up to batch scheduler as a new resoruce offer.\\
+This routine performs a runtime transformation of the system state by performing expand / shrink of the running malleable jobs considering their performance and scalability. In case the result of this transformation are some free resources, then those will be sent up to batch scheduler as a new resoruce offer. The boolean argument passed here represents the negotiation flag. If it is true then it means we have received a request for an offer and must perform a partial transformation by doing only the shrink operations to create a gap in the resources. If it is false then it means that we must do the full transformation as no offer is being sent out.\\
 \begin{lstlisting}[mathescape,frame=single]
 extern int _commit_state(bool);
 \end{lstlisting}
