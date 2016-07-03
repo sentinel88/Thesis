@@ -213,7 +213,7 @@ Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling
 \item If the mapping was rejected after repeating the previous transformation, then the runtime scheduler will reset the runtime state of the system and perform a new transformation for generating an offer to satisfy the forwarded job requests.
 \item If the response from batch scheduler was reject, then the runtime scheduler will go through the same step as described in the previous point.
 \end{itemize}
-\textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. Following points describe the algorithm:
+\textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. The runtime scheduling algorithm in this thesis is based on the \textbf{\textit{DBES}} algorithm from <ref>. It has been adapted for negotiation based scheduling in this work. Following points describe the algorithm:
 \begin{itemize}
 \item Run the backfill algorithm to schedule the forwarded job requests. Some jobs can immediately start whereas for others it will give reservations. Both of these are written into the resource offer.
 \item If there were no forwarded job requests then this was a new offer being generated.
@@ -224,7 +224,7 @@ Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling
 \item For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency of that running malleable job to this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
 \item Once all the previous steps of the algorithm have been completed, runtime scheduler will decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back an offer to iBSched.
 \end{itemize}
-Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}. Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance.
+Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}.
 \clearpage
 \setcounter{AlgoLine}{0}
 %%%%%%%
@@ -278,7 +278,7 @@ Runtime scheduler can generate a resource offer for the following events: \textb
  %\caption{Runtime Scheduling Algorithm}
 \end{algorithm}
 \RestyleAlgo{boxruled}
-If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand and instead use it to send an offer. These partial transformations will only be done on every alternate periodic  time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of running applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quality of service to batch scheduler.
+Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance. If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand and instead use it to send an offer. These partial transformations will only be done on every alternate periodic  time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of running applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quality of service to batch scheduler.
  %%%%%%
 \section{Negotiation}
 %%%%%%%%
@@ -294,7 +294,7 @@ The figure \ref{fig:2} illustrates one possible scenario of the negotiation betw
 \begin{figure}[!htbp]
 %\centering
 \hspace*{-0.5in}
-\includegraphics[width=1.2\textwidth, height=120mm]{./figures/negotiation.pdf}
+\includegraphics[width=1.2\textwidth, height=110mm]{./figures/negotiation.pdf}
 \caption{Negotiation protocol}
 \label{fig:2}
 \end{figure}
