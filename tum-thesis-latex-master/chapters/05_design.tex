@@ -132,6 +132,7 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \end{equation*}
 \end{center}
 \end{itemize}
+Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling by considering them in the order of decreasing priorities. It also avoids any \textbf{\textit{job starvation}} by forwarding jobs that could not get mapped to the available resource offer. This will result in the runtime scheduler giving these jobs future start times as per its backfill algorithm and only then process other job requests after it  in the list of forwarded jobs. Batch scheduler will also adjust the expected end times of those jobs that it will transform by expand / shrink. This adjustment will take into consideration the performance model of the running application.
 %%%%%%
 \setcounter{AlgoLine}{0}
 %%%%%%%
@@ -223,15 +224,13 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \item For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency of that running malleable job to this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
 \item Once all the previous steps of the algorithm have been completed, runtime scheduler will decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back an offer to iBSched.
 \end{itemize}
-Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}. Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance. If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand and instead use it to send an offer. These partial transformations will only be done on every alternate periodic
- time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of r
-unning applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quali
-ty of service to batch scheduler.
+Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}. Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance.
+\clearpage
 \setcounter{AlgoLine}{0}
 %%%%%%%
 %\pagebreak
 %\newpage
-\begin{algorithm}[!htbp]
+\begin{algorithm}[H]
  \DontPrintSemicolon
  %\TitleOfAlgo{Runtime Scheduling Algorithm}
  \KwData{Attempts, Jobs2Map, Error Code, Offer}
@@ -279,14 +278,15 @@ ty of service to batch scheduler.
  %\caption{Runtime Scheduling Algorithm}
 \end{algorithm}
 \RestyleAlgo{boxruled}
+If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand and instead use it to send an offer. These partial transformations will only be done on every alternate periodic  time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of running applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quality of service to batch scheduler.
  %%%%%%
 \section{Negotiation}
 %%%%%%%%
 The figure \ref{fig:2} illustrates one possible scenario of the negotiation between batch and runtime scheduler. Following points describe it in detail:
 \begin{itemize}
-\item The alphabets \textbf{A,B,C,D,E} represent runtime states(running jobs and idle nodes in the invasic partition) of the system. \textbf{TRF} means transformation of the system state through expand and shrink operations. This happens when a list of forwarded job requests are received from batch scheduler and the runtime scheduler runs its algorithm to fit as many requests as possible by expanding / shrinking running jobs.
+\item The alphabets \textbf{A,B,C,D,E} represent runtime states(running jobs and idle nodes) of the system. \textbf{TRF} means transformation of the system state through expand and shrink operations. This happens when a list of forwarded job requests are received from batch scheduler and the runtime scheduler runs its algorithm to fit as many requests as possible by expanding / shrinking running jobs.
 \item \textbf{INIT} means initialize state. It will reset the transformed state back to the original state that the system was at the beginning of the negotiation. This is done in order to perform a new system transformation during every negotiation and this must start from the original state otherwise the state of the system will be saturated very soon.
-\item Saturation means that we can no more perform any expand / shrink operations on the running jobs as they will be either at there min or max node counts due to a result of the previous transformations. This would result in making no progress on the following negotiation attempts.
+\item Saturation means that we can no more perform any expand / shrink operations on the running jobs as they will be either at there min or max node counts due to a result of the previous transformations. This would result in making no progress.
 \item The green boxes labelled \textbf{"Algo 1"} represent the batch scheduling algorithm which will run every time the batch scheduler receives a resource offer. On every such attempt, it will relax the constraints of the job much more than its previous attempt for all those jobs which could not be mapped.
 \item The box labelled \textbf{"Update"} will update its job details once it receives a feedback. This is important as a subsequent negotiation must not result in the batch scheduling algorithm dispatching a job that is already running.
 \item Once the negotiation completed then the runtime scheduler will accept the mapping and commit the jobs. The box labelled \textbf{"COMM"} represents the step where the commit of new forwarded jobs to the running list happens. These jobs would be started very soon. The runtime state of the system will take up the transformed state going forward as shown by the box \textbf{E}.
