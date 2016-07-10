@@ -132,8 +132,15 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
 \end{equation*}
 \end{center}
 \end{itemize}
-Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling by considering them in the order of decreasing priorities. It also avoids any \textbf{\textit{job starvation}} by forwarding jobs that could not get mapped to the available resource offer. This will result in the runtime scheduler giving these jobs future start times as per its backfill algorithm and only then process other job requests after it  in the list of forwarded jobs. Batch scheduler will also adjust the expected end times of those jobs that it will transform by expand / shrink. This adjustment will take into consideration the performance model of the running application.
+Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling by considering them in the order of decreasing priorities. It also avoids any \textbf{\textit{job starvation}} by forwarding jobs that could not get mapped to the available resource offer. This will result in the runtime scheduler giving these jobs future start times as per its backfill algorithm and only then process other job requests after it  in the list of forwarded jobs. Batch scheduler will also adjust the expected end times of those jobs that it will transform by expand / shrink. This adjustment will take into consideration the performance model of the running application.\\ \\
 %%%%%%
+\textbf{\textit{Decision Logic}} The batch scheduler currently has a very simple decision making routine. It tries to maximize the sum of the priorities(objective) of jobs that have been mapped to some resources in the offer. Below are the key points:
+\begin{itemize}
+\item Batch scheduler will keep sending a reject if the job at the front of the queue could not be mapped or atleast some fraction of the total number of jobs in the queue have not been mapped(ex: one-third of the total jobs). But, if the number of negotiations have crossed half the limit, then it will ignore these constraints.
+\item If the batch scheduler had sent an accept decision on the previous negotiation attempt, then it will send an accept again in the current attempt if the objective value has remained the same or improved. It will also stop relaxing the node count constraints of jobs for further negotiations in case the number of jobs which have been mapped are more than the previous attempt.
+\item If the batch scheduler had sent a reject on the previous negotiation attempt, then it will send a reject again in the current attempt if the objective has reduced. If the objective has remained the same or improved, then it will accept if it does not violate the first point.
+\end{itemize}
+%%%%%
 \setcounter{AlgoLine}{0}
 %%%%%%%
 %\pagebreak
@@ -215,16 +222,18 @@ Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling
 \end{itemize}
 \textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. The runtime scheduling algorithm in this thesis is based on the \textbf{\textit{DBES}} algorithm from <ref>. It has been adapted for negotiation based scheduling in this work. Following points describe the algorithm:
 \begin{itemize}
-\item Run the backfill algorithm to schedule the forwarded job requests. Some jobs can immediately start whereas for others it will give reservations. Both of these are written into the resource offer.
-\item If there were no forwarded job requests then this was a new offer being generated.
-\item Update job dependencies according to the new system state. This means that some running malleable jobs may be maintaining invalid job dependencies. If a forwarded job has been mapped successfully to some nodes and a running malleable job has its dependency on this forwarded job from before because it was reserved, then this dependency should be cleared now as it is no longer valid.
-\item Analyze running malleabe jobs according to the approach mentioned in the pseudo code for shrink operations to generate sufficient resources for immediate start of reserved jobs. If analysis was successful, then shrink the jobs.
-\item Reschedule forwarded job requests using backfill algorithm and compute reservations(without job start). In this step we will not consider jobs which could get immediate start time in the previous steps.
-\item Update job dependencies according to the new system state similar to point $3$.
-\item For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency of that running malleable job to this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
-\item Once all the previous steps of the algorithm have been completed, runtime scheduler will decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back an offer to iBSched.
+\item \textit{Line 1:} Run the backfill algorithm to schedule the forwarded job requests. Some jobs can immediately start whereas for others it will give reservations. Both of these are written into the resource offer.
+\item \textit{Line 2:} If there were no forwarded job requests then this was a new offer being generated.
+\item \textit{Line 5:} Update job dependencies according to the new system state. This means that some running malleable jobs may be maintaining invalid job dependencies. If a forwarded job can immediately start and a running malleable job has a dependency from the same job id, then this dependency should be cleared now as it is no longer valid. 
+\item \textit{Line 6-9:} For every reserved job, Analyze running malleabe jobs according to the approach mentioned in the pseudo code for shrink operations to generate sufficient resources for immediate start of reserved jobs. If analysis was successful, then shrink the jobs.
+\item \textit{Line 14:} Reschedule forwarded job requests using backfill algorithm and compute reservations(without job start). In this step we will not consider jobs which could get immediate start time in the previous steps. Update the resource offer accordingly.
+\item \textit{Line 15:} Update job dependencies according to the new system state similar to point $3$.
+\item \textit{Line 16-20:} For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency on that running malleable with the job id of this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
+\item \textit{Line 25:} Once all the previous steps of the algorithm have been completed, runtime scheduler will finally decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back the constructed offer to iBSched.
 \end{itemize}
-Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}.
+Runtime scheduler can generate a resource offer for the following events: \textbf{\textit{job termination, job completion, request for a resource offer, periodic runtime transformations of the running jobs resulting in free resources}}.\\ \\
+A resource offer is sent to the batch scheduler on almost every alternate periodic time step except in the case where batch scheduler has already indicated that its job queue is empty and does not need any offer to be sent until it asks for it explicitly. Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance. If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to explicitly create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand other jobs and instead use it to send an offer. These partial transformations will only be done on every alternate periodic time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of running applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quality of service to batch scheduler. A running malleable job always keeps track of the job id of a forwarded job that did not start but had its dependency on this running job. During the periodic runtime transformations(not partial), if there are any running malleable jobs which have such dependencies then they will be given complete preference for expansion at the cost of shrinking all other jobs without any dependencies.
+%%%%%%
 \clearpage
 \setcounter{AlgoLine}{0}
 %%%%%%%
@@ -278,23 +287,34 @@ Runtime scheduler can generate a resource offer for the following events: \textb
  %\caption{Runtime Scheduling Algorithm}
 \end{algorithm}
 \RestyleAlgo{boxruled}
-Between any two transactions(set of negotiations), the runtime scheduler will perform periodic runtime transformations of running jobs based on their peformance. If any of these transformations result in a gap in the resources, then an offer will be sent to the batch scheduler. Also, The runtime scheduler will try to create an offer by doing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand and instead use it to send an offer. These partial transformations will only be done on every alternate periodic  time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of running applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quality of service to batch scheduler.
+%%%%%%
+\noindent
+\textbf{\textit{Decision Logic:}} Runtime scheduler like batch scheduler uses a very simple decision making routine. This is due to the fact th
+at it does not manage any resources and only simulates it. Below are the rules it follows to accept / reject a mapping:
+\begin{itemize}
+\item If there are any idle nodes left after the complete runtime scheduling algorithm has run, then the received mapping will be rejected.
+\item If only one job could be immediately started out of the many that have been forwarded, then it will reject the mapping else accept. This
+constraint will be ignore, however, if the number of negotiations have crossed half the limit.
+\item If it rejected on any negotiation attempt, then on subsequent attempts it will keep rejecting if the number of jobs immediately starting does not improve.
+\item If the batch scheduler had rejected the previous offer but accepted the current offer, then runtime scheduler will again employ the same rules for making a decision as enumerated in the last three points.
+\end{itemize}
  %%%%%%
 \section{Negotiation}
 %%%%%%%%
 The figure \ref{fig:2} illustrates one possible scenario of the negotiation between batch and runtime scheduler. Following points describe it in detail:
 \begin{itemize}
 \item The alphabets \textbf{A,B,C,D,E} represent runtime states(running jobs and idle nodes) of the system. \textbf{TRF} means transformation of the system state through expand and shrink operations. This happens when a list of forwarded job requests are received from batch scheduler and the runtime scheduler runs its algorithm to fit as many requests as possible by expanding / shrinking running jobs.
-\item \textbf{INIT} means initialize state. It will reset the transformed state back to the original state that the system was at the beginning of the negotiation. This is done in order to perform a new system transformation during every negotiation and this must start from the original state otherwise the state of the system will be saturated very soon.
+\item \textbf{INIT} means initialize state. It will reset the transformed state back to the original state that the system was at the beginning of the negotiation. This is done in order to perform a new system transformation from the original state otherwise the state of the system will be saturated very soon.
 \item Saturation means that we can no more perform any expand / shrink operations on the running jobs as they will be either at there min or max node counts due to a result of the previous transformations. This would result in making no progress.
 \item The green boxes labelled \textbf{"Algo 1"} represent the batch scheduling algorithm which will run every time the batch scheduler receives a resource offer. On every such attempt, it will relax the constraints of the job much more than its previous attempt for all those jobs which could not be mapped.
 \item The box labelled \textbf{"Update"} will update its job details once it receives a feedback. This is important as a subsequent negotiation must not result in the batch scheduling algorithm dispatching a job that is already running.
 \item Once the negotiation completed then the runtime scheduler will accept the mapping and commit the jobs. The box labelled \textbf{"COMM"} represents the step where the commit of new forwarded jobs to the running list happens. These jobs would be started very soon. The runtime state of the system will take up the transformed state going forward as shown by the box \textbf{E}.
 \end{itemize}
-\begin{figure}[!htbp]
+\begin{figure}[!b]
 %\centering
+\vspace{-0.50in}
 \hspace*{-0.5in}
-\includegraphics[width=1.2\textwidth, height=110mm]{./figures/negotiation.pdf}
+\includegraphics[width=1.2\textwidth, height=95mm]{./figures/negotiation.pdf}
 \caption{Negotiation protocol}
 \label{fig:2}
 \end{figure}

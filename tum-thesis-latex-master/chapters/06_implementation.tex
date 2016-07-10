@@ -105,7 +105,7 @@ typedef struct resource_offer_msg {
         uint16_t value;      /* info */
         uint8_t negotiation; /* if negotiation is ongoing then this value is 1 else it becomes 0 to indicate ischeduler that previous negotiat
                                 ion is over */
-        List resource_offer;   /* List of node space records */
+        List resource_offer;   /* List of node space records, currently it has only one entry for residual nodes */
         List resv_jobs;        /* List of jobs with actual reservations. Can also include jobs with virtual reservations that are those with
                                   future start / service times */
         uint32_t error_code;    /* error code on failure */
