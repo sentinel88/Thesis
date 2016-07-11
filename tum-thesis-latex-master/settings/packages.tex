@@ -8,7 +8,7 @@
 \usepackage[%
   backend=biber,
   url=false,
-  style=alphabetic,
+  style=numeric,
   maxnames=4,
   minnames=3,
   maxbibnames=99,
@@ -24,7 +24,12 @@
 \usepackage{booktabs}
 \usepackage[final]{microtype}
 \usepackage{caption}
-\usepackage[hidelinks]{hyperref} % hidelinks removes colored boxes around references and links
+%\usepackage[hidelinks]{hyperref} % hidelinks removes colored boxes around references and links
+\usepackage{color}
+\usepackage[hidelinks,colorlinks=true,
+            linkcolor=gray,
+            urlcolor=blue,
+            citecolor=red]{hyperref}
 \usepackage[toc,nonumberlist,acronym]{glossaries} % TODO: remove if glossary not needed
 \usepackage{textcomp}
 \usepackage[boxruled,linesnumbered,lined,commentsnumbered,longend,nofillcomment,noresetcount]{algorithm2e}

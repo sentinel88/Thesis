@@ -220,7 +220,7 @@ Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling
 \item If the mapping was rejected after repeating the previous transformation, then the runtime scheduler will reset the runtime state of the system and perform a new transformation for generating an offer to satisfy the forwarded job requests.
 \item If the response from batch scheduler was reject, then the runtime scheduler will go through the same step as described in the previous point.
 \end{itemize}
-\textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. The runtime scheduling algorithm in this thesis is based on the \textbf{\textit{DBES}} algorithm from <ref>. It has been adapted for negotiation based scheduling in this work. Following points describe the algorithm:
+\textbf{\textit{Algorithm 5}} presents a high level pseudo code of the runtime scheduling algorithm. The runtime scheduling algorithm in this thesis is based on the \textbf{\textit{DBES}} algorithm from \cite{laxmikant}. It has been adapted for negotiation based scheduling in this work. Following points describe the algorithm:
 \begin{itemize}
 \item \textit{Line 1:} Run the backfill algorithm to schedule the forwarded job requests. Some jobs can immediately start whereas for others it will give reservations. Both of these are written into the resource offer.
 \item \textit{Line 2:} If there were no forwarded job requests then this was a new offer being generated.
