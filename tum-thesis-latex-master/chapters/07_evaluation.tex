@@ -16,7 +16,7 @@ From these parameters are computed:
 \item \textit{$a_{i}\ =\ w_{i}.l_{i}$} is the area of job i.
 \end{itemize}
 The performance metrics on which one can evaluate a parallel job scheduler falls into two categories usually with some overlap tolerated between the two:\\ \\
-\textbf{User-Centric metrics}\\
+\textbf{User-Centric metrics\cite{streit}}\\
 These type of metrics refer to the actual job performance. The performance of the scheduler directly affects the waiting time of jobs. Below mentioned are some of the commonly used user-centric metrics. We will assume $N$ as the number of jobs for which the metric is computed.
 \begin{itemize}
 \item \textbf{\textit{Average Waiting Time:}} It refers to the average over the waiting time for all jobs.
@@ -41,7 +41,7 @@ These type of metrics refer to the actual job performance. The performance of th
 \end{equation*}
 \end{itemize}
 The last 2 metrics would not be suitable to use for adaptive jobs or malleable / evolving jobs since there width changes dynamically at runtime.\\ \\
-\textbf{System-Centric metrics}\\
+\textbf{System-Centric metrics\cite{streit}}\\
 These type of metrics focus on the effective usage of the resources in the system. Below mentioned are some of the commonly used metrics:
 \begin{itemize}
 \item \textbf{\textit{Utilization}} Percentage of all resources were actually used on average over a specific time frame
@@ -50,7 +50,7 @@ These type of metrics focus on the effective usage of the resources in the syste
 \item \textbf{\textit{Loss of Capacity}} Percentage of resources that were idle, although workload for processing was available
 \end{itemize}
 \section{Method of Evaluation}
-In order to select a scheduling algorithm for a system, it needs to be evaluated based on certain criterias, many of which have been defined earlier. The performance of such an algorithm depends a lot on the workload which it is processing, hence a workload benchmark maybe useful in evaluating a scheduler or even comparing it with other schedulers. There are various methods used to perform such an evaluation based on a workload [ref]:
+In order to select a scheduling algorithm for a system, it needs to be evaluated based on certain criterias, many of which have been defined earlier. The performance of such an algorithm depends a lot on the workload which it is processing, hence a workload benchmark maybe useful in evaluating a scheduler or even comparing it with other schedulers. There are various methods used to perform such an evaluation based on a workload\cite{galvin}:
 %\subsection{Emulation of Workload}
 \begin{itemize}
 \item \textbf{\textit{Deterministic Modeling}} This evaluation takes a pre-determined workload and defines the performance of each algorithm for that workload. For example: $5$ jobs arriving at time $0$ in a particular order. One can then use a criteria such as average waiting time to find which algorithm performs the best. This method is simple and fast in giving exact results if the inputs are the same. But, the results only apply to these cases. The main usage of deterministic modeling can be to describe algorithms or serve as examples and over a set of inputs may indicate a trend or behavior that can help for further analysis. 
