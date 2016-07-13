@@ -237,7 +237,7 @@ extern int _decision_logic(resource_offer_msg_t *, List, int, bool);
 \end{lstlisting}
 The runtime scheduler decides whether to accept / reject the mapping received from batch scheduler by calling this routine. This routine checks through the mapping to see how many jobs can be started immediately and based on how well it is suitable for its metrics a decision will be taken.
 %%%%%%%%%%%%%
-\section{State Machine Diagrams}
+\section{Control Flow Diagrams}
 Following pages give the state machines diagrams of both the batch and the runtime scheduler. These diagrams illustrate their implementation and the general flow of their working highlighting the important details. Many of the error handling or subordinate threads related to feedback, urgent job handling, signal handling for termination etc. have not been shown here due to space constraints. The diagrams in both the pages represent the main control thread for both the batch and runtime scheduler. This control thread is responsible to spawn other subordinate threads, drive the control loop responsible for doing / initiating all the work such as receiving processing and sending protocol messages.\\ \\
 %%%%%%%%
 \begin{figure}[!htbp]
