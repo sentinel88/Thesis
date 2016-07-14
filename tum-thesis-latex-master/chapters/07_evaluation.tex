@@ -59,7 +59,7 @@ In order to select a scheduling algorithm for a system, it needs to be evaluated
 \end{itemize}
 %\subsection{Real Invasic Applications}
 \section{Setup}
-The scheduling algorithm implemented in this thesis will be tested by the approach of simulation. This means that the jobs are not actually launched and iRTSched instead will simulate this by changing the state of the system and modifying the necessary metadata to run the simulation in time. This also means that we do not need actual physical resources or a real cluster to do this testing and just need to emulate a cluster using SLURM to serve our purpose. For the purpose of doing this simulation, below are the steps taken:
+The scheduling algorithm implemented in this thesis will be tested by the approach of simulation. This means that the jobs are not actually launched and iRTSched instead will simulate this by transforming the running jobs and modifying the necessary metadata to run the simulation in time. This also means that we do not need actual physical resources or a real cluster to do this testing and just need to emulate a cluster using SLURM to serve our purpose. For the purpose of doing this simulation, below are the steps taken:
 \begin{itemize}
 \item Configure the SLURM using --enable-front-end and install it. This allows us to emulate a cluster by this front end node which in practical systems will actually dispatch the jobs it receives to all the resources in a cluster managed by a different middleware.
 \item Run the SLURM by configuring the scheduler plugin as iBSched and the priority plugin as basic (assigns priorities to jobs in the order of their arrival).
@@ -69,7 +69,7 @@ The scheduling algorithm implemented in this thesis will be tested by the approa
 \item This has been done to ease the effort for the purpose of simulation. In reality invasic jobs must be directed towards invasic partition and due to some load balancing by the batch system, legacy (rigid) jobs can also be dispatched to the invasic partition when other partitions are busy. 
 \item Simulation continues until we shutdown iRTSched and subsequently SLURM. Feedback data from iRTSched will be used to update job states in SLURM. Output data corresponding to job start and end times will be written in a separate file by iBSched for post-simulation analysis.
 \end{itemize}
-The experiments have been executed on a laptop with a $64$-bit CPU($8$ cores) each having a max. speed of approx. $3$GHz. The $64$-bit version of Ubuntu $14.04$ LTS is running on the laptop and the version of SLURM used for this thesis is $15.08$.
+The experiments have been executed on a laptop with a $64$-bit CPU ($8$ cores) each having a max. speed of approx. $3$GHz. The $64$-bit version of Ubuntu $14.04$ LTS is running on the laptop and the version of SLURM used for this thesis is $15.08$.
 %%%%%%%
 \section{Experiments and Results}
 In order to test the prototype, we would need a suitable workload (stream of jobs) for the simulation. There have been prior efforts in this direction to come up with tools, simulators on how to simulate such a system with a workload of different job types\cite{yangjie} or in general to evaluate job schedulers there have been many efforts, some of which are \cite{lucero}\cite{dalibor}. In most of the cases, due to the nature of our architecture which is multi-level and the presence of a negotiation protocol rendered the usage of many of the available simulators as not possible.\\ \\
@@ -106,7 +106,19 @@ The ESP workload has been used to generate 228 jobs for a system with 16 nodes b
 \end{figure}
 %%%%%%%
 \begin{itemize}
-\item Figure \ref{fig:72} shows a graph with few selected workloads of $10\%$, $50\%$ and $100\%$ malleable jobs for simulating the system without any expand or shrink operations. This means that these malleable jobs are essentially moldable jobs now since they can be assigned any size within their range but only at submission time. Remaining jobs are as before of rigid type.
+\item Figure \ref{fig:73} shows a graph with few selected workloads of $10\%$, $50\%$ and $100\%$ malleable jobs for simulating the system without any expand or shrink operations. This means that these malleable jobs are essentially moldable jobs now since they can be assigned any size within their range but only at submission time. Remaining jobs are as before of rigid type.
 \item All the three workloads take around $240$ min to finish. This is only slightly higher than the malleable-rigid workload that stood around $230$ min. This tells us that the proposed negotiation based flexible DBES algorithm has definitely provided us with a possibly good performance for moldable-rigid workload in comparison to the malleable-rigid workload.
+\item The results for $10\%$ of malleable jobs in the workload seems to be an anomaly in the experiments conducted. This could probably indicate to us that the performance of the algorithms are poor for this specific case in all the categories of experiments. This is quite similar to the case with the original DBES algorithm. 
+\item The previous scenario would be an important area of improvement in the future work of this research problem.
 \item Looking the other way around, there is a greater scope to achieve better results for malleable-rigid workload by performance-based expand or shrink operations and a more intelligent negotiation protocol. Batch scheduling algorithm can also make better decisions by considering feedback from runtime scheduler.
 \end{itemize}
+%%%%%%%%%%
+\begin{figure}[!htbp]
+\centering
+%\vspace{-0.5in}
+\hspace*{-0.75in}
+\includegraphics[width=1.2\textwidth, height=85mm]{./figures/"moldable+rigid".pdf}
+\caption{Time for completion of the modified ESP workload with varying amounts of rigid and moldable jobs}
+\label{fig:73}
+\end{figure}
+%%%%%%%%
