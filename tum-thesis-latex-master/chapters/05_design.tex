@@ -144,9 +144,9 @@ step\ size = \frac{(Job.node\_cnt - Job.node\_count.min)}{MAX\_NEGOTIATION\_ATTE
  \KwOut{Updated Map : Jobs $\rightarrow$ Offer}
  avail\_bitmap $\leftarrow$ Offer.ResidualNodes\;
  \While{not at end of the Map}{
-  read Map entry\;
-  \If{(entry.start\_time EQ $0$) AND (entry.bitmap NEQ NULL)}{
-   continue\;
+  read next Map entry\;
+  \If{(entry.start\_time EQ $0$) AND (entry.node\_count NEQ 0)}{
+   skip the rest of the loop\;
   }
   \tcc{Try to map this job by shrinking other mapped jobs}
   try\_sched(entry, Map, avail\_bitmap)\;
@@ -354,3 +354,4 @@ The Figure \ref{fig:2} illustrates one possible scenario of the negotiation betw
 \item Once the negotiation has completed, the runtime scheduler will then accept the mapping and commit the jobs. The box labelled \textbf{"COMM"} represents the step where the commit happens. The forwarded jobs are added to the list of running jobs and would be started very soon. The runnings jobs will now take up their transformed state going forward as shown by the box \textbf{E}.
 \end{itemize}
 %%%%%%%%
+In this section we saw a new approach to splitting up the batch and runtime scheduling along with negotiation between the two. The algorithm proposed in thesis to support such an idea is named as \textbf{\textit{DN-DBES: Distributed Negotiable Dependency Based Expand Shrink}} algorithm.
