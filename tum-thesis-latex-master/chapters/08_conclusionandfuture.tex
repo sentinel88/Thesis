@@ -1,84 +1,20 @@
 \chapter{Conclusion and Future Work}\label{chapter:conclusion and future}
-<TBA>
+The objective of this Master Thesis was to explore the idea of separating the concerns of batch and runtime scheduling with the help of a negotiation protocol to provide a dynamic and flexible scheduling strategy for adaptive applications. A prototype realizing this idea has been successfully designed and implemented with scheduling algorithms for both batch and runtime scheduler respectively. The runtime scheduling algorithm is based on the recently proposed \textbf{\textit{DBES}} algorithm that has been adapted for being suitable to negotiation. The batch scheduler uses a simple but effective algorithm to compute an approximation of the best-fit selection of jobs to a given resource offer through one or more negotiations. This approach of splitting up the batch and runtime concerns by using a negotiation protocol was named as \textbf{\textit{DF-DBES}} algorithm in this thesis. The proposed objectives in the thesis were successfully achieved with satisfactory performance of the simulations for malleable-rigid and moldable-rigid workloads. Following are a few final observations:
+\begin{itemize}
+\item The expected end times of the running malleable jobs are adjusted by the runtime scheduler only after the job has reached its first periodic runtime transformation step. This will most likely happen after a fixed interval of time or when a job terminates / completes earlier than this interval. In both the cases it is soon after the job has started.
+\item This implies that some time in the early part of the job execution is accounted for using only the minimum number of nodes though the job may be running with more than minimum number of nodes. 
+\item This was done to simulate what happens in a real system where continuous performance data collected is used for making expand or shrink decisions for an application. But on a real system, the same job may finishes sooner than the simulated system.
+\item In a simulation, we create the runtime states of the system and change it with time. Hence, in a real system with exactly the same workloads as the once used in experiments with the same application having linear speedup curves should produce much faster completion times in the case of malleable-rigid workloads. This is similarly the case for moldable jobs in the moldable-rigid workload.
+\item Batch and runtime scheduling algorithms run in O($n^{2}$) time complexity for the worst case scenario. A set of negotiations within a transaction does not change this either. Simulations show that it is consuming neglibile time for the experimented workloads. Every transaction consumes not more than $1-2$ seconds in total.
+\item These latencies will however be hidden in a real system. This is because the negotiations will happen before the actual transformation of the running jobs is done by the runtime scheduler at its periodic time step. Before this periodic time step, the computation of the transformation and the possibility of new batch jobs for the runtime scheduler are already completed.
+\item These factors will again reduce the completion time in a real system compared to the simulation where the latencies are counted by the simulation clock.
+\end{itemize}
 \section{Future Work}
-<Dummy citations of papers to test if bibliography section is working fine>
-\cite{felix}
-\cite{laxmikant}
-\cite{nikolas}
-\cite{rudolph}
-\cite{isaias}
-\cite{andreas}
-\cite{georgiou}
-\cite{travis}
-\cite{gladys}
-\cite{klein}
-\cite{pavan}
-\cite{jette}
-\cite{abhishek}
-\cite{david}
-\cite{joseph}
-\cite{hungershofer}
-\cite{yangjie}
-\cite{zhou}
-\cite{lucero}
-\cite{desai}
-\cite{yang}
-\cite{daniel}
-\cite{dror}
-\cite{ahuva}
-\cite{dinesh}
-\cite{slurm}
-\cite{tsafrir}
-\cite{streit}
-\cite{achim}
-\cite{achim1}
-\cite{streit1}
-\cite{achim2}
-\cite{striet2}
-\cite{deshmeh}
-\cite{tiachao}
-\cite{oliver}
-\cite{alain}
-\cite{viktor}
-\cite{rizos}
-\cite{viktor1}
-\cite{javier}
-\cite{kwang}
-\cite{kurowski}
-\cite{ariel}
-\cite{roland}
-\cite{cirne}
-\cite{desai}
-\cite{michal}
-\cite{sudha}
-\cite{srividya}
-\cite{song}
-\cite{sabin}
-\cite{dalibor}
-\cite{osman}
-\cite{rajesh}
-\cite{calvin}
-\cite{sudarshan}
-\cite{ribbens}
-\cite{vadhiyar}
-\cite{gonzalo}
-\cite{martin}
-\cite{gonzalo1}
-\cite{maria}
-\cite{srinidhi}
-\cite{jamjoom}
-\cite{zhiling}
-\cite{siham}
-\cite{deshmeh2010adept}
-\cite{wcirne}
-\cite{wcirne1}
-\cite{daniel1}
-\cite{da2015exascale}
-\cite{dongxu}
-\cite{buisson}
-\cite{striet2}
-\cite{schulz}
-\cite{wong}
-\cite{teich}
-
-<Refer to the works for Prof. Bungartz and Emily on topics relating to AMR applications>
+Below mentioned are some of the possible directions for future research work:
+\begin{itemize}
+\item Integrating the iRTSched from this prototype with the real iRTSched which is capable of managing resources along with providing the elastic execution model for applications. The full solution stack should then be tested with real workload containing real invasive applications.
+\item Runtime performance modeling of the applications should be performed and the model should then be used to estimate the performance and scalability of the applications at different job sizes. This information should then be used for making expand or shrink decisions.
+\item Batch scheduling algorithm currently uses an FCFS like algorithm with backfilling style approach in its final step to rescan the invasive job queue and update the job list. Many different algorithms can be used instead of this approach.
+\item One such algorithm could be to look at a window of jobs in the batch queue and select the best combination using a knapsack algorithm or by mathematically modeling it in the form of an integer program and solving the same.
+\item The negotiation protocol and the batch scheduling algorithm can be enhanced to communicate with multiple runtime schedulers. This can resemble a grid like infrastructure but for a supercomputer this may resemble the different partitions of the system.
+\end{itemize}

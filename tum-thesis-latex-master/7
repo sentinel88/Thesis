@@ -72,31 +72,22 @@ The scheduling algorithm implemented in this thesis will be tested by the approa
 The experiments have been executed on a laptop with a $64$-bit CPU($8$ cores) each having a max. speed of approx. $3$GHz. The $64$-bit version of Ubuntu $14.04$ LTS is running on the laptop and the version of SLURM used for this thesis is $15.08$.
 %%%%%%%
 \section{Experiments and Results}
+<Mention about the assumption of jobs having linear speedup curves for time adjustments>
 In order to test the prototype, we would need a suitable workload (stream of jobs) for the simulation. There have been prior efforts in this direction to come up with tools, simulators on how to simulate such a system with a workload of different job types\cite{yangjie} or in general to evaluate job schedulers there have been many efforts, some of which are \cite{lucero}\cite{dalibor}. In most of the cases, due to the nature of our architecture which is multi-level and the presence of a negotiation protocol rendered the usage of many of the available simulators as not possible.\\ \\
 %%%%%%%%
-The \textbf{ESP Benchmark}\cite{wong} was the best choice available to get a synthetic workload that can be suitably modified for simulating a workload with a mix of job types similar to the work of wolf.et.al\cite{laxmikant}. ESP (Effective System Performance) test was devised to provide a metric for resource management on parallel systems that depends upon attributes such as parallel launch time, job scheduling efficiency and job preemption. The objective of the ESP test is to run a fixed number of parallel jobs through a batch scheduler in the minimum elapsed time. Each job  runs the same synthetic application, for a predetermined length of time. The test result is determined, primarily, by the efficiency of the scheduler and the overhead of launching parallel jobs. There are 230 jobs derived from a list of 14 job types. The table below list the job types with their fractional-sizes, instance counts and target run times. Out of the 230 jobs, there are 2 jobs which are of high priority and will occupy the full system. These jobs are not included in the workload as these are of the type "urgent jobs" in our architecture.\\ \\
+The \textbf{ESP Benchmark}\cite{wong} was the closest choice available to get a synthetic workload that can be suitably modified for simulating a workload with a mix of job types similar to the work of wolf.et.al\cite{laxmikant}. ESP (Effective System Performance) test was devised to provide a metric for resource management on parallel systems that depends upon attributes such as parallel launch time, job scheduling efficiency and job preemption. The objective of the ESP test is to run a fixed number of parallel jobs through a batch scheduler in the minimum elapsed time. Each job  runs the same synthetic application, for a predetermined length of time. The test result is determined, primarily, by the efficiency of the scheduler and the overhead of launching parallel jobs. There are 230 jobs derived from a list of 14 job types. The table below list the job types with their fractional-sizes, instance counts and target run times. Out of the 230 jobs, there are 2 jobs which are of high priority and will occupy the full system. These jobs are not included in the workload as these are of the type "urgent jobs" in our architecture.\\ \\
 %%%%%%%%%
-The ESP workload has been used to generate 228 jobs for a system with 16 nodes being simulated. The experiments have been conducted by varying the percentage of malleable jobs in the workload along with the remaining rigid jobs. Figures \ref{fig:71} and \ref{fig:72} contain graphs showing the completion time for each of the modified ESP workloads and the average waiting / turnaround times for jobs in the respective workloads.
+The ESP workload has been used to generate 228 jobs for a system with 16 nodes being simulated. The experiments have been conducted by varying the percentage of malleable jobs in the workload along with the remaining rigid jobs. Figures \ref{fig:71} and \ref{fig:72} contain graphs showing the completion time for each of the modified ESP workloads and the average waiting / turnaround times for jobs.
 \begin{figure}[!t]
 \centering
 %\vspace{-0.5in}
 \hspace*{-0.75in}
-\includegraphics[width=1.2\textwidth, height=90mm]{./figures/"Workload Completion"}
+\includegraphics[width=1.2\textwidth, height=80mm]{./figures/"Workload Completion"}
 \caption{Time for completion of the modified ESP workload with varying amounts of rigid and malleable jobs}
 \label{fig:71}
 \end{figure}
-\begin{itemize}
-\item All the jobs are assumed to have linear speedup curves for the purpose of simulation. The runtime scheduler will adjust the expected end times of all the running malleable jobs every time they get transformed.
-\item Figure \ref{fig:71} shows consistent behavior irrespective of the variation in the percentages of the malleable jobs. This shows predictable quality of service from the schedulers and can be safely used for a workload in a HPC system with predictable or unpredictable variation in the number of malleable jobs at any given point of time.
-\item The workload with $10$\% malleable jobs is almost as good as a rigid workload. The opportunity to expand or shrink in such a workload in order to increase the throughput is very less and is possibly the reason for a longer completion time / lower throughput compared to others.
-\item Increase in throughput really happens only if the running malleable jobs are expanded in case they can facilitate an earlier start time of the batch jobs according to the DBES algorithm but not only for the reasons that the percentage of malleable jobs is high.
-\item The utilization levels were almost close to a $100\%$ for all the experiments and is the reason why there have been no graphs shown for the same. High utilization levels do not always translate to a higher throughput but the reason could be due to the presence of malleable jobs. Only, if they are expanded or shrunk intelligently can both the throughput and utilization be kept high. DBES plays its role in achieving the same.
-\item Higher utilization levels are also due to the fact that there is a negotiation happening and this provides a very dynamic and flexible scheduling strategy. Negotiation finds a common point where both batch and runtime schedulers are happy and this usually can find a better packing of batch jobs by going through different transformations of running jobs. 
-\item This is in contrast to the conventional approaches which are rigid and do not have the opportunity to provide alternative schedules for batch jobs with respect to the transformations of the running jobs as seen in the original DBES algorithm.
-\item Figure \ref{fig:72} also shows fairly consistent average completion and response times of the jobs in different workloads. This shows that variations in the number of malleable jobs within the workload does not have an adverse impact on these metrics due to the proposed algorithm apart from small variations.
-\end{itemize}
 %%%%%%%%%%
-\begin{figure}[!htbp]
+\begin{figure}[!b]
 \centering
 %\vspace{-0.5in}
 \hspace*{-0.75in}
@@ -104,9 +95,3 @@ The ESP workload has been used to generate 228 jobs for a system with 16 nodes b
 \caption{Average Waiting Time and Average Response Time for the Modified ESP workload}
 \label{fig:72}
 \end{figure}
-%%%%%%%
-\begin{itemize}
-\item Figure \ref{fig:72} shows a graph with few selected workloads of $10\%$, $50\%$ and $100\%$ malleable jobs for simulating the system without any expand or shrink operations. This means that these malleable jobs are essentially moldable jobs now since they can be assigned any size within their range but only at submission time. Remaining jobs are as before of rigid type.
-\item All the three workloads take around $240$ min to finish. This is only slightly higher than the malleable-rigid workload that stood around $230$ min. This tells us that the proposed negotiation based flexible DBES algorithm has definitely provided us with a possibly good performance for moldable-rigid workload in comparison to the malleable-rigid workload.
-\item Looking the other way around, there is a greater scope to achieve better results for malleable-rigid workload by performance-based expand or shrink operations and a more intelligent negotiation protocol. Batch scheduling algorithm can also make better decisions by considering feedback from runtime scheduler.
-\end{itemize}
