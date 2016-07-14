@@ -232,24 +232,8 @@ Batch scheduler will provide \textbf{\textit{fairness}} to jobs while scheduling
 \item \textbf{\textit{Line 2:}} If there were no forwarded job requests then this was a new offer being generated.
 \item \textbf{\textit{Line 5:}} Update job dependencies according to the new system state. This means that some running malleable jobs may be maintaining invalid job dependencies. If a forwarded job can immediately start and a running malleable job has a dependency from the same job id, then this dependency should be cleared now as it is no longer valid. 
 \item \textbf{\textit{Line 6-9:}} For every reserved job, Analyze running malleabe jobs according to the approach mentioned in the pseudo code for shrink operations to generate sufficient resources for immediate start of reserved jobs. If analysis was successful, then shrink the jobs.
-\item An important point to note here is that the shrink operations will shrink a job by a step size and not upto its minimum node count. This is one subtle difference in comparison to the original DBES algorithm. Step size is calculated as below:
-\vspace{-0.30in}
-\begin{center}
-\boldmath\begin{equation*}
-step\_size = \frac{(Job.current\_node\_cnt - Job.min\_nodes)}{MAX\_NEGOTIATION\_ATTEMPTS}
-\end{equation*}
-\end{center}
-\vspace{-0.30in}
-\begin{center}
-\boldmath\begin{equation*}
-Job.next\_node\_cnt = Job.current\_node\_cnt - (step\_size * negotiation\_attempt\_no)
-\end{equation*}
-\end{center}
-\item The above steps have been included for the purpose of adapting DBES algorithm for negotiation. Runtime scheduler is interested in increasing its throughput and will want to try its best to serve every job that gets forwarded to it.Subsequent negotiation attempts will have the shrink operations as more aggressive for every shrinkable malleable job to better serve a single forwarded job.
-\item \textbf{\textit{Line 14:}} Reschedule forwarded job requests using backfill algorithm and compute reservations(without job start). In this step we will not consider jobs which could get immediate start time in the previous steps. Update the resource offer accordingly.
+\item An important point to note here is that the shrink operations will shrink a job by a step size and not upto its minimum node count. This is one subtle difference in comparison to the original DBES algorithm. 
 \end{itemize}
-%%%%%%%
-\setcounter{AlgoLine}{0}
 %%%%%%%
 %\pagebreak
 %\newpage
@@ -304,6 +288,21 @@ Job.next\_node\_cnt = Job.current\_node\_cnt - (step\_size * negotiation\_attemp
 \RestyleAlgo{boxruled}
 %%%%%%%%
 \begin{itemize}
+\item The Step size is calculated as below:
+\vspace{-0.30in}
+\begin{center}
+\boldmath\begin{equation*}
+step\_size = \frac{(Job.current\_node\_cnt - Job.min\_nodes)}{MAX\_NEGOTIATION\_ATTEMPTS}
+\end{equation*}
+\end{center}
+\vspace{-0.30in}
+\begin{center}
+\boldmath\begin{equation*}
+Job.next\_node\_cnt = Job.current\_node\_cnt - (step\_size * negotiation\_attempt\_no)
+\end{equation*}
+\end{center}
+\item The above steps have been included for the purpose of adapting DBES algorithm for negotiation. Runtime scheduler is interested in increasing its throughput and will want to try its best to serve every job that gets forwarded to it.Subsequent negotiation attempts will have the shrink operations as more aggressive for every shrinkable malleable job to better serve a single forwarded job.
+\item \textbf{\textit{Line 14:}} Reschedule forwarded job requests using backfill algorithm and compute reservations(without job start). In this step we will not consider jobs which could get immediate start time in the previous steps. Update the resource offer accordingly.
 \item \textbf{\textit{Line 15:}} Update job dependencies according to the new system state similar to point $3$.
 \item \textbf{\textit{Line 16-20:}} For every reserved job, if it has a dependency on a running malleable job then we will expand that running job to the maximum possible node count and update the dependency on that running malleable with the job id of this forwarded job. Expansion of the running job will also consider shrinking other running jobs for its needs. For the purpose of shrinking, it will follow the same approach as shown in \textbf{\textit{Line $7$}} except that it will follow only the second and third steps.
 \item \textbf{\textit{Line 25:}} Once all the previous steps of the algorithm have been completed, runtime scheduler will finally decide whether to accept or reject the mapping based on some decision making logic. If the number of negotiation attempts have reached the limit then it will just accept. If it rejects then it will send back the constructed offer to iBSched.
@@ -313,7 +312,7 @@ Runtime scheduler can generate a resource offer for the following events: \textb
 %%%%%%%
 A resource offer is sent to the batch scheduler on every alternate periodic time step. This is just a very simple \textbf{\textit{fairness}} policy to equally favor the running jobs and batch jobs. Between any two transactions, the runtime scheduler will perform a transformation of running jobs based on their peformance and also sometimes based on their dependencies (due to the DBES algorithm). During the other periodic time steps, The runtime scheduler will initiate a transaction with batch scheduler by creating an offer and sending it. It will do this by performing a partial transformation which means that it will shrink those running jobs which are shrinkable based on their performance but not use the free resources to expand other jobs and instead use it to send an offer. These partial transformations will only be done on every alternate periodic time step in order to favor running jobs and batch jobs equally. Sending an offer at every periodic time step may degrade the performance of running applications by driving them towards their minimum node counts whereas sending an offer too infrequently may effect throughput and quality of service to batch scheduler.\\ \\
 %%%%%%%%%
-\textbf{\textit{Runtime Transformation}} Due to the usage of DBES algorithm, a running malleable job always keeps track of the job id of a batch job that did not start till now but had its dependency on this running job. During the periodic runtime transformations (not partial), if there are any running malleable jobs which have such dependencies then they will be given complete preference for expansion at the cost of shrinking all other jobs without any dependencies. In case there are no such running jobs with dependencies then transformation will be done solely on the basis of performance and scalability.
+\textbf{\textit{Runtime Transformation}} Due to the usage of DBES algorithm, a running malleable job always keeps track of the job id of a batch job that did not start till now but had its dependency on this running job. During the periodic runtime transformations (not partial), if there are any running malleable jobs which have such dependencies then they will be given complete preference for expansion at the cost of shrinking all other jobs without any dependencies. In case there are no such running jobs with dependencies then transformation will be done solely on the basis of performance and scalability.\\ \\
 %%%%%%
 \noindent
 \textbf{\textit{Decision Logic:}} Runtime scheduler like batch scheduler uses a very simple decision making routine. This is due to the fact that it does not manage any resources now but only simulates it for the early prototype developed in this thesis. Below are the rules it follows to accept or reject a mapping:
@@ -325,14 +324,6 @@ constraint will be ignore, however, if the number of negotiations have crossed h
 \item If the batch scheduler had rejected the previous offer but accepted the current offer, then runtime scheduler will again employ the same rules for making a decision as enumerated in the last three points.
 \end{itemize}
  %%%%%%
-\begin{figure}[!t]
-%\centering
-\hspace*{-0.5in}
-\includegraphics[width=1.2\textwidth, height=95mm]{./figures/negotiation.pdf}
-\caption{Negotiation protocol}
-\label{fig:2}
-\end{figure}
-%%%%%%%
 \section{Negotiation}
 %%%%%%%%
 The Figure \ref{fig:2} illustrates one possible scenario of the negotiation between batch and runtime scheduler. Following points describe it in detail:
@@ -341,22 +332,15 @@ The Figure \ref{fig:2} illustrates one possible scenario of the negotiation betw
 \item \textbf{INIT} means initialize state. It will restore the transformed jobs back to their original state which they were at the beginning of the transaction (set of negotiations). This is done in order to perform a new transformation from the original state during every negotiation attempt otherwise the transformation will reach a saturation very soon.
 \item Saturation means that we can no longer perform any significant expand or shrink operations on the running jobs as they will already be either be at their min or max node counts due to a result of the previous transformations. This would result in making no progress.
 \item The green boxes labelled \textbf{"Algo 1"} represent the batch scheduling algorithm which will run every time the batch scheduler receives a resource offer. On every such attempt, it will relax the node count constraints of those jobs which could not be mapped due to lack of sufficient resources.
-\item Figure \ref{fig:53} shows the different states a batch job can go through during the time it is waiting in the batch job queue. These are basically all the possible states the job may be in during negotiations with the runtime scheduler. Once negotiations reach an agreement, the job may enter the running state otherwise its state in the batch queue will remain waiting or pending.
-\item The double headed arrows between the job states indicate that the batch job can switch back and forth between these states depending on the negotiations.
-\item The box labelled \textbf{"Update"} will update the details of jobs in its queue once it receives a feedback. This is important as a subsequent negotiation attempt must not result in the batch scheduling algorithm dispatching a job that is already running. The feedback is the only way for the batch scheduler to recognize if the runtime scheduler accepted its mapping and started any of the jobs from the mapping it had sent.  
-\item Once the negotiation has completed, the runtime scheduler will then accept the mapping and commit the jobs. The box labelled \textbf{"COMM"} represents the step where the commit happens. The forwarded jobs are added to the list of running jobs and would be started very soon. The runnings jobs will now take up their transformed state going forward as shown by the box \textbf{E}.
-\end{itemize}
-%%%%%%%%
-%\begin{figure}[!htbp]
+\begin{figure}[!htbp]
 %\centering
-%\vspace{-0.50in}
-%\hspace*{-0.5in}
-%\includegraphics[width=0.8\textwidth, height=80mm]{./figures/"job states".pdf}
-%\caption{Job States}
-%\label{fig:2}
-%\end{figure}
-%%%%%%%%%%
-\begin{figure}[!b]
+\hspace*{-0.5in}
+\includegraphics[width=1.2\textwidth, height=95mm]{./figures/negotiation.pdf}
+\caption{Negotiation protocol}
+\label{fig:2}
+\end{figure}
+%%%%%%%%%
+\begin{figure}[!htbp]
 \centering
 %\vspace{-0.50in}
 %\hspace*{-0.5in}
@@ -364,3 +348,9 @@ The Figure \ref{fig:2} illustrates one possible scenario of the negotiation betw
 \caption{Job States}
 \label{fig:53}
 \end{figure}
+\item Figure \ref{fig:53} shows the different states a batch job can go through during the time it is waiting in the batch job queue. These are basically all the possible states the job may be in during negotiations with the runtime scheduler. Once negotiations reach an agreement, the job may enter the running state otherwise its state in the batch queue will remain waiting or pending.
+\item The double headed arrows between the job states indicate that the batch job can switch back and forth between these states depending on the negotiations.
+\item The box labelled \textbf{"Update"} will update the details of jobs in its queue once it receives a feedback. This is important as a subsequent negotiation attempt must not result in the batch scheduling algorithm dispatching a job that is already running. The feedback is the only way for the batch scheduler to recognize if the runtime scheduler accepted its mapping and started any of the jobs from the mapping it had sent.  
+\item Once the negotiation has completed, the runtime scheduler will then accept the mapping and commit the jobs. The box labelled \textbf{"COMM"} represents the step where the commit happens. The forwarded jobs are added to the list of running jobs and would be started very soon. The runnings jobs will now take up their transformed state going forward as shown by the box \textbf{E}.
+\end{itemize}
+%%%%%%%%
