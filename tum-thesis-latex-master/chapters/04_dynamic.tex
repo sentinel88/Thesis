@@ -3,7 +3,7 @@
 This section illustrates and describes the high level architecture of the software implemented along with a few protocol sequence diagrams. It will help to understand at a high level about the components which form a part of this system to support invasive resource management and how will they interact with each other in order to integrate such an invasive resource management into existing batch systems. The following page shows the software architecture for how invasive resource management can be supported with SLURM and how exactly the new components fit into the existing software hierarchy.
 \begin{itemize}
 \item The top layer is that of the core resource management component which has access to job queues. In this architecture, it will now have access to not only the queue for the legacy (static) jobs but also invasive job queue.
-\item In a traditional setup the top layer will perform the task of job scheduling as well. This means that it will select a job(s) from the queue of jobs based on the current state of resources and many other factors to dispatch it to the traditional process manager below in the hierarchy. The process manager then takes the responsibility of launching these jobs on the allocated resources in the partition and managing them for their full lifetime. In case of parallel jobs, it will manage the job in a parallel environment along with facilitating the communication amongst the parallel tasks/processes with the help of a PMI (Process Manager Interface). The process manager may also spawn slave daemons on each of the nodes which are a part of the resource allocation for a single job to manage them more effectively.
+\item In a traditional setup the top layer will perform the task of job scheduling as well. This means that it will select a job(s) from the queue of jobs based on the current state of resources and many other factors to dispatch it to the traditional process manager below in the hierarchy. The process manager then takes the responsibility of launching these jobs on the allocated resources in the partition and managing them for their full lifetime. In case of parallel jobs, it will manage the job in a parallel environment along with facilitating the communication amongst the parallel tasks/processes with the help of a PMI (Process Manager Interface). 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=1.0\textwidth, height=185mm]{./figures/"iRM Architecture".pdf}
@@ -33,7 +33,7 @@ This section illustrates and describes the high level architecture of the softwa
 \caption{Message Types}
 \label{fig:8}
 \end{figure}
-\item \textbf{\textit{Negotiation:}} This is the most important phase in this whole approach to support invasive resource management. It is the phase during which both iRTSched and iBSched are negotiating with each other till they reach an agreement. If they do not then they continue till a certain limit is reached after which both of them just agree in their final attempt closing the current negotiation. After this a new transaction of negotiation will begin at some later point of time.
+\item \textbf{\textit{Negotiation:}} This is the most important phase in this whole approach to support invasive resource management. It is the phase during which both iRTSched and iBSched are negotiating with each other until they reach an agreement. If they do not then they continue till a certain limit is reached after which both of them just agree in their final attempt closing the current negotiation. After this a new transaction of negotiation will begin at some later point of time.
 \item \textbf{\textit{Feedback:}} This concerns the periodic / event-driven feedback sent by the iRTSched to the iBSched containing useful information as mentioned earlier. iRTSched will also send a performance model of every completed job in the feedback that can be stored in some database as a part of the history of executions for this job. This will help the iBSched in the future if the same job is submitted when there will be additional performance specific information available about this job that can be used by the batch scheduling algorithm to make better decisions for this job. This protocol is a uni-directional communication.
 \item \textbf{\textit{Urgent Jobs:}} This protocol concerns the support for urgent jobs. At any given point of time a cluster or supercomputing center may want to support very high priority jobs immediately without any further delay. By introducing support for invasive computing, it makes it all the more feasible to help run these urgent jobs immediately by either shrinking the resources of running jobs or suspending / killing them.
 \end{itemize}
@@ -48,7 +48,7 @@ This component will be an extension to the batch scheduler in the existing batch
 This batch scheduler is termed as invasive batch scheduler because it supports the negotiation interface to talk to an invasive runtime scheduler. It will now consider a mix of job types which are: \textit{malleable, moldable, rigid, and evolving} and perform the following tasks as per the existing functionalities provided by SLURM:
 \begin{itemize}
 \item It is based on an event-driven batch scheduling where scheduling decisions would be made only when an offer is received from iRTSched. Scheduling is performed here at the granularity level of nodes.
-\item Dispatch jobs according to a scheduling algorithm by considering the resource constraints of the job that can include the number[range] of nodes (exclusive / shared), memory size, duration, quality of service parameters etc.
+\item Dispatch jobs according to a scheduling algorithm by considering the resource constraints of the job that can include the number[range] of nodes (exclusive / shared), memory size, duration, quality of service parameters etc. Currently, we support only the node count constraint in the scheduling algorithm.
 \item With every negotiation attempt, the batch scheduler will try to relax the node count constraints of those jobs which could not be mapped to the available resource offer. As the negotiation attempts increase the degree to which the constraints are relaxed also increases. By doing this the batch scheduler is trying to bargain as best as it can in order to get an offer to serve as many jobs as possible.
 \item It will process the feedbacks received from iRTSched and update the status of running jobs in its queue. These feedbacks can be useful in understanding the scalability characteristics of running jobs that can possibly help in fixing the node count constraints for batch jobs that are still waiting.
 \item It can also process jobs which have an urgent priority. These jobs will receive special service and are going to be dispatched immediately to iRTSched. It will also consider jobs that may have some quality of service requirements such as deadlines and start time.
@@ -73,6 +73,7 @@ The iMPI process manager in this architecture refers to multiple components as t
 This protocol forms the core of the interaction between the iBSched and iRTSched. It allows for iRTSched to make one or a set of resource offers to iBSched which then needs to select jobs from its job queue to be mapped to these resource offers and send back the mapping to the iRTSched. The iRTSched will then decide whether to accept or reject this mapping based on whether it satisfies its local metrics. If it accepts, it will launch them based on some runtime scheduling and if it rejects then it informs this to iBSched in addition to sending it a new resource offer
 that will also contain possible future start times for pending jobs. The iBSched can also reject the resource offer in which case it will forward the previous job mapping (if any) again with relaxed resource constraints for jobs that could not be mapped. On accepting an offer, the iBSched will again send back a mapping to iRTSched. This exchange of messages continue until both reach an agreement. If the number of such exchanges reach a threshold then iBSched will just accept whatever offer it receives and iRTSched will also accept the final mapping it received and try its best to satisfy all the jobs forwarded. This will close the transaction.
 \subsection{Protocol Sequence Diagrams}
+In this section, we will have a look at the sequence diagrams for the protocol used in this work. Some of the possible scenarios are illustrated with the necessary figures in the following pages.
 %\vspace{-0.15in}
 \begin{figure}[!t]
 %\begin{figure}[H]
@@ -90,7 +91,11 @@ that will also contain possible future start times for pending jobs. The iBSched
 \end{itemize}
 %\label{fig:Seq1}
 %\end{figure}
-\begin{figure}[!t]
+%%%%%%%%%%
+\section{Invasive Jobs}
+Invasive jobs refer to those jobs whose resource set can be changed at runtime. As mentioned before in the job classification, \textbf{\textit{malleable}} and \textbf{\textit{evolving jobs}} fall under this category and we will refer to these as invasive jobs in this thesis. These kind of jobs will usually come with a set of constraints when submitted to a HPC system. An example of how such constraints may look like is given below. Some of these constraints will already be supported by current batch systems for job submission.
+%%%%%%%%
+\begin{figure}[!htbp]
 \vspace{-0.25in}
 \centering
 \includegraphics[width=0.9\textwidth, height=90mm]{./figures/scenario1contd.pdf}
@@ -99,7 +104,7 @@ that will also contain possible future start times for pending jobs. The iBSched
 \label{fig:Seq2}
 %\vspace{-0.10in}
 \end{figure}
-\begin{figure}[!b]
+\begin{figure}[!htbp]
 %\vspace{-0.15in}
 \centering
 \includegraphics[width=0.9\textwidth, height=90mm]{./figures/scenario2.pdf}
@@ -108,8 +113,9 @@ that will also contain possible future start times for pending jobs. The iBSched
 \label{fig:Seq3}
 \end{figure}
 \clearpage
-\section{Invasive Jobs}
-Invasive jobs refer to those jobs whose resource set can be changed at runtime. As mentioned before in the job classification, \textbf{\textit{malleable}} and \textbf{\textit{evolving jobs}} fall under this category and we will refer to these as invasive jobs in this thesis. These kind of jobs will usually come with a set of constraints when submitted to a HPC system. An example of how such constraints may look like is given below. Some of these constraints will already be supported by current batch systems for job submission.\\ \\
+%\section{Invasive Jobs}
+%Invasive jobs refer to those jobs whose resource set can be changed at runtime. As mentioned before in the job classification, \textbf{\textit{malleable}} and \textbf{\textit{evolving jobs}} fall under this category and we will refer to these as invasive jobs in this thesis. These kind of jobs will usually come with a set of constraints when submitted to a HPC system. An example of how such constraints may look like is given below. Some of these constraints will already be supported by current batch systems for job submission.\\ \\
+\noindent
 \textbf{\textit{Node Count:}} <min nodes><max nodes>\\
 \textbf{\textit{Runtime Estimate:}} <duration for min nodes>\\
 \textbf{\textit{Memory Per Node:}} <min MB>\\
