@@ -1,0 +1,44 @@
+#######Job Categories#########
+
+Emebedded Software Development
+Firmware Software Engineer
+Distributed systems software engineer
+
+
+
+#######Companies#######
+
+Formel D
+Cypress Semiconductors
+Huawei
+TQ Systems GmBh
+AED Engineering GmBh
+AKKA Technologies
+Volke Consulting Engineers
+E S R Labs AG
+Silver Atena
+Da Vinci Engineering
+Tech Connect
+Bosch
+EMC^2
+
+
+
+
+
+
+
+
+
+
+
+
+
+######Links##########
+
+jobspotting.com
+monster.de
+stepstone.de
+jobsinmunich.com
+graduateland.com
+eu-recruit.de
